@@ -1,0 +1,380 @@
+<div class="aiz-content-wrapper">
+  <%- include('../partials/topbar.ejs') %>
+  <!-- .aiz-topbar -->
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- Sytem Settings -->
+          <div class="card">
+            <div class="card-header">
+              <h1 class="mb-0 h6">Sytem Settings</h1>
+            </div>
+            <div class="card-body">
+              <form class="form-horizontal" action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                <div class="form-group row" id="changeStatusRow" style="display: none;">
+                    <label class="col-md-3 col-form-label">Change Status</label>
+                    <div class="col-md-8">
+                      <input type="checkbox" onchange="changeStatus(this)">
+                    </div>
+                  </div>
+                <!-- System Name -->
+                <div class="form-group row">
+                  <label class="col-sm-3 col-from-label">System Name</label>
+                  <div class="col-sm-9">
+                    <input type="hidden" name="types[]" value="site_name">
+                    <input type="text" name="site_name" class="form-control" placeholder="System Name" value="<%= existingSetting ? existingSetting[0].site_name : '' %>">
+                  </div>
+                </div>
+                <!-- Frontend Website Name -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Frontend Website Name</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="website_name">
+                    <input type="text" name="website_name" class="form-control" placeholder="Website Name" value="<%= existingSetting ? existingSetting[0].website_name : '' %>">
+                  </div>
+                </div>
+                <!-- Site Motto -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Site Motto</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="site_motto">
+                    <input type="text" name="site_motto" class="form-control" placeholder="Best eCommerce Website" value="<%= existingSetting ? existingSetting[0].site_motto : '' %>">
+                  </div>
+                </div>
+                <!-- Site Icon -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Site Icon</label>
+                  <div class="col-md-8">
+                    <div class="input-group" data-toggle="aizuploader" data-type="image">
+                      <label class="input-group-prepend btn btn-soft-secondary bg-soft-secondary font-weight-medium">
+                        Browse
+                        <input type="file" name="site_icon" id="site_icon" accept="image/*" class="d-none">
+                      </label>
+                      <div class="form-control file-amount"></div>
+                      <!-- The following hidden inputs are optional and can be used if needed -->
+                      <input type="hidden" name="" value="footer_logo">
+                      <input type="hidden" name="deletedFooterLogos" id="deletedFooterLogos" value="">
+                      <input type="hidden" name="" class="selected-files" value="1948">
+                    </div>
+                    <div class="file-preview box">
+                      <% existingSetting && existingSetting[0].system_logo && existingSetting[0].site_icon.forEach((file, index)=> { %>
+                      <% const fileName=file.split('/').pop(); %>
+                      <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
+                      <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1675" title="Mask Group 67.svg">
+                        <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                          <img src="<%= filteredPath %>" class="img-fit">
+                        </div>
+                        <div class="col body">
+                          <h6 class="d-flex"><span class="text-truncate title">
+                              <%= fileName.split('.')[0] %>
+                            </span><span class="ext flex-shrink-0">
+                              <%= fileName.split('.')[1] %>
+                            </span></h6>
+                          <p></p>
+                        </div>
+                        <div class="remove"><button class="btn btn-sm btn-link remove-attachment" type="button"><i class="la la-close"></i></button></div>
+                      </div>
+                      <% }) %>
+
+                    </div>
+                    <small class="text-muted">Website favicon. 32x32 .png</small>
+                  </div>
+                </div>
+
+                <!-- System Logo - White -->
+                <div class="form-group row">
+                  <label class="col-sm-3 col-from-label">System Logo - White</label>
+                  <div class="col-sm-9">
+                    <div class="input-group" data-toggle="aizuploader" data-type="image">
+                      <label class="input-group-prepend btn btn-soft-secondary bg-soft-secondary font-weight-medium">
+                        Browse
+                        <input type="file" name="system_logo" id="system_logo" accept="image/*" class="d-none">
+                      </label>
+                      <div class="form-control file-amount"></div>
+                      <!-- The following hidden inputs are optional and can be used if needed -->
+                      <input type="hidden" name="" value="footer_logo">
+                      <input type="hidden" name="deletedFooterLogos" id="deletedFooterLogos" value="">
+                      <input type="hidden" name="" class="selected-files" value="1948">
+                    </div>
+                    <div class="file-preview box">
+                      <% existingSetting && existingSetting[0].system_logo && existingSetting[0].system_logo.forEach((file, index)=> { %>
+                      <% const fileName=file.split('/').pop(); %>
+                      <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
+                      <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1675" title="Mask Group 67.svg">
+                        <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                          <img src="<%= filteredPath %>" class="img-fit">
+                        </div>
+                        <div class="col body">
+                          <h6 class="d-flex"><span class="text-truncate title">
+                              <%= fileName.split('.')[0] %>
+                            </span><span class="ext flex-shrink-0">
+                              <%= fileName.split('.')[1] %>
+                            </span></h6>
+                          <p></p>
+                        </div>
+                        <div class="remove"><button class="btn btn-sm btn-link remove-attachment" type="button"><i class="la la-close"></i></button></div>
+                      </div>
+                      <% }) %>
+
+                    </div>
+                    <small>Will be used in admin panel side menu</small>
+                  </div>
+                </div>
+
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- General Settings -->
+          <div class="card">
+            <div class="card-header">
+              <h6 class="fw-600 mb-0">General Settings</h6>
+            </div>
+            <div class="card-body">
+              <form action="/admin/business-settings/update" method="POST">
+                <!-- Website Base Color -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Website Base Color</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="base_color">
+                    <input type="text" name="base_color" class="form-control" placeholder="#377dff" value="<%= existingSetting ? existingSetting[0].base_color : '' %>">
+                    <small class="text-muted">Hex Color Code</small>
+                  </div>
+                </div>
+                <!-- Website Base Hover Color -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Website Base Hover Color</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="base_hov_color">
+                    <input type="text" name="base_hov_color" class="form-control" placeholder="#377dff" value="<%= existingSetting ? existingSetting[0].base_hov_color : '' %>">
+                    <small class="text-muted">Hex Color Code</small>
+                  </div>
+                </div>
+                <!-- Website Secondary Base Color -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Website Secondary Base Color</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="secondary_base_color">
+                    <input type="text" name="secondary_base_color" class="form-control" placeholder="#ffc519" value="<%= existingSetting ? existingSetting[0].secondary_base_color : '' %>">
+                    <small class="text-muted">Hex Color Code</small>
+                  </div>
+                </div>
+                <!-- Website Secondary Base Hover Color -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Website Secondary Base Hover Color</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="secondary_base_hov_color">
+                    <input type="text" name="secondary_base_hov_color" class="form-control" placeholder="#dbaa17" value="<%= existingSetting ? existingSetting[0].secondary_base_hov_color : '' %>">
+                    <small class="text-muted">Hex Color Code</small>
+                  </div>
+                </div>
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Global SEO -->
+          <div class="card">
+            <div class="card-header">
+              <h6 class="fw-600 mb-0">Global SEO</h6>
+            </div>
+            <div class="card-body">
+              <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                <!-- Meta Title -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Meta Title</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="meta_title">
+                    <input type="text" class="form-control" placeholder="Title" name="meta_title" value="<%= existingSetting ? existingSetting[0].meta_title : '' %>">
+                  </div>
+                </div>
+                <!-- Meta description -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Meta Description</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="meta_description">
+                    <textarea class="resize-off form-control" placeholder="Description" name="meta_description"><%= existingSetting ? existingSetting[0].meta_description : '' %></textarea>
+                  </div>
+                </div>
+                <!-- Keywords -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Keywords</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="meta_keywords">
+                    <textarea class="resize-off form-control" placeholder="Keyword, Keyword" name="meta_keywords"><%= existingSetting ? existingSetting[0].meta_keywords : '' %></textarea>
+                    <small class="text-muted"></small>
+                  </div>
+                </div>
+                <!-- Meta Image -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Meta Image</label>
+                  <div class="col-md-8">
+                    <div class="input-group" data-toggle="aizuploader" data-type="image">
+                        <label class="input-group-prepend btn btn-soft-secondary bg-soft-secondary font-weight-medium">
+                          Browse
+                          <input type="file" name="meta_image" id="meta_image" accept="image/*" class="d-none">
+                        </label>
+                        <div class="form-control file-amount"></div>
+                        <!-- The following hidden inputs are optional and can be used if needed -->
+                        <input type="hidden" name="" value="footer_logo">
+                        <input type="hidden" name="deletedFooterLogos" id="deletedFooterLogos" value="">
+                        <input type="hidden" name="" class="selected-files" value="1948">
+                      </div>
+                      <div class="file-preview box">
+                        <% existingSetting && existingSetting[0].meta_image && existingSetting[0].meta_image.forEach((file, index)=> { %>
+                        <% const fileName=file.split('/').pop(); %>
+                        <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
+                        <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1675" title="Mask Group 67.svg">
+                          <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                            <img src="<%= filteredPath %>" class="img-fit">
+                          </div>
+                          <div class="col body">
+                            <h6 class="d-flex"><span class="text-truncate title">
+                                <%= fileName.split('.')[0] %>
+                              </span><span class="ext flex-shrink-0">
+                                <%= fileName.split('.')[1] %>
+                              </span></h6>
+                            <p></p>
+                          </div>
+                          <div class="remove"><button class="btn btn-sm btn-link remove-attachment" type="button"><i class="la la-close"></i></button></div>
+                        </div>
+                        <% }) %>
+  
+                      </div>
+                  </div>
+                </div>
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Cookies Agreement -->
+          <div class="card">
+            <div class="card-header">
+              <h6 class="fw-600 mb-0">Cookies Agreement</h6>
+            </div>
+            <div class="card-body">
+              <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                <!-- Cookies Agreement Text -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Cookies Agreement Text</label>
+                  <textarea class="aiz-text-editor" name="cookies_description" style="display: none;"><%= existingSetting ? existingSetting[0].cookies_description : '' %></textarea>
+                </div>
+                <!-- Show Cookies Agreement -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Show Cookies Agreement?</label>
+                  <div class="col-md-8">
+                    <label class="aiz-switch aiz-switch-success mb-0">
+                      <input type="checkbox" name="show_cookies_agreement" <%= existingSetting && existingSetting[0].show_cookies_agreement ? 'checked' : '' %>>
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Website Popup -->
+          <div class="card">
+            <div class="card-header">
+              <h6 class="fw-600 mb-0">Website Popup</h6>
+            </div>
+            <div class="card-body">
+              <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                <!-- Show website popup -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Show website popup?</label>
+                  <div class="col-md-8">
+                    <label class="aiz-switch aiz-switch-success mb-0">
+                      <input type="checkbox" name="show_website_popup" <%= existingSetting && existingSetting[0].show_website_popup ? 'checked' : '' %>>
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <!-- Popup content -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Popup content</label>
+                  <textarea class="aiz-text-editor" name="popup_description" style="display: none;"><%= existingSetting ? existingSetting[0].popup_description : '' %></textarea>
+                </div>
+                <!-- Show Subscriber form -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Show Subscriber form?</label>
+                  <div class="col-md-8">
+                    <label class="aiz-switch aiz-switch-success mb-0">
+                      <input type="checkbox" name="show_subscribe_form" <%= existingSetting && existingSetting[0].show_subscribe_form ? 'checked' : '' %>>
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Custom Script -->
+          <div class="card">
+            <div class="card-header">
+              <h6 class="fw-600 mb-0">Custom Script</h6>
+            </div>
+            <div class="card-body">
+              <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                <!-- Header custom script -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Header custom script - before
+                    &lt;/head&gt;</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="header_script">
+                    <textarea name="header_script" rows="4" class="form-control" placeholder="<script>
+...
+</script>"><%= existingSetting ? existingSetting[0].header_script : '' %></textarea>
+                    <small>Write script with &lt;script&gt; tag</small>
+                  </div>
+                </div>
+                <!-- Footer custom script -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Footer custom script - before
+                    &lt;/body&gt;</label>
+                  <div class="col-md-8">
+                    <input type="hidden" name="types[]" value="footer_script">
+                    <textarea name="footer_script" rows="4" class="form-control" placeholder="<script>
+...
+</script>"><%= existingSetting ? existingSetting[0].footer_script : '' %></textarea>
+                    <small>Write script with &lt;script&gt; tag</small>
+                  </div>
+                </div>
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+      <p class="mb-0">© v8.2</p>
+    </div>
+  </div><!-- .aiz-main-content -->
+</div>

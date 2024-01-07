@@ -1,0 +1,129 @@
+<footer id="guff_fn_footer" class="subscribe_enabled">
+  <div class="guff_fn_footer">
+
+    <div class="footer_left">
+      <div class="footer_left_in">
+        <h3 class="footer__title">Contact Us</h3>
+        <div class="footer_info" data-social="enable" data-info="enable">
+          <div class="info_left">
+            <div class="guff_fn_social_list">
+            <% if (existingSetting && existingSetting[0].show_social_links === true) { %>
+              <ul>
+                <li>
+                  <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].facebook_link : '' %>" target="_blank">
+                    <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/facebook.svg" alt="svg" />
+                    <span class="t_text">facebook</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].twitter_link : '' %>" target="_blank">
+                    <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/twitter.svg" alt="svg" />
+                    <span class="t_text">twitter</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].youtube_link : '' %>" target="_blank">
+                    <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/pinterest.svg" alt="svg" />
+                    <span class="t_text">youtube</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].instagram_link : '' %>" target="_blank">
+                    <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/instagram.svg" alt="svg" />
+                    <span class="t_text">instagram</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].tiktok_link : '' %>" target="_blank">
+                    <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/tiktok.svg" alt="svg" />
+                    <span class="t_text">tiktok</span>
+                  </a>
+                </li>
+              </ul>
+              <% } %>
+            </div>
+          </div>
+          <div class="info_right">
+            <ul>
+              <li><span class="label">Phone</span><span class="value"><a href="tel:<%= existingSetting ? existingSetting[0].phonenumber : '' %>"><%= existingSetting ? existingSetting[0].phonenumber : '' %></a></span></li>
+              <li><span class="label">Email</span><span class="value"><a href="mailto:<%= existingSetting ? existingSetting[0].contact_email : '' %>"><%= existingSetting ? existingSetting[0].contact_email : '' %></a></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer_welcome">
+          <p>
+            <%- existingSetting ? existingSetting[0].description : '' %>
+          </p>
+        </div>
+        <div class="footer_divider" data-totop="enable">
+          <div class="decor"></div>
+          <a class="footer_totop" href="#" aria-label="Go to top">
+            <span class="icon"><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/arrowo.svg" alt="svg" /></span>
+            <span class="text">Top</span>
+          </a>
+        </div>
+
+        <div class="footer_menu">
+          <div class="menu-footer-container">
+            <ul id="menu-footer" class="guff_fn_main_nav">
+              <li id="menu-item-176" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-176"><a href="#"><span><span>Home</span><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/star.svg" alt="svg" /></span></a></li>
+              <li id="menu-item-177" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-177"><a href="#"><span><span>About Us</span><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/star.svg" alt="svg" /></span></a></li>
+              <li id="menu-item-178" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-178"><a href="#"><span><span>Contact Us</span><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/star.svg" alt="svg" /></span></a></li>
+              <li id="menu-item-179" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-179"><a href="#"><span><span>Privacy Policy</span><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/star.svg" alt="svg" /></span></a></li>
+              <li id="menu-item-180" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-180"><a href="#"><span><span>Terms and Conditions</span><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/star.svg" alt="svg" /></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer_copyright">
+          <p>
+            <%- existingSetting ? existingSetting[0].frontend_copyright_text : '' %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer_right">
+    <% if (existingSetting && existingSetting[0].show_subscribe_form === true) { %>
+      <div class="footer_subscribe_form">
+        <div class="form_decor">
+          <span class="decor_top"></span>
+          <span class="decor_right"></span>
+          <span class="decor_bottom"></span>
+          <span class="decor_left"></span>
+          <span class="top_plane"><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/paper-plane.svg" alt="svg" /></span>
+          <span class="bottom_plane"><img class="fn__svg " src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/themes/guff/framework/svg/paper-plane.svg" alt="svg" /></span>
+        </div>
+        <div class="form_bottom">
+          <h3 class="fsf_title">Stay in the loop</h3>
+          <p class="fsf_desc">Get the latest posts delivered right to your email.</p>
+          <script>
+            (function() {
+              window.mc4wp = window.mc4wp || {
+                listeners: [],
+                forms: {
+                  on: function(evt, cb) {
+                    window.mc4wp.listeners.push({
+                      event: evt,
+                      callback: cb
+                    });
+                  }
+                }
+              }
+            })();
+          </script><!-- Mailchimp for WordPress v4.9.9 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+          <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-181" method="post" data-id="181" data-name="Newspaper">
+            <div class="mc4wp-form-fields">
+              <div class="fn__subscribe">
+                <input type="email" name="EMAIL" placeholder="Your Email *" required />
+                <input type="submit" value="Subscribe" />
+              </div>
+            </div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1704303316" /><input type="hidden" name="_mc4wp_form_id" value="181" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
+            <div class="mc4wp-response"></div>
+          </form><!-- / Mailchimp for WordPress Plugin -->
+        </div>
+      </div>
+    <% } %>
+    </div>
+
+  </div>
+</footer>

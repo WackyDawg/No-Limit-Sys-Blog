@@ -1,0 +1,189 @@
+<div class="aiz-content-wrapper">
+    <%- include('./partials/topbar.ejs') %>
+
+        <!-- .aiz-topbar -->
+        <div class="aiz-main-content">
+            <div class="px-15px px-lg-25px">
+
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0 h6">Blog Information</h5>
+                            </div>
+                            <div id="category-error" class="text-danger"></div>
+                            <div class="card-body">
+                                <form id="add_form" class="form-horizontal"
+    action="/admin/blog/edit-post/<%= data._id %>" method="POST" enctype="multipart/form-data"
+    onsubmit="return validateCategory();">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Blog Title
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" placeholder="Blog Title" onkeyup="makeSlug(this.value)"
+                                                id="title" name="title" value="<%= data.title %>" class="form-control" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" id="category">
+                                        <label class="col-md-3 col-from-label">
+                                            Category
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select style="display: block; width: 65%; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; background-color: #fff; background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 16px 12px; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none;" class="form-select" name="category_id" id="category_id" aria-label="Default select example">
+                                            <option disabled>Open this select menu</option>
+                                            <% categories.forEach(category => { %>
+                                                <option value="<%= category._id %>" <%= data && data.category_id && category._id.toString() === data.category_id.toString() ? 'selected' : '' %>><%= category.name %></option>
+                                            <% }); %>
+                                        </select>
+                                        
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Slug
+                                            <span class="text-danger">*</span></label>
+                                        <div class="col-md-9">
+                                            <input type="text"  placeholder="Slug" name="slug" id="slug" value="<%= data.slug %>"
+                                                class="form-control">
+                                        </div>
+                                     </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="signinSrEmail">
+                                            Banner
+                                            <small>(1300x650)</small>
+                                        </label>
+                                        
+                                        <div class="col-md-9">
+                                            <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                                <input type="file" name="banner" value="<%= data.banner %>" class="form-control" id="inputGroupFile01">
+                                            </div>
+                                            <div class="file-preview box sm">
+                                                <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1893" title="tshirtt.webp">
+                                                    <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                                                        <img src="/uploads/<%= String(data.banner).replace('/public', '') %>" class="img-fit">
+                                                    </div>
+                                                    <!-- <div class="col body">
+                                                        <h6 class="d-flex">
+                                                            <span class="text-truncate title">tshirtt</span>
+                                                            <span class="ext flex-shrink-0">.webp</span>
+                                                        </h6><p>41 KB</p></div><div class="remove">
+                                                            <button class="btn btn-sm btn-link remove-attachment" type="button">
+                                                                <i class="la la-close"></i>
+                                                            </button>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xxl-3 col-from-label fs-13">Tags <span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-xxl-9">
+                                            <input type="text" value="<%= data.tags %>" class="form-control aiz-tag-input" name="tags"
+                                                placeholder="Type and hit enter to add a tag">
+                                            <small class="text-muted">This is used for search. Input those words by
+                                                which cutomer can find this product.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Short Description
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <textarea name="short_description" value="" rows="5" class="form-control"
+                                                required=""><%= data.short_description %></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-from-label">
+                                            Description
+                                        </label>
+                                        <div class="col-md-9">
+                                            <textarea class="aiz-text-editor" value="" name="description"
+                                                style="display: none;"><%= data.description %></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Meta Title</label>
+                                        <div class="col-md-9">
+                                            <input type="text" value="<%= data.meta_title %>" class="form-control" name="meta_title"
+                                                placeholder="Meta Title">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="signinSrEmail">
+                                            Meta Image
+                                            <small>(200x200)+</small>
+                                        </label>
+                                        <div class="col-md-9">
+                                            <div class="input-group" data-toggle="aizuploader" data-type="image">
+                                                <input type="file"  name="meta_img" class="form-control" id="inputGroupFile01">
+                                            </div>
+                                            <div class="file-preview box sm">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Meta Description</label>
+                                        <div class="col-md-9">
+                                            <textarea  name="meta_description" rows="5"  class="form-control"><%= data.meta_description %></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">
+                                            Meta Keywords
+                                        </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="meta_keywords"
+                                                name="meta_keywords"  placeholder="Meta Keywords" value="<%= data.meta_keywords %>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0 text-right">
+                                        <button type="submit" class="btn btn-primary">
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+                <p class="mb-0">© v8.2</p>
+            </div>
+        </div><!-- .aiz-main-content -->
+</div>
+
+<script>
+    function validateCategory() {
+    const categorySelect = document.getElementById('category_id');
+    const selectedCategory = categorySelect.value;
+    const categoryErrorDiv = document.getElementById('category-error');
+
+    // Check if the selected value is the default option
+    if (selectedCategory === '' || selectedCategory === 'Open this select menu') {
+        // Show the error message in the specified div
+        categoryErrorDiv.innerHTML = 'Please select a valid category.';
+        categoryErrorDiv.style.display = 'block'; // Make the error div visible
+        return false; // Prevent form submission
+    }
+
+    // If a valid category is selected, hide the error div and allow form submission
+    categoryErrorDiv.style.display = 'none';
+    return true;
+}
+
+
+</script>

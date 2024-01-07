@@ -1,0 +1,34 @@
+<!-- views/blogIndex.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Index</title>
+</head>
+<body>
+    <h1>Blog Index</h1>
+
+    <!-- Display all categories with post count -->
+    <ul>
+        <% categories.forEach(category => { %>
+            <li>
+                <a href="/posts/categories/<%= category.category %>"><%= category.category %></a>
+                (<%= category.count %> posts)
+            </li>
+        <% }); %>
+    </ul>
+
+    <!-- Display all blog posts -->
+    <div>
+        <% posts.forEach(post => { %>
+            <h2><%= post.title %></h2>
+            <p><%= post.content %></p>
+            <p>Tags: <%= post.tags.join(', ') %></p>
+            <p>Category: <%= post.category %></p>
+            <hr>
+        <% }); %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<div class="aiz-content-wrapper">
+    <%- include('../partials/topbar.ejs') %>
+    <!-- .aiz-topbar -->
+    <div class="aiz-main-content">
+        <div class="px-15px px-lg-25px">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Google Login Credential</h5>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal"
+                                action="/admin/env_key_update" method="POST">
+                                <input type="hidden" name="_token" value="">
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="GOOGLE_CLIENT_ID">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Client ID</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="GOOGLE_CLIENT_ID"
+                                            value=""
+                                            placeholder="Google Client ID" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="GOOGLE_CLIENT_SECRET">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Client Secret</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="GOOGLE_CLIENT_SECRET"
+                                            value="" placeholder="Google Client Secret"
+                                            required="">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 text-right">
+                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Facebook Login Credential</h5>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal"
+                                action="/admin/env_key_update" method="POST">
+                                <input type="hidden" name="_token" value="">
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="FACEBOOK_CLIENT_ID">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">App ID</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="FACEBOOK_CLIENT_ID" value=""
+                                            placeholder="Facebook Client ID" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="FACEBOOK_CLIENT_SECRET">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">App Secret</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="FACEBOOK_CLIENT_SECRET" value=""
+                                            placeholder="Facebook Client Secret" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 text-right">
+                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Twitter Login Credential</h5>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal"
+                                action="/admin/env_key_update" method="POST">
+                                <input type="hidden" name="_token" value="">
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="TWITTER_CLIENT_ID">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Client ID</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="TWITTER_CLIENT_ID" value=""
+                                            placeholder="Twitter Client ID" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="TWITTER_CLIENT_SECRET">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Client Secret</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="TWITTER_CLIENT_SECRET" value=""
+                                            placeholder="Twitter Client Secret" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 text-right">
+                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6">Apple Login Credential</h5>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal"
+                                action="/admin/env_key_update" method="POST">
+                                <input type="hidden" name="_token" value="">
+                                <input type="hidden" name="types[]" value="SIGN_IN_WITH_APPLE_LOGIN">
+                                <input type="hidden" name="SIGN_IN_WITH_APPLE_LOGIN"
+                                    value="users/login" required="">
+                                <input type="hidden" name="types[]" value="SIGN_IN_WITH_APPLE_REDIRECT">
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="SIGN_IN_WITH_APPLE_REDIRECT">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Callback URL</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="SIGN_IN_WITH_APPLE_REDIRECT"
+                                            value="" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="SIGN_IN_WITH_APPLE_CLIENT_ID">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Client ID</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="SIGN_IN_WITH_APPLE_CLIENT_ID"
+                                            value="" placeholder="Apple Client ID" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <input type="hidden" name="types[]" value="SIGN_IN_WITH_APPLE_CLIENT_SECRET">
+                                    <div class="col-lg-3">
+                                        <label class="col-from-label">Client Secret</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" name="SIGN_IN_WITH_APPLE_CLIENT_SECRET"
+                                            value="" placeholder="Apple Client Secret" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 text-right">
+                                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+            <p class="mb-0">© v8.2</p>
+        </div>
+    </div><!-- .aiz-main-content -->
+</div>

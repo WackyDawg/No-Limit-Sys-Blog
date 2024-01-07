@@ -1,0 +1,181 @@
+<div class="header_top">
+    <div class="header_top_in">
+        <div class="ht_left">
+            <div class="logo">
+                <div class="corner"></div>
+                <% if (existingSetting && existingSetting[0] && existingSetting[0].site_icon) { %>
+                    <% existingSetting[0].site_icon.forEach((file, index) => { %>
+                        <% const fileName = file.split('/').pop(); %>
+                        <% const filteredPath = file.replace(/.*\/uploads/, '/uploads'); %>
+                        <a href="/" aria-label="Go to home page">
+                            <img class="retina_logo" src="<%= filteredPath %>" alt="<%= fileName %>">
+                        </a>
+                    <% }); %>
+                <% } else { %>
+                    <!-- Handle the case where existingSetting or site_icon is undefined -->
+                    <a href="/" aria-label="Go to home page">
+                        <img class="default_logo" src="/path/to/default/logo.png" alt="Default Logo">
+                    </a>
+                <% } %>
+            </div>
+            <div class="bottom_fixer">
+                <div class="guff_fn_nav main_nav">
+                    <div class="menu">
+                        <div class="menu-main-container">
+                            <ul id="menu-main" class="guff_fn_main_nav">
+                                <li id="menu-item-334"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-200 current_page_item menu-item-334">
+                                    <a href="index.html" aria-current="page"><span><span>Home</span><img
+                                                class="fn__svg "
+                                                src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                alt="svg" /></span></a></li>
+                                <li id="menu-item-191"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-191">
+                                    <a href="#"><span><span>Pages</span><img class="fn__svg "
+                                                src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                alt="svg" /></span></a>
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-192"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-192">
+                                            <a href="https://fn_ex_link/404"><span><span>404
+                                                        Page</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-190"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-190">
+                                            <a href="protected-page/index.html"><span><span>Protected
+                                                        Page</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-198"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-198">
+                                            <a href="https://fn_ex_link/?s=great"><span><span>Search
+                                                        Found</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-197"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-197">
+                                            <a href="https://fn_ex_link/?s=tree"><span><span>Search Not
+                                                        Found</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-199"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-199">
+                                    <a href="podcasts/index.html"><span><span>Podcasts</span><img
+                                                class="fn__svg "
+                                                src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                alt="svg" /></span></a>
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-194"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-194">
+                                            <a href="episodes/index.html"><span><span>Episodes</span><img
+                                                        class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-195"
+                                            class="menu-item menu-item-type-post_type menu-item-object-frenify-episode menu-item-195">
+                                            <a
+                                                href="episode/unleashing-your-full-potential-embracing-mindfulness-and-personal-growth/index.html"><span><span>Episode
+                                                        Single</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-149"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149">
+                                            <a href="podcasts/index.html"><span><span>Podcasts</span><img
+                                                        class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-196"
+                                            class="menu-item menu-item-type-post_type menu-item-object-frenify-podcast menu-item-196">
+                                            <a
+                                                href="podcast/financial-freedom-mastering-your-finances-for-a-stress-free-lifestyle/index.html"><span><span>Podcast
+                                                        Single</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-333"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-333">
+                                            <a href="home-podcast/index.html"><span><span>Home
+                                                        Podcast</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-169"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-169">
+                                    <a href="blog/index.html"><span><span>Blog</span><img
+                                                class="fn__svg "
+                                                src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                alt="svg" /></span></a>
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-175"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-175">
+                                            <a href="blog/index.html"><span><span>List</span><img
+                                                        class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-172"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-172">
+                                            <a href="blog-4/index.html"><span><span>List +
+                                                        Sidebar</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-174"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-174">
+                                            <a href="blog-2/index.html"><span><span>Classic</span><img
+                                                        class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-171"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-171">
+                                            <a href="blog-5/index.html"><span><span>Classic +
+                                                        Sidebar</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-173"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-173">
+                                            <a href="blog-3/index.html"><span><span>Masonry</span><img
+                                                        class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                        <li id="menu-item-170"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-170">
+                                            <a href="blog-6/index.html"><span><span>Masonry +
+                                                        Sidebar</span><img class="fn__svg "
+                                                        src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                        alt="svg" /></span></a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-347"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-347">
+                                    <a href="contact/index.html"><span><span>Contact</span><img
+                                                class="fn__svg "
+                                                src="/wp-content/themes/guff/framework/svg/star.svg"
+                                                alt="svg" /></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="more">
+                            <a href="#">
+                                <span>More...</span>
+                            </a>
+                            <ul class="sub-menu"><!-- Comes from JS --></ul>
+                        </div>
+                    </div>
+                    <a class="hot_posts" title="Hot Posts" href="hot-page/index.html"
+                        aria-label="Hot Posts"><img class="fn__svg "
+                            src="/wp-content/themes/guff/framework/svg/fire.svg" alt="svg" /><span
+                            class="text">Hot</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="ht_right">
+            <div class="ht_right_item">
+                <div class="search_opener"><a href="#"><span class="text"
+                            aria-label="Open Search Bar">Search</span><span class="icon"><img
+                                class="fn__svg " src="/wp-content/themes/guff/framework/svg/search.svg"
+                                alt="svg" /></span></a></div>
+            </div>
+        </div>
+    </div>
+</div>

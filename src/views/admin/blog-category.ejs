@@ -1,0 +1,89 @@
+<div class="aiz-content-wrapper">
+    <%- include('./partials/topbar.ejs') %>
+
+        <!-- .aiz-topbar -->
+        <div class="aiz-main-content">
+            <div class="px-15px px-lg-25px">
+                <div class="aiz-titlebar text-left mt-2 mb-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h1 class="h3">All Blog Categories</h1>
+                        </div>
+                        <div class="col-md-6 text-md-right">
+                            <a href="/admin/blog-category/create"
+                                class="btn btn-circle btn-info">
+                                <span>Add New category</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-block d-md-flex">
+                        <h5 class="mb-0 h6">Blog Categories</h5>
+                        <form class="" id="sort_categories" action="" method="GET">
+                            <div class="box-inline pad-rgt pull-left">
+                                <div class="" style="min-width: 200px;">
+                                    <input type="text" class="form-control" id="search" name="search"
+                                        placeholder="Type name &amp; Enter">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <table class="table aiz-table mb-0 footable footable-1 breakpoint-xs" style="">
+                            <thead>
+                                <tr class="footable-header">
+
+
+
+                                    <th width="5%" class="footable-first-visible" style="display: table-cell;">#
+                                    </th>
+                                    <th style="display: table-cell;">Name</th>
+                                    <th width="10%" class="text-right footable-last-visible"
+                                        style="display: table-cell;">Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let count=1; %>
+
+                                    <% categories.forEach(category=> { %>
+                                        <tr>
+
+
+
+                                            <td class="footable-first-visible" style="display: table-cell;">
+                                                <%= count %>
+                                            </td>
+                                            <td style="display: table-cell;">
+                                                <%= category.name %>
+                                            </td>
+                                            <td class="text-right footable-last-visible" style="display: table-cell;">
+                                                <a class="btn btn-soft-primary btn-icon btn-circle btn-sm"
+                                                    href="https://demo.activeitzone.com/ecommerce/admin/blog-category/3/edit"
+                                                    title="Edit">
+                                                    <i class="las la-edit"></i>
+                                                </a>
+                                                <a href="#"
+                                                    class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
+                                                    data-href="https://demo.activeitzone.com/ecommerce/admin/blog-category/destroy/3"
+                                                    title="Delete">
+                                                    <i class="las la-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% count++; %>
+                                            <% }) %>
+
+                            </tbody>
+                        </table>
+                        <div class="aiz-pagination">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+                <p class="mb-0">© v8.2</p>
+            </div>
+        </div><!-- .aiz-main-content -->
+</div>

@@ -1,0 +1,238 @@
+<div class="aiz-sidebar-wrap">
+  <div class="aiz-sidebar left c-scrollbar">
+    <div class="aiz-side-nav-logo-wrap">
+      <% existingSetting && existingSetting[0].system_logo && existingSetting[0].system_logo.forEach((file, index)=> { %>
+      <% const fileName=file.split('/').pop(); %>
+      <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
+      <a href="/admin" class="d-block text-left">
+        <img class="mw-100" src="<%= filteredPath %>" class="brand-icon" alt="">
+      </a>
+      <% }) %>
+
+    </div>
+    <div class="aiz-side-nav-wrap">
+      <div class="px-3 mb-3 position-relative">
+        <input class="form-control bg-transparent rounded-2 form-control-sm text-white fs-14" type="text" name="" placeholder="Search in menu" id="menu-search" onkeyup="menuSearch()">
+        <span class="absolute-top-right pr-3 mr-3" style="margin-top: 10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+            <path id="search_FILL0_wght200_GRAD0_opsz20" d="M176.921-769.231l6.255-6.255a5.99,5.99,0,0,0,1.733.949,5.687,5.687,0,0,0,1.885.329,5.317,5.317,0,0,0,3.9-1.608,5.31,5.31,0,0,0,1.609-3.9,5.322,5.322,0,0,0-1.608-3.9,5.306,5.306,0,0,0-3.9-1.611,5.321,5.321,0,0,0-3.9,1.609,5.312,5.312,0,0,0-1.611,3.9,5.554,5.554,0,0,0,.35,1.946,6.043,6.043,0,0,0,.929,1.672l-6.255,6.255Zm9.874-5.82a4.51,4.51,0,0,1-3.317-1.352,4.51,4.51,0,0,1-1.352-3.317,4.51,4.51,0,0,1,1.352-3.317,4.51,4.51,0,0,1,3.317-1.352,4.51,4.51,0,0,1,3.317,1.352,4.51,4.51,0,0,1,1.352,3.317,4.51,4.51,0,0,1-1.352,3.317A4.51,4.51,0,0,1,186.8-775.051Z" transform="translate(-176.307 785.231)" fill="#4e5767" />
+          </svg>
+        </span>
+      </div>
+      <ul class="aiz-side-nav-list" id="search-menu">
+      </ul>
+      <ul class="aiz-side-nav-list" id="main-menu" data-toggle="aiz-side-menu">
+
+
+        <li class="aiz-side-nav-item">
+          <a href="/admin" class="aiz-side-nav-link">
+            <div class="aiz-side-nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path id="_3d6902ec768df53cd9e274ca8a57e401" data-name="3d6902ec768df53cd9e274ca8a57e401" d="M18,12.286a1.715,1.715,0,0,0-1.714-1.714h-4a1.715,1.715,0,0,0-1.714,1.714v4A1.715,1.715,0,0,0,12.286,18h4A1.715,1.715,0,0,0,18,16.286Zm-8.571,0a1.715,1.715,0,0,0-1.714-1.714h-4A1.715,1.715,0,0,0,2,12.286v4A1.715,1.715,0,0,0,3.714,18h4a1.715,1.715,0,0,0,1.714-1.714Zm7.429,0v4a.57.57,0,0,1-.571.571h-4a.57.57,0,0,1-.571-.571v-4a.57.57,0,0,1,.571-.571h4a.57.57,0,0,1,.571.571Zm-8.571,0v4a.57.57,0,0,1-.571.571h-4a.57.57,0,0,1-.571-.571v-4a.57.57,0,0,1,.571-.571h4a.57.57,0,0,1,.571.571ZM9.429,3.714A1.715,1.715,0,0,0,7.714,2h-4A1.715,1.715,0,0,0,2,3.714v4A1.715,1.715,0,0,0,3.714,9.429h4A1.715,1.715,0,0,0,9.429,7.714Zm8.571,0A1.715,1.715,0,0,0,16.286,2h-4a1.715,1.715,0,0,0-1.714,1.714v4a1.715,1.715,0,0,0,1.714,1.714h4A1.715,1.715,0,0,0,18,7.714Zm-9.714,0v4a.57.57,0,0,1-.571.571h-4a.57.57,0,0,1-.571-.571v-4a.57.57,0,0,1,.571-.571h4a.57.57,0,0,1,.571.571Zm8.571,0v4a.57.57,0,0,1-.571.571h-4a.57.57,0,0,1-.571-.571v-4a.57.57,0,0,1,.571-.571h4a.57.57,0,0,1,.571.571Z" transform="translate(-2 -2)" fill="#575b6a" fill-rule="evenodd" />
+              </svg>
+            </div>
+            <span class="aiz-side-nav-text">Dashboard</span>
+          </a>
+        </li>
+
+
+        <!--Blog System-->
+        <li class="aiz-side-nav-item">
+          <a href="#" class="aiz-side-nav-link">
+            <div class="aiz-side-nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path id="Path_40771" data-name="Path 40771" d="M9.688,16H3.75A3.754,3.754,0,0,1,0,12.25V3.75A3.754,3.754,0,0,1,3.75,0h8.5A3.754,3.754,0,0,1,16,3.75V9.734a.625.625,0,0,1-1.25,0V3.75a2.5,2.5,0,0,0-2.5-2.5H3.75a2.5,2.5,0,0,0-2.5,2.5v8.5a2.5,2.5,0,0,0,2.5,2.5H9.688a.625.625,0,0,1,0,1.25ZM12.875,3.938a.625.625,0,0,0-.625-.625H6.531a.625.625,0,0,0,0,1.25H12.25A.625.625,0,0,0,12.875,3.938Zm0,2.5a.625.625,0,0,0-.625-.625H3.75a.625.625,0,0,0,0,1.25h8.5A.625.625,0,0,0,12.875,6.438Zm-6.25,2.5A.625.625,0,0,0,6,8.313H3.75a.625.625,0,0,0,0,1.25H6A.625.625,0,0,0,6.625,8.938Zm-3.5-5.062a.781.781,0,1,0,.781-.781A.781.781,0,0,0,3.125,3.875ZM15.332,15.332a2.284,2.284,0,0,0,0-3.226L13.141,9.915a4.506,4.506,0,0,0-2.31-1.236L9.06,8.325a.625.625,0,0,0-.735.735l.354,1.771a4.506,4.506,0,0,0,1.236,2.31l2.191,2.191a2.281,2.281,0,0,0,3.226,0ZM10.586,9.9a3.259,3.259,0,0,1,1.671.894l2.191,2.191a1.031,1.031,0,1,1-1.458,1.458L10.8,12.257A3.26,3.26,0,0,1,9.9,10.586l-.17-.852Z" fill="#575b6a" />
+              </svg>
+            </div>
+            <span class="aiz-side-nav-text">Blog System</span>
+            <span class="aiz-side-nav-arrow"></span>
+          </a>
+          <ul class="aiz-side-nav-list level-2">
+            <li class="aiz-side-nav-item">
+              <a href="/admin/blog" class="aiz-side-nav-link ">
+                <span class="aiz-side-nav-text">All Posts</span>
+              </a>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="/admin/blog-category" class="aiz-side-nav-link ">
+                <span class="aiz-side-nav-text">Categories</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+
+
+
+        <!-- Website Setup -->
+        <li class="aiz-side-nav-item">
+          <a href="#" class="aiz-side-nav-link ">
+            <div class="aiz-side-nav-icon">
+              <svg id="Group_28315" data-name="Group 28315" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <circle id="Ellipse_893" data-name="Ellipse 893" cx="0.625" cy="0.625" r="0.625" transform="translate(7.375 6.125)" fill="#575b6a" />
+                <path id="Path_40777" data-name="Path 40777" d="M13.5,0H2.5A2.5,2.5,0,0,0,0,2.5V11a2.5,2.5,0,0,0,2.5,2.5H7.375v1.25H5.5A.625.625,0,0,0,5.5,16h5a.625.625,0,0,0,0-1.25H8.625V12.875A.625.625,0,0,0,8,12.25H2.5A1.251,1.251,0,0,1,1.25,11V2.5A1.251,1.251,0,0,1,2.5,1.25h11A1.251,1.251,0,0,1,14.75,2.5V11a1.251,1.251,0,0,1-1.25,1.25h-3a.625.625,0,0,0,0,1.25h3A2.5,2.5,0,0,0,16,11V2.5A2.5,2.5,0,0,0,13.5,0Z" fill="#575b6a" />
+                <path id="Path_40778" data-name="Path 40778" d="M120.375,84.75a.625.625,0,0,0,.625-.625v-.688a3.107,3.107,0,0,0,1.1-.456l.487.487a.625.625,0,0,0,.884-.884l-.487-.487a3.108,3.108,0,0,0,.456-1.1h.688a.625.625,0,1,0,0-1.25h-.688a3.108,3.108,0,0,0-.456-1.1l.487-.487a.625.625,0,0,0-.884-.884l-.487.487a3.107,3.107,0,0,0-1.1-.456v-.688a.625.625,0,0,0-1.25,0v.688a3.108,3.108,0,0,0-1.1.456l-.487-.487a.625.625,0,0,0-.884.884l.487.487a3.108,3.108,0,0,0-.456,1.1h-.688a.625.625,0,0,0,0,1.25h.688a3.108,3.108,0,0,0,.456,1.1l-.487.487a.625.625,0,0,0,.884.884l.487-.487a3.107,3.107,0,0,0,1.1.456v.688A.625.625,0,0,0,120.375,84.75ZM118.5,80.375a1.875,1.875,0,1,1,1.875,1.875A1.877,1.877,0,0,1,118.5,80.375Z" transform="translate(-112.375 -73.625)" fill="#575b6a" />
+              </svg>
+            </div>
+            <span class="aiz-side-nav-text">Website Setup</span>
+            <span class="aiz-side-nav-arrow"></span>
+          </a>
+          <ul class="aiz-side-nav-list level-2">
+            <li class="aiz-side-nav-item">
+              <a href="/admin/website/header" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Header</span>
+              </a>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="/admin/website/footer" class="aiz-side-nav-link ">
+                <span class="aiz-side-nav-text">Footer</span>
+              </a>
+            </li>
+
+            <li class="aiz-side-nav-item">
+              <a href="/admin/website/appearance" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Appearance</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Setup & Configurations -->
+        <li class="aiz-side-nav-item">
+          <a href="#" class="aiz-side-nav-link">
+            <div class="aiz-side-nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path id="Path_40779" data-name="Path 40779" d="M7.688,16h.625a1.877,1.877,0,0,0,1.875-1.875V13.81a.209.209,0,0,1,.133-.191l.011,0a.209.209,0,0,1,.23.041l.223.223a1.875,1.875,0,0,0,2.652,0l.442-.442a1.875,1.875,0,0,0,0-2.652l-.223-.223a.209.209,0,0,1-.041-.23l0-.012a.209.209,0,0,1,.191-.133h.315A1.877,1.877,0,0,0,16,8.313V7.688a1.877,1.877,0,0,0-1.875-1.875H13.81a.209.209,0,0,1-.191-.133l0-.011a.209.209,0,0,1,.041-.23l.223-.223a1.875,1.875,0,0,0,0-2.652l-.442-.442a1.875,1.875,0,0,0-2.652,0l-.223.223a.21.21,0,0,1-.23.041l-.012,0a.209.209,0,0,1-.133-.191V1.875A1.877,1.877,0,0,0,8.312,0H7.687A1.877,1.877,0,0,0,5.812,1.875V2.19a.209.209,0,0,1-.133.191l-.012,0a.209.209,0,0,1-.23-.041l-.223-.223a1.875,1.875,0,0,0-2.652,0l-.442.442a1.875,1.875,0,0,0,0,2.652l.223.223a.209.209,0,0,1,.041.23l0,.011a.209.209,0,0,1-.191.133H1.875A1.877,1.877,0,0,0,0,7.687v.625a1.874,1.874,0,0,0,1.407,1.816.625.625,0,1,0,.312-1.211.624.624,0,0,1-.468-.605V7.688a.626.626,0,0,1,.625-.625H2.19a1.455,1.455,0,0,0,1.347-.906l0-.011a1.455,1.455,0,0,0-.312-1.591l-.223-.223a.625.625,0,0,1,0-.884l.442-.442a.625.625,0,0,1,.884,0l.223.223a1.456,1.456,0,0,0,1.593.311l.009,0A1.455,1.455,0,0,0,7.063,2.19V1.875a.626.626,0,0,1,.625-.625h.625a.626.626,0,0,1,.625.625V2.19a1.455,1.455,0,0,0,.906,1.347l.009,0a1.455,1.455,0,0,0,1.593-.311l.223-.223a.625.625,0,0,1,.884,0l.442.442a.625.625,0,0,1,0,.884l-.223.223a1.455,1.455,0,0,0-.311,1.593l0,.009a1.455,1.455,0,0,0,1.347.906h.315a.626.626,0,0,1,.625.625v.625a.626.626,0,0,1-.625.625H13.81a1.455,1.455,0,0,0-1.347.906l0,.009a1.455,1.455,0,0,0,.311,1.593l.223.223a.625.625,0,0,1,0,.884l-.442.442a.625.625,0,0,1-.884,0l-.223-.223a1.456,1.456,0,0,0-1.593-.311l-.009,0a1.455,1.455,0,0,0-.906,1.347v.315a.626.626,0,0,1-.625.625H7.688a.622.622,0,0,1-.6-.437.625.625,0,1,0-1.193.375A1.867,1.867,0,0,0,7.688,16ZM.536,15.433a1.829,1.829,0,0,1,0-2.586h0L4.589,8.811a3.234,3.234,0,0,1-.308-1.259,2.97,2.97,0,0,1,.9-2.141A4.228,4.228,0,0,1,8.13,4.255h.007a3.322,3.322,0,0,1,1.086.188A.625.625,0,0,1,9.47,5.473L7.964,7.01l.188.811L8.95,8,10.479,6.47a.625.625,0,0,1,1.034.24,3.472,3.472,0,0,1,.2,1.121,4.373,4.373,0,0,1-.8,2.556,3.047,3.047,0,0,1-2.49,1.3H8.417A3.414,3.414,0,0,1,7.159,11.4L3.122,15.433a1.829,1.829,0,0,1-2.586,0Zm6.876-5.311a2.1,2.1,0,0,0,1.007.316,1.818,1.818,0,0,0,1.487-.792,2.988,2.988,0,0,0,.528-1.361l-.843.845A.625.625,0,0,1,9.01,9.3L7.494,8.953a.625.625,0,0,1-.471-.468L6.669,6.959a.625.625,0,0,1,.162-.579l.823-.84A2.844,2.844,0,0,0,6.067,6.3,1.723,1.723,0,0,0,5.531,7.55a2.123,2.123,0,0,0,.342,1,.625.625,0,0,1-.065.809L1.419,13.731a.579.579,0,1,0,.819.818l4.368-4.361a.625.625,0,0,1,.806-.066Z" fill="#575b6a" />
+              </svg>
+            </div>
+            <span class="aiz-side-nav-text">Setup &amp; Configurations</span>
+            <span class="aiz-side-nav-arrow"></span>
+          </a>
+          <ul class="aiz-side-nav-list level-2">
+
+            <li class="aiz-side-nav-item">
+              <a href="/admin/activation" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Features activation</span>
+              </a>
+            </li>
+
+            <li class="aiz-side-nav-item">
+              <a href="/admin/smtp-settings" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">SMTP Settings</span>
+              </a>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="https://demo.activeitzone.com/ecommerce/admin/file_system" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">File System &amp; Cache Configuration</span>
+              </a>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="/admin/social-login" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Social media Logins</span>
+              </a>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="javascript:void(0);" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Facebook</span>
+                <span class="aiz-side-nav-arrow"></span>
+              </a>
+              <ul class="aiz-side-nav-list level-3">
+                <li class="aiz-side-nav-item">
+                  <a href="https://demo.activeitzone.com/ecommerce/admin/facebook-chat" class="aiz-side-nav-link">
+                    <span class="aiz-side-nav-text">Facebook Chat</span>
+                  </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                  <a href="https://demo.activeitzone.com/ecommerce/admin/facebook-comment" class="aiz-side-nav-link">
+                    <span class="aiz-side-nav-text">Facebook Comment</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="javascript:void(0);" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Google</span>
+                <span class="aiz-side-nav-arrow"></span>
+              </a>
+              <ul class="aiz-side-nav-list level-3">
+                <li class="aiz-side-nav-item">
+                  <a href="https://demo.activeitzone.com/ecommerce/admin/google-analytics" class="aiz-side-nav-link">
+                    <span class="aiz-side-nav-text">Analytics Tools</span>
+                  </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                  <a href="https://demo.activeitzone.com/ecommerce/admin/google-recaptcha" class="aiz-side-nav-link">
+                    <span class="aiz-side-nav-text">Google reCAPTCHA</span>
+                  </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                  <a href="https://demo.activeitzone.com/ecommerce/admin/google-map" class="aiz-side-nav-link">
+                    <span class="aiz-side-nav-text">Google Map</span>
+                  </a>
+                </li>
+                <li class="aiz-side-nav-item">
+                  <a href="https://demo.activeitzone.com/ecommerce/admin/google-firebase" class="aiz-side-nav-link">
+                    <span class="aiz-side-nav-text">Google Firebase</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+
+
+        <!-- System Update & Server Status -->
+        <li class="aiz-side-nav-item">
+          <a href="#" class="aiz-side-nav-link">
+            <div class="aiz-side-nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <g id="Group_28317" data-name="Group 28317" transform="translate(-19315.001 1976)">
+                  <g id="layer1" transform="translate(19314.471 -1976.53)">
+                    <path id="path3159" d="M3.386.53A2.862,2.862,0,0,0,.53,3.386V13.67a2.865,2.865,0,0,0,2.856,2.86H13.67a2.869,2.869,0,0,0,2.86-2.86V3.386A2.865,2.865,0,0,0,13.67.53Zm0,1.143H13.67a1.7,1.7,0,0,1,1.718,1.713V13.67a1.7,1.7,0,0,1-1.718,1.718H3.386A1.7,1.7,0,0,1,1.673,13.67V3.386A1.7,1.7,0,0,1,3.386,1.673Z" fill="#575b6a" />
+                  </g>
+                  <g id="Group_28316" data-name="Group 28316" transform="translate(19317.551 -1973.449)">
+                    <g id="LWPOLYLINE" transform="translate(0 3.708)">
+                      <path id="Path_25666" data-name="Path 25666" d="M194.061,143.129a.436.436,0,0,0,0,.873h1.527a.436.436,0,0,0,0-.873Z" transform="translate(-193.625 -143.129)" fill="#575b6a" />
+                    </g>
+                    <g id="LWPOLYLINE-2" data-name="LWPOLYLINE" transform="translate(3.663)">
+                      <path id="Path_25667" data-name="Path 25667" d="M199.926,137.186a.436.436,0,0,1,.872,0v1.527a.436.436,0,0,1-.872,0Z" transform="translate(-199.926 -136.75)" fill="#575b6a" />
+                    </g>
+                    <g id="LWPOLYLINE-3" data-name="LWPOLYLINE" transform="translate(5.239 1.075)">
+                      <path id="Path_25668" data-name="Path 25668" d="M204.463,139.345a.436.436,0,1,0-.617-.617l-1.079,1.079a.436.436,0,1,0,.617.617Z" transform="translate(-202.638 -138.6)" fill="#575b6a" />
+                    </g>
+                    <g id="LWPOLYLINE-4" data-name="LWPOLYLINE" transform="translate(1.097 1.075)">
+                      <path id="Path_25669" data-name="Path 25669" d="M195.64,139.345a.436.436,0,1,1,.617-.617l1.079,1.079a.436.436,0,1,1-.617.617Z" transform="translate(-195.512 -138.6)" fill="#575b6a" />
+                    </g>
+                    <g id="LWPOLYLINE-5" data-name="LWPOLYLINE" transform="translate(1.097 5.261)">
+                      <path id="Path_25670" data-name="Path 25670" d="M195.64,147.008a.436.436,0,0,0,.617.617l1.079-1.079a.436.436,0,1,0-.617-.617Z" transform="translate(-195.512 -145.8)" fill="#575b6a" />
+                    </g>
+                    <path id="Path_25671" data-name="Path 25671" d="M206.87,148.144,205,146.269l.864-.471a.436.436,0,0,0-.044-.786l-5.682-2.322a.436.436,0,0,0-.569.568l2.322,5.682a.436.436,0,0,0,.786.044l.471-.864,1.875,1.875a.437.437,0,0,0,.617,0l1.233-1.233A.437.437,0,0,0,206.87,148.144Zm-1.544.913-1.977-1.977a.436.436,0,0,0-.691.1l-.311.57-1.58-3.868,3.868,1.58-.57.311a.436.436,0,0,0-.174.591.467.467,0,0,0,.074.1l1.977,1.977Z" transform="translate(-196.099 -139.223)" fill="#575b6a" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="aiz-side-nav-text">System</span>
+            <span class="aiz-side-nav-arrow"></span>
+          </a>
+          <ul class="aiz-side-nav-list level-2">
+            <li class="aiz-side-nav-item">
+              <a href="https://demo.activeitzone.com/ecommerce/admin/system/update" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Update</span>
+              </a>
+            </li>
+            <li class="aiz-side-nav-item">
+              <a href="https://demo.activeitzone.com/ecommerce/admin/system/server-status" class="aiz-side-nav-link">
+                <span class="aiz-side-nav-text">Server status</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+      </ul><!-- .aiz-side-nav -->
+    </div><!-- .aiz-side-nav-wrap -->
+  </div><!-- .aiz-sidebar -->
+  <div class="aiz-sidebar-overlay"></div>
+</div>

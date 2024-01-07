@@ -1,0 +1,465 @@
+<div class="aiz-content-wrapper">
+  <%- include('../partials/topbar.ejs') %>
+
+  <!-- .aiz-topbar -->
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="aiz-titlebar text-left mt-2 mb-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <h1 class="h3">Website Header</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card">
+            <div class="card-header">
+              <h6 class="mb-0">Header Setting</h6>
+            </div>
+            <div class="card-body">
+              <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="ElILldCRMiiTjsxgM1z0X2xnB6MzFQ4VmzQ1pQoI"> <!-- Header Logo -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="signinSrEmail">
+                    Header Logo
+                    <small>(1300x650)</small>
+                  </label>
+                  <div class="col-md-9">
+                    <div class="input-group" data-toggle="aizuploader" data-type="image">
+                      <input type="file" name="headerlogo" class="form-control" id="inputGroupFile01">
+                    </div>
+                    <div class="file-preview box sm">
+                      <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1893" title="tshirtt.webp">
+                        <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                          <img src="/uploads/<%= String(existingSetting ? existingSetting[0].headerlogo : '').replace('/public', '') %>" class="img-fit">
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Show Language Switcher -->
+                <!-- <div class="form-group row">
+                                    <label class="col-md-3 col-from-label">Show Language Switcher?</label>
+                                    <div class="col-md-8">
+                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                            <input type="hidden" name="types[]" value="show_language_switcher">
+                                            <input type="checkbox" name="show_language_switcher" checked="">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div> -->
+                <!-- Show Currency Switcher -->
+                <!-- <div class="form-group row">
+                                    <label class="col-md-3 col-from-label">Show Currency Switcher?</label>
+                                    <div class="col-md-8">
+                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                            <input type="hidden" name="types[]" value="show_currency_switcher">
+                                            <input type="checkbox" name="show_currency_switcher" checked="">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div> -->
+                <!-- Enable stikcy header -->
+                <div class="form-group row">
+                  <label class="col-md-3 col-from-label">Enable stikcy header?</label>
+                  <div class="col-md-8">
+                    <label class="aiz-switch aiz-switch-success mb-0">
+                      <input type="hidden" name="types[]" value="header_stikcy">
+                      <input type="checkbox" name="header_sticky" <%= existingSetting && existingSetting[0].headerSticky ? 'checked' : '' %>>
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="border-top pt-3">
+                  <!-- Topbar Banner Large -->
+                  <!-- <div class="form-group row">
+                                        <label class="col-md-3 col-from-label">Topbar Banner Large</label>
+                                        <div class="col-md-8">
+                                            <div class=" input-group " data-toggle="aizuploader"
+                                                data-type="image">
+                                                <div class="input-group-prepend">
+                                                    <div
+                                                        class="input-group-text bg-soft-secondary font-weight-medium">
+                                                        Browse</div>
+                                                </div>
+                                                <div class="form-control file-amount">1 File selected</div>
+                                                <input type="hidden" name="types[]" value="topbar_banner">
+                                                <input type="hidden" name="topbar_banner" class="selected-files"
+                                                    value="1934">
+                                            </div>
+                                            <div class="file-preview">
+                                                <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item"
+                                                    data-id="1934" title="big.webp">
+                                                    <div
+                                                        class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                                                        <img src="https://demo.activeitzone.com/ecommerce/public/uploads/all/ByCACnRELzpJNi3uf6mhtc8QrEdNE49CqirHUDPL.webp"
+                                                            class="img-fit"></div>
+                                                    <div class="col body">
+                                                        <h6 class="d-flex"><span
+                                                                class="text-truncate title">big</span><span
+                                                                class="ext flex-shrink-0">.webp</span></h6>
+                                                        <p>15 KB</p>
+                                                    </div>
+                                                    <div class="remove"><button
+                                                            class="btn btn-sm btn-link remove-attachment"
+                                                            type="button"><i class="la la-close"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <small>Will be shown in large device</small>
+                                        </div>
+                                    </div> -->
+                  <!-- Topbar Banner Medium -->
+                  <!-- <div class="form-group row">
+                                        <label class="col-md-3 col-from-label">Topbar Banner Medium</label>
+                                        <div class="col-md-8">
+                                            <div class=" input-group " data-toggle="aizuploader"
+                                                data-type="image">
+                                                <div class="input-group-prepend">
+                                                    <div
+                                                        class="input-group-text bg-soft-secondary font-weight-medium">
+                                                        Browse</div>
+                                                </div>
+                                                <div class="form-control file-amount">1 File selected</div>
+                                                <input type="hidden" name="types[]"
+                                                    value="topbar_banner_medium">
+                                                <input type="hidden" name="topbar_banner_medium"
+                                                    class="selected-files" value="1935">
+                                            </div>
+                                            <div class="file-preview">
+                                                <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item"
+                                                    data-id="1935" title="medium.webp">
+                                                    <div
+                                                        class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                                                        <img src="https://demo.activeitzone.com/ecommerce/public/uploads/all/9N3CjWMubwePlDn6bgcGU6yFCHEgbnzMOnsl2RWu.webp"
+                                                            class="img-fit"></div>
+                                                    <div class="col body">
+                                                        <h6 class="d-flex"><span
+                                                                class="text-truncate title">medium</span><span
+                                                                class="ext flex-shrink-0">.webp</span></h6>
+                                                        <p>14 KB</p>
+                                                    </div>
+                                                    <div class="remove"><button
+                                                            class="btn btn-sm btn-link remove-attachment"
+                                                            type="button"><i class="la la-close"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <small>Will be shown in medium device</small>
+                                        </div>
+                                    </div> -->
+                  <!-- Topbar Banner Small -->
+                  <!-- <div class="form-group row">
+                                        <label class="col-md-3 col-from-label">Topbar Banner Small</label>
+                                        <div class="col-md-8">
+                                            <div class=" input-group " data-toggle="aizuploader"
+                                                data-type="image">
+                                                <div class="input-group-prepend">
+                                                    <div
+                                                        class="input-group-text bg-soft-secondary font-weight-medium">
+                                                        Browse</div>
+                                                </div>
+                                                <div class="form-control file-amount">1 File selected</div>
+                                                <input type="hidden" name="types[]" value="topbar_banner_small">
+                                                <input type="hidden" name="topbar_banner_small"
+                                                    class="selected-files" value="1936">
+                                            </div>
+                                            <div class="file-preview">
+                                                <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item"
+                                                    data-id="1936" title="small.webp">
+                                                    <div
+                                                        class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                                                        <img src="https://demo.activeitzone.com/ecommerce/public/uploads/all/h9eRseogk2lmaWAIc4Gscn67UC7I2hQrlGIqcIJ1.webp"
+                                                            class="img-fit"></div>
+                                                    <div class="col body">
+                                                        <h6 class="d-flex"><span
+                                                                class="text-truncate title">small</span><span
+                                                                class="ext flex-shrink-0">.webp</span></h6>
+                                                        <p>6 KB</p>
+                                                    </div>
+                                                    <div class="remove"><button
+                                                            class="btn btn-sm btn-link remove-attachment"
+                                                            type="button"><i class="la la-close"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <small>Will be shown in small device</small>
+                                        </div>
+                                    </div> -->
+                  <!-- Topbar Banner Link -->
+                  <!-- <div class="form-group row">
+                                        <label class="col-md-3 col-from-label">Topbar Banner Link</label>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input type="hidden" name="types[]" value="topbar_banner_link">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Link with http:// Or https://"
+                                                    name="topbar_banner_link"
+                                                    value="https://codecanyon.net/item/active-ecommerce-cms/23471405?s_rank=24">
+                                            </div>
+                                        </div>
+                                    </div> -->
+                </div>
+                <div class="border-top pt-3">
+                  <!-- Help line number -->
+                  <div class="form-group row">
+                    <label class="col-md-3 col-from-label">Help line number</label>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <input type="hidden" name="types[]" value="helpline_number">
+                        <input type="text" class="form-control" placeholder="Help line number" name="phonenumber" value="<%= existingSetting ? existingSetting[0].phonenumber : '' %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-top pt-3">
+                  <!-- Header Nav Menu Text Color -->
+                  <!-- <div class="form-group row">
+                                        <label class="col-md-3 col-from-label mb-md-0">Header Nav Menu Text
+                                            Color</label>
+                                        <div class="col-md-8 d-flex">
+                                            <input type="hidden" name="types[]" value="header_nav_menu_text">
+                                            <div class="radio mar-btm mr-3 d-flex align-items-center">
+                                                <input id="header_nav_menu_text_light" class="magic-radio"
+                                                    type="radio" name="header_nav_menu_text" value="light"
+                                                    checked="">
+                                                <label for="header_nav_menu_text_light"
+                                                    class="mb-0 ml-2">Light</label>
+                                            </div>
+                                            <div class="radio mar-btm mr-3 d-flex align-items-center">
+                                                <input id="header_nav_menu_text_dark" class="magic-radio"
+                                                    type="radio" name="header_nav_menu_text" value="dark">
+                                                <label for="header_nav_menu_text_dark"
+                                                    class="mb-0 ml-2">Dark</label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                  <!-- Header Nav Menus -->
+                  <!-- <label class="">Header Nav Menu</label>
+                                    <div class="header-nav-menu">
+                                        <input type="hidden" name="types[]" value="header_menu_labels">
+                                        <input type="hidden" name="types[]" value="header_menu_links">
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="Home">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="Flash Sale">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/flash-deals">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="Blogs">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/blog">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="All Brands">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/brands">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="All Categories">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/categories">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="All Sellers">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/sellers">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="Coupons">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/coupons">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters-5">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Label"
+                                                        name="header_menu_labels[]" value="Today's Deal">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Link with http:// Or https://"
+                                                        name="header_menu_links[]"
+                                                        value="https://demo.activeitzone.com/ecommerce/todays-deal">
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                    class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger"
+                                                    data-toggle="remove-parent" data-parent=".row">
+                                                    <i class="las la-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                  <!-- <button type="button" class="btn btn-soft-secondary btn-sm" data-toggle="add-more" data-content="<div class=&quot;row gutters-5&quot;>
+                        <div class=&quot;col-4&quot;>
+                            <div class=&quot;form-group&quot;>
+                                <input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Label&quot; name=&quot;header_menu_labels[]&quot;>
+                            </div>
+                        </div>
+                        <div class=&quot;col&quot;>
+                            <div class=&quot;form-group&quot;>
+                                <input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Link with http:// Or https://&quot; name=&quot;header_menu_links[]&quot;>
+                            </div>
+                        </div>
+                        <div class=&quot;col-auto&quot;>
+                            <button type=&quot;button&quot; class=&quot;mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger&quot; data-toggle=&quot;remove-parent&quot; data-parent=&quot;.row&quot;>
+                                <i class=&quot;las la-times&quot;></i>
+                            </button>
+                        </div>
+                    </div>" data-target=".header-nav-menu">
+                    Add New
+                  </button> -->
+                </div>
+                <!-- Update Button -->
+                <div class="mt-4 text-right">
+                  <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+      <p class="mb-0">© v8.2</p>
+    </div>
+  </div><!-- .aiz-main-content -->
+</div>

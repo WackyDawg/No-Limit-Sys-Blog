@@ -1,0 +1,131 @@
+<div class="aiz-content-wrapper">
+    <%- include('../partials/topbar.ejs') %>
+    <!-- .aiz-topbar -->
+    <div class="aiz-main-content">
+        <div class="px-15px px-lg-25px">
+            <h4 class="text-center text-muted">System</h4>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0 h6 text-center">HTTPS Activation</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'FORCE_HTTPS')" checked="">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0 h6 text-center">Maintenance Mode Activation</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'maintenance_mode')">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0 h6 text-center">Disable image encoding?</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'disable_image_optimization')"
+                                    checked="">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h4 class="text-center text-muted mt-4">Social Media Login</h4>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0 h6 text-center">Facebook login</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'facebook_login')" checked="">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="alert"
+                                style="color: #004085;background-color: #cce5ff;border-color: #b8daff;margin-bottom:0;margin-top:10px;">
+                                You need to configure Facebook Client correctly to enable this feature. <a
+                                    href="/admin/social-login">Configure Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0 h6 text-center">Google login</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'google_login')" checked="">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="alert"
+                                style="color: #004085;background-color: #cce5ff;border-color: #b8daff;margin-bottom:0;margin-top:10px;">
+                                You need to configure Google Client correctly to enable this feature. <a
+                                    href="/admin/social-login">Configure Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0 h6 text-center">Twitter login</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'twitter_login')" checked="">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="alert"
+                                style="color: #004085;background-color: #cce5ff;border-color: #b8daff;margin-bottom:0;margin-top:10px;">
+                                You need to configure Twitter Client correctly to enable this feature. <a
+                                    href="/admin/social-login">Configure Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="mb-0 h6 text-center">Apple login</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="aiz-switch aiz-switch-success mb-0">
+                                <input type="checkbox" onchange="updateSettings(this, 'apple_login')" checked="">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="alert"
+                                style="color: #004085;background-color: #cce5ff;border-color: #b8daff;margin-bottom:0;margin-top:10px;">
+                                You need to configure Apple Client correctly to enable this feature. <a
+                                    href="/admin/social-login">Configure Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+            <p class="mb-0">© v8.2</p>
+        </div>
+    </div><!-- .aiz-main-content -->
+</div>

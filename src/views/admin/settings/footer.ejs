@@ -1,0 +1,353 @@
+<div class="aiz-content-wrapper">
+  <%- include('../partials/topbar.ejs') %>
+  <!-- .aiz-topbar -->
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="aiz-titlebar text-left mt-2 mb-3">
+        <div class="row align-items-center">
+          <div class="col">
+            <h1 class="h3">Website Footer</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language -->
+
+
+      <!-- Footer Widget -->
+      <div class="card">
+        <div class="card-header">
+          <h6 class="fw-600 mb-0">Footer Widget</h6>
+        </div>
+        <div class="card-body">
+          <div class="row gutters-10">
+
+            <!-- Footer Info -->
+            <!-- About Widget -->
+            <div class="col-lg-6">
+              <div class="card shadow-none bg-light">
+                <div class="card-header">
+                  <h6 class="mb-0">About Widget</h6>
+                </div>
+                <div class="card-body">
+                  <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+
+                    <!-- Footer Logo -->
+                    <div class="form-group">
+                      <label class="form-label" for="footerLogo">Footer Logo</label>
+                      <div class="input-group" data-toggle="aizuploader" data-type="image">
+                        <label class="input-group-prepend btn btn-soft-secondary bg-soft-secondary font-weight-medium">
+                          Browse
+                          <input type="file" name="footerlogo" id="footerLogo" accept="image/*" class="d-none">
+                        </label>
+                        <div class="form-control file-amount"></div>
+                        <!-- The following hidden inputs are optional and can be used if needed -->
+                        <input type="hidden" name="" value="footer_logo">
+                        <input type="hidden" name="deletedFooterLogos" id="deletedFooterLogos" value="">
+                        <input type="hidden" name="" class="selected-files" value="1948">
+                      </div>
+                      <div class="file-preview">
+                        <% existingSetting && existingSetting[0].footerlogo && existingSetting[0].footerlogo.forEach((file, index)=> { %>
+                        <% const fileName=file.split('/').pop(); %>
+                        <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
+                        <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="<%= index %>" title="<%= fileName %>">
+                          <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                            <img src="<%= filteredPath %>" class="img-fit">
+                          </div>
+                          <div class="col body">
+                            <h6 class="d-flex"><span class="text-truncate title">
+                                <%= fileName.split('.')[0] %>
+                              </span><span class="ext flex-shrink-0">
+                                <%= fileName.split('.')[1] %>
+                              </span></h6>
+                            <!-- Add file size logic here if needed -->
+                          </div>
+                          <div class="remove">
+                            <button class="btn btn-sm btn-link remove-attachment" type="button" data-id="<%= index %>">
+                              <i class="la la-close"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <% }) %>
+                      </div>
+                    </div>
+
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        const deletedFooterLogosInput = document.getElementById('deletedFooterLogos');
+                        const removeButtons = document.querySelectorAll('.remove-attachment');
+
+                        removeButtons.forEach(button => {
+                          button.addEventListener('click', function() {
+                            const fileIdToRemove = this.getAttribute('data-id');
+
+                            // Update the hidden input with the ID or filename of the removed image
+                            const deletedFooterLogos = (deletedFooterLogosInput.value || '').split(',');
+                            deletedFooterLogos.push(fileIdToRemove);
+                            deletedFooterLogosInput.value = deletedFooterLogos.join(',');
+
+                            // Remove the preview of the deleted image
+                            const previewItem = document.querySelector(`.file-preview-item[data-id="${fileIdToRemove}"]`);
+                            if (previewItem) {
+                              previewItem.remove();
+                            }
+                          });
+                        });
+                      });
+                    </script>
+
+                    <!-- JavaScript to update file name -->
+                    <script>
+                      $(document).ready(function() {
+                        $('#footerLogo').change(function() {
+                          var fileName = $(this).val().split('\\').pop();
+                          $('.file-amount').text(fileName);
+
+                          // Set the file input value
+                          $(this).next('.selected-files').val(fileName);
+
+                          // Display image preview
+                          var reader = new FileReader();
+                          reader.onload = function(e) {
+                            $('.file-preview img').attr('src', e.target.result);
+                          };
+                          reader.readAsDataURL(this.files[0]);
+                        });
+                      });
+                    </script>
+
+
+                    <!-- About description -->
+                    <div class="form-group">
+                      <label>About description (Translatable)</label>
+                      <input type="hidden" name="types[][en]" value="description">
+                      <textarea class="aiz-text-editor" name="description" style="display: none;"><%= existingSetting ? existingSetting[0].description : '' %></textarea>
+
+                    </div>
+                    <!-- Play Store Link -->
+                    <div class="form-group">
+                      <label>Play Store Link</label>
+                      <input type="hidden" name="types[]" value="play_store_link">
+                      <input type="text" class="form-control" placeholder="http://" name="play_store_link" value="<%= existingSetting ? existingSetting[0].play_store_link : '' %>">
+                    </div>
+                    <!-- App Store Link -->
+                    <div class="form-group">
+                      <label>App Store Link</label>
+                      <input type="hidden" name="types[]" value="app_store_link">
+                      <input type="text" class="form-control" placeholder="http://" name="app_store_link" value="<%= existingSetting ? existingSetting[0].app_store_link : '' %>">
+                    </div>
+                    <!-- Update Button -->
+                    <div class="mt-4 text-right">
+                      <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Info Widget -->
+            <div class="col-lg-6">
+              <div class="card shadow-none bg-light">
+                <div class="card-header">
+                  <h6 class="mb-0">Contact Info Widget</h6>
+                </div>
+                <div class="card-body">
+                  <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                    <!-- Contact address -->
+                    <div class="form-group">
+                      <label>Contact address (Translatable)</label>
+                      <input type="hidden" name="types[][en]" value="contact_address">
+                      <input type="text" class="form-control" placeholder="Address" name="contact_address" value="<%= existingSetting ? existingSetting[0].contact_address : '' %>">
+                    </div>
+                    <!-- Contact phone -->
+                    <div class="form-group">
+                      <label>Contact phone</label>
+                      <input type="hidden" name="types[]" value="contact_phone">
+                      <input type="text" class="form-control" placeholder="Phone" name="contact_phone" value="<%= existingSetting ? existingSetting[0].contact_phone : '' %>">
+                    </div>
+                    <!-- Contact email -->
+                    <div class="form-group">
+                      <label>Contact email</label>
+                      <input type="hidden" name="types[]" value="contact_email">
+                      <input type="text" class="form-control" placeholder="Email" name="contact_email" value="<%= existingSetting ? existingSetting[0].contact_email : '' %>">
+                    </div>
+                    <!-- Update Button -->
+                    <div class="mt-4 text-right">
+                      <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Link Widget One -->
+            <div class="col-lg-12">
+              <div class="card shadow-none bg-light">
+                <div class="card-header">
+                  <h6 class="mb-0">Link Widget One</h6>
+                </div>
+                <!-- <div class="card-body">
+                  <form action="https://demo.activeitzone.com/ecommerce/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="ElILldCRMiiTjsxgM1z0X2xnB6MzFQ4VmzQ1pQoI"> <!-- Title -->
+                    <!-- <div class="form-group">
+                      <label>Title (Translatable)</label>
+                      <input type="hidden" name="types[][en]" value="widget_one">
+                      <input type="text" class="form-control" placeholder="Widget title" name="widget_one" value="Quick Links">
+                    </div> -->
+                    <!-- Links -->
+                    <!-- <div class="form-group">
+                      <label>Links - (Translatable Label)</label>
+                      <div class="w3-links-target">
+                        <input type="hidden" name="types[][en]" value="widget_one_labels">
+                        <input type="hidden" name="types[]" value="widget_one_links">
+                        <div class="row gutters-5">
+                          <div class="col-4">
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Label" name="widget_one_labels[]" value="Term Conditions Page">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="http://" name="widget_one_links[]" value="https://demo.activeitzone.com/ecommerce/terms">
+                            </div>
+                          </div>
+                          <div class="col-auto">
+                            <button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
+                              <i class="las la-times"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-soft-secondary btn-sm" data-toggle="add-more" data-content="<div class=&quot;row gutters-5&quot;>
+                                    <div class=&quot;col-4&quot;>
+                                        <div class=&quot;form-group&quot;>
+                                            <input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Label&quot; name=&quot;widget_one_labels[]&quot;>
+                                        </div>
+                                    </div>
+                                    <div class=&quot;col&quot;>
+                                        <div class=&quot;form-group&quot;>
+                                            <input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;http://&quot; name=&quot;widget_one_links[]&quot;>
+                                        </div>
+                                    </div>
+                                    <div class=&quot;col-auto&quot;>
+                                        <button type=&quot;button&quot; class=&quot;mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger&quot; data-toggle=&quot;remove-parent&quot; data-parent=&quot;.row&quot;>
+                                            <i class=&quot;las la-times&quot;></i>
+                                        </button>
+                                    </div>
+                                </div>" data-target=".w3-links-target">
+                        Add New
+                      </button>
+                    </div> -->
+                    <!-- Update Button -->
+                    <!-- <div class="mt-4 text-right">
+                      <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+                    </div>
+                  </form>
+                </div> 
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="card">
+        <div class="card-header">
+          <h6 class="fw-600 mb-0">Footer Bottom</h6>
+        </div>
+        <form action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
+          <div class="card-body">
+            <!-- Copyright Widget -->
+            <div class="card shadow-none bg-light">
+              <div class="card-header">
+                <h6 class="mb-0">Copyright Widget</h6>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Copyright Text (Translatable)</label>
+                  <input type="hidden" name="types[][en]" value="frontend_copyright_text">
+
+                  <textarea class="form-control" name="frontend_copyright_text" rows="6" placeholder="Type.."><%= existingSetting ? existingSetting[0].frontend_copyright_text : '' %></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Link Widget -->
+            <div class="card shadow-none bg-light">
+              <div class="card-header">
+                <h6 class="mb-0">Social Link Widget</h6>
+              </div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-md-2 col-from-label">Show Social Links?</label>
+                  <div class="col-md-9">
+                    <label class="aiz-switch aiz-switch-success mb-0">
+                      <input type="checkbox" name="show_social_links" <%= existingSetting && existingSetting[0].showSocialLinks ? 'checked' : '' %>>
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Social Links</label>
+                  <!-- Facebook Link -->
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="lab la-facebook-f"></i></span>
+                    </div>
+                    <input type="hidden" name="types[]" value="facebook_link">
+                    <input type="text" class="form-control" placeholder="http://" name="facebook_link" value="<%= existingSetting ? existingSetting[0].facebook_link : '' %>">
+                  </div>
+                  <!-- Twitter Link -->
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="lab la-twitter"></i></span>
+                    </div>
+                    <input type="hidden" name="types[]" value="twitter_link">
+                    <input type="text" class="form-control" placeholder="http://" name="twitter_link" value="<%= existingSetting ? existingSetting[0].twitter_link : '' %>">
+                  </div>
+                  <!-- Instagram Link -->
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="lab la-instagram"></i></span>
+                    </div>
+                    <input type="hidden" name="types[]" value="instagram_link">
+                    <input type="text" class="form-control" placeholder="http://" name="instagram_link" value="<%= existingSetting ? existingSetting[0].instagram_link : '' %>">
+                  </div>
+                  <!-- Youtube Link -->
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="lab la-youtube"></i></span>
+                    </div>
+                    <input type="hidden" name="types[]" value="youtube_link">
+                    <input type="text" class="form-control" placeholder="http://" name="youtube_link" value="<%= existingSetting ? existingSetting[0].youtube_link : '' %>">
+                  </div>
+                  <!-- Linkedin Link -->
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="lab la-linkedin-in"></i></span>
+                    </div>
+                    <input type="hidden" name="types[]" value="linkedin_link">
+                    <input type="text" class="form-control" placeholder="http://" name="linkedin_link" value="<%= existingSetting ? existingSetting[0].linkedin_link : '' %>">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Download App Link -->
+
+
+            <!-- Update Button -->
+            <div class="mt-4 text-right">
+              <button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+      <p class="mb-0">© v8.2</p>
+    </div>
+  </div><!-- .aiz-main-content -->
+</div>
