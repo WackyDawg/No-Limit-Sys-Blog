@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "6595b0545e59c49f334f7cde",
+    "title": "Demo Blog Post 1",
+    "category": "6595bb7b5e59c49f334f7de9",
+    "slug": "demo-blog-post1",
+    "banner": ["../public/uploads/1704308820010.jpg"],
+    "short_description": "short desc\r\n",
+    "description": "<p>test</p>",
+    "tags": [{"value": "helllo"}],
+    "meta_title": "meta_title",
+    "meta_img": ["../public/uploads/1704308820010.jpg"],
+    "meta_description": "dafafafafaf",
+    "meta_keywords": "affafafafa",
+    "createdAt": "2024-01-03T19:07:00.063Z",
+    "updatedAt": "2024-01-03T19:07:00.063Z",
+    "__v": 0
+  },
+  {
+    "_id": "6595c7d35e59c49f334f7e94",
+    "title": "Demo Blog Post2",
+    "category": "6595bb7b5e59c49f334f7de9",
+    "slug": "demo-blog-post2",
+    "banner": ["../public/uploads/1704314834987.jpg"],
+    "short_description": "test\r\n",
+    "description": "<p>blog post</p>",
+    "tags": [{"value": "teddy bear"}, {"value": "haha"}],
+    "meta_title": "hhnhjjj",
+    "meta_img": ["../public/uploads/1704314834987.jpg"],
+    "meta_description": "",
+    "meta_keywords": "",
+    "createdAt": "2024-01-03T20:47:15.012Z",
+    "updatedAt": "2024-01-03T20:47:15.013Z",
+    "__v": 0
+  }
+]

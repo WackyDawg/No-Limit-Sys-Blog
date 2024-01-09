@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Demo of Active eCommerce CMS" />
+  <meta name="keywords" content="">
+  <title>Active eCommerce | Demo of Active eCommerce CMS</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://demo.activeitzone.com/ecommerce/public/uploads/all/pOcEwsWKlrd8jMih6o68tn4YAjWbQEAwvZfeZVxJ.svg">
+  <link rel="apple-touch-icon" href="https://demo.activeitzone.com/ecommerce/public/uploads/all/pOcEwsWKlrd8jMih6o68tn4YAjWbQEAwvZfeZVxJ.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="https://demo.activeitzone.com/ecommerce/public/assets/css/vendors.css">
+  <link rel="stylesheet" href="https://demo.activeitzone.com/ecommerce/public/assets/css/aiz-core.css?v=9292">
+
+  <style>
+    :root {
+      --blue: #3490f3;
+      --hov-blue: #2e7fd6;
+      --soft-blue: rgba(0, 123, 255, 0.15);
+      --secondary-base: #FFBA00;
+      --hov-secondary-base: #FBE8E5;
+      --soft-secondary-base: rgba(255, 186, 0, 0.15);
+      --gray: #9d9da6;
+      --gray-dark: #8d8d8d;
+      --secondary: #919199;
+      --soft-secondary: rgba(145, 145, 153, 0.15);
+      --success: #85b567;
+      --soft-success: rgba(133, 181, 103, 0.15);
+      --warning: #f3af3d;
+      --soft-warning: rgba(243, 175, 61, 0.15);
+      --light: #f5f5f5;
+      --soft-light: #dfdfe6;
+      --soft-white: #b5b5bf;
+      --dark: #292933;
+      --soft-dark: #1b1b28;
+      --primary: #D42D2A;
+      --hov-primary: #D62400;
+      --soft-primary: rgba(212, 45, 42, 0.15);
+    }
+
+    body {
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 400;
+    }
+
+    .form-control:focus {
+      border-width: 2px !important;
+    }
+
+    @media (max-width: 991px) {
+      .right-content {
+        background: var(--white);
+        margin-top: -60%;
+        border-radius: 24px;
+        min-height: 550px;
+      }
+    }
+
+    @media (min-width: 991px) {
+      .right-content {
+        height: 100%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <!-- aiz-main-wrapper -->
+  
+  <%- body  %>
+  <!-- SCRIPTS -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://demo.activeitzone.com/ecommerce/public/assets/js/vendors.js"></script>
+  <script>
+    $('.password-toggle').click(function() {
+      var $this = $(this);
+      if ($this.siblings('input').attr('type') == 'password') {
+        $this.siblings('input').attr('type', 'text');
+        $this.removeClass('la-eye').addClass('la-eye-slash');
+      } else {
+        $this.siblings('input').attr('type', 'password');
+        $this.removeClass('la-eye-slash').addClass('la-eye');
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    // Country Code
+    var isPhoneShown = true,
+      countryData = window.intlTelInputGlobals.getCountryData(),
+      input = document.querySelector("#phone-code");
+
+    for (var i = 0; i < countryData.length; i++) {
+      var country = countryData[i];
+      if (country.iso2 == 'bd') {
+        country.dialCode = '88';
+      }
+    }
+
+    var iti = intlTelInput(input, {
+      separateDialCode: true,
+      utilsScript: "https://demo.activeitzone.com/ecommerce/public/assets/js/intlTelutils.js?1590403638580",
+      onlyCountries: ["AF", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CY", "CZ", "DK", "DJ", "DM", "DO", "TP", "EC", "EG", "SV", "GQ", "ER", "EE", "ET", "XA", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "XU", "GN", "GW", "GY", "HT", "HM", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IL", "IT", "JM", "JP", "XJ", "JO", "KZ", "KE", "KI", "KP", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MK", "MG", "MW", "MY", "MV", "ML", "MT", "XM", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "AN", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "SH", "KN", "LC", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SK", "SI", "XG", "SB", "SO", "ZA", "GS", "SS", "ES", "LK", "SD", "SR", "SJ", "SZ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VA", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "YU", "ZM", "ZW"],
+      customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+        if (selectedCountryData.iso2 == 'bd') {
+          return "01xxxxxxxxx";
+        }
+        return selectedCountryPlaceholder;
+      }
+    });
+
+    var country = iti.getSelectedCountryData();
+    $('input[name=country_code]').val(country.dialCode);
+
+    input.addEventListener("countrychange", function(e) {
+      // var currentMask = e.currentTarget.placeholder;
+      var country = iti.getSelectedCountryData();
+      $('input[name=country_code]').val(country.dialCode);
+
+    });
+
+    function toggleEmailPhone(el) {
+      if (isPhoneShown) {
+        $('.phone-form-group').addClass('d-none');
+        $('.email-form-group').removeClass('d-none');
+        $('input[name=phone]').val(null);
+        isPhoneShown = false;
+        $(el).html('*Use Phone Number Instead');
+      } else {
+        $('.phone-form-group').removeClass('d-none');
+        $('.email-form-group').addClass('d-none');
+        $('input[name=email]').val(null);
+        isPhoneShown = true;
+        $(el).html('<i>*Use Email Instead</i>');
+      }
+    }
+  </script>
+
+  <script type="text/javascript">
+    function autoFillAdmin() {
+      $('#email').val('admin@example.com');
+      $('#password').val('123456');
+    }
+  </script>
+
+</body>
+
+</html>

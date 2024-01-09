@@ -7,6 +7,7 @@ const installController = require('../controller/installController');
 const setupCheckMiddleware = require('../middleware/setupCheck');
 const fs = require('fs');
 const setupLayout = '../views/layouts/setup';
+const authLayout = '../views/layouts/auth';
 
 exports.getIndex = async (req, res) => {
     try {
@@ -169,5 +170,65 @@ exports.getIndex = async (req, res) => {
 };
 
 
+exports.login = async (req, res, next) => {
+  try {
+    res.render('auth/login', { layout: authLayout})
+  } catch (error) {
+    console.log(error)
+  }
+}
 
+exports.postLogin = async (req, res) => {
+  try {
+      const { email, password } = req.body;
+
+      const db = await connectDB();
+      const User = db.collection('users');
+
+      // Find the user by email
+      const user = await User.findOne({ email });
+
+      if (!user) {
+          // User not found
+          return res.status(401).render('login', { error: 'Invalid credentials' });
+      }
+
+      // Check if the password is correct
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+          // Incorrect password
+          return res.status(401).render('login', { error: 'Invalid credentials' });
+      }
+
+      // Check if the user is an admin
+      if (user.role !== 'admin') {
+          // Only allow admin login
+          return res.status(403).render('login', { error: 'Access forbidden' });
+      }
+
+      // Set up a session or token for the logged-in user
+
+      // Redirect to the admin dashboard or system settings
+      return res.status(200).redirect('/admin_dashboard');
+  } catch (error) {
+      console.error('Error during login:', error);
+      return res.status(500).render('errors/500');
+  }
+};
+
+exports.hotPosts = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const popularPosts = await Post.find().sort({ views: 'desc' })
+    .limit(10)
+    .populate('category');
+    
+    const allPosts = await Post.find().populate('category', 'name');
+
+    res.render('hotposts', { posts: allPosts, existingSetting, popularPosts })
+  } catch (error) {
+    
+  }
+}
 

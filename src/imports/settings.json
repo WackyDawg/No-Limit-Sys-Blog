@@ -1,0 +1,54 @@
+[
+  {
+    "__v": 10,
+    "headerlogo": [
+      "../public/uploads/1704404295297.jpg"
+    ],
+    "logo": [],
+    "footerlogo": [
+      "../public/uploads/1704425848691.jpg"
+    ],
+    "description": "<p><span style=\"color: rgb(255, 255, 255); font-family: &quot;Work Sans&quot;; font-size: 18px; background-color: rgb(0, 0, 0);\">Welcome to NoLimitBlog - your source for lifestyle inspiration and information. We're dedicated to providing you with high-quality articles on life and travel, written by experts in the field. Explore our diverse collection of posts and join our community of avid readers and contributors.</span><br></p>",
+    "facebook_link": "https://facebook.com/",
+    "frontend_copyright_text": "Copyright © 2024 NolimitSystems. All rights reserved.\r\n\r\n",
+    "instagram_link": "https://www.instagram.com/",
+    "linkedin_link": "https://linkedin.com/",
+    "twitter_link": "https://twitter.com/",
+    "youtube_link": "https://youtube.com/",
+    "contact_address": "test",
+    "contact_email": "tese@gmail.com",
+    "contact_phone": "00990",
+    "app_store_link": "ggt",
+    "play_store_link": "testt",
+    "phonenumber": "09899889",
+    "meta_image": [
+      "../public/uploads/1704439543639.jpg"
+    ],
+    "site_icon": [
+      "../public/uploads/1704444139213.svg"
+    ],
+    "site_motto": "",
+    "site_name": "",
+    "system_logo": [
+      "../public/uploads/1704443719964.svg"
+    ],
+    "website_name": "NoLimitBlog",
+    "meta_description": "",
+    "meta_keywords": "",
+    "meta_title": "",
+    "popup_description": "<p>test</p>",
+    "show_cookies_agreement": true,
+    "show_website_popup": true,
+    "footer_script": "",
+    "header_script": "<script></script>",
+    "base_color": "dff",
+    "base_hov_color": "dfsdf",
+    "secondary_base_color": "dsdgs",
+    "secondary_base_hov_color": "dfsdgs",
+    "cookies_description": "<p>tect</p>",
+    "show_subscribe_form": true,
+    "show_social_links": true,
+    "header_sticky": true
+  }
+  
+]

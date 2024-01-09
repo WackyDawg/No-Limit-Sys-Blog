@@ -279,12 +279,12 @@
                                       <!-- Use 'firstPost' to access the first post data -->
                                       <div class="item_decor"></div>
                                       <div class="img_holder fn__bordered_obj" data-width="5" data-space="10" data-radius="50">
-                                        <div class="obj_content"><a href="<%= firstPost.link %>" class="full_link" aria-label="<%= firstPost.title %>"></a>
+                                        <div class="obj_content"><a href="/articles/<%= firstPost.slug %>" class="full_link" aria-label="<%= firstPost.title %>"></a>
                                           <div class="img_in img_overlay"><img decoding="async" src="/uploads/<%= String(firstPost.banner).replace('/public', '') %>" alt=""></div>
                                         </div>
                                       </div>
                                       <div class="title_holder">
-                                        <h3 class="fn_title fn_bg_title"><a href="<%= firstPost.link %>"><span><%= firstPost.title %></span></a></h3>
+                                        <h3 class="fn_title fn_bg_title"><a href="/articles/<%= firstPost.slug %>"><span><%= firstPost.title %></span></a></h3>
                                         <div class="fn_bg_subtitle"><span class="date"><%= new
                           Date(firstPost.createdAt).toLocaleDateString("en-US",
                           { month: "long" , day: "numeric"
@@ -513,11 +513,11 @@
 
                                       <% if (thirdPost) { %>
                                       <div class="item top_item">
-                                        <div class="img_holder"><a href="/articles/<%= thirdPost._id %>" class="full_link" aria-label="<%= thirdPost ? thirdPost.title : '' %>"></a>
+                                        <div class="img_holder"><a href="/articles/<%= thirdPost.slug %>" class="full_link" aria-label="<%= thirdPost ? thirdPost.title : '' %>"></a>
                                           <div class="img_in img_overlay"><img decoding="async" src="/uploads/<%= String(thirdPost.banner).replace('/public', '') %>" alt=""></div>
                                         </div>
                                         <div class="title_holder">
-                                          <h3 class="fn_title fn_bg_title"><a href="/articles/<%= thirdPost._id %>"><span><%= thirdPost ? thirdPost.title : '' %></span></a></h3>
+                                          <h3 class="fn_title fn_bg_title"><a href="/articles/<%= thirdPost.slug %>"><span><%= thirdPost ? thirdPost.title : '' %></span></a></h3>
                                           <div class="fn_bg_subtitle"><span class="date"><%= new
                                             Date(thirdPost.createdAt).toLocaleDateString("en-US",
                                             { month: "long" , day: "numeric"
@@ -554,7 +554,7 @@
                                         <% postsByCategory[category.name].slice(1, 4).forEach(post => { %>
                                         <div class="item classic_item">
                                           <div class="img_holder"><a href="/articles/<%= post.slug %>" class="full_link" aria-label="<%= post.title %>"></a>
-                                            <div class="img_in img_overlay"><img decoding="async" src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/uploads/2023/10/126-300x168.jpg" alt=""></div>
+                                            <div class="img_in img_overlay"><img decoding="async" src="/uploads/<%= String(post.banner).replace('/public', '') %>" alt=""></div>
                                           </div>
                                           <div class="item_r">
                                             <div class="title_holder">
@@ -596,14 +596,14 @@
                                       <% if (fourthPost) { %>
                                       <div class="item top_item">
                                         <div class="img_holder">
-                                          <a href="/articles/<%= fourthPost._id %>" class="full_link" aria-label="<%= fourthPost.title %>"></a>
+                                          <a href="/articles/<%= fourthPost.slug %>" class="full_link" aria-label="<%= fourthPost.title %>"></a>
                                           <div class="img_in img_overlay">
                                             <img decoding="async" src="/uploads/<%= String(fourthPost.banner).replace('/public', '') %>" alt="">
                                           </div>
                                         </div>
                                         <div class="title_holder">
                                           <h3 class="fn_title fn_bg_title">
-                                            <a href="/articles/<%= fourthPost._id %>">
+                                            <a href="/articles/<%= fourthPost.slug %>">
                                               <span><%= fourthPost.title %></span>
                                             </a>
                                           </h3>
@@ -980,7 +980,7 @@
 
                                   <% }); %>
                                 </ul>
-                                <div class="more_posts"><a href="https://frenify.com/work/envato/frenify/wp/guff/1/blog">See them all</a></div>
+                                <div class="more_posts"><a href="/blog">See them all</a></div>
                               </div>
                             </div>
                           </div>
