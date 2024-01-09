@@ -46,7 +46,7 @@ app.use(bodyParser.json());
 //   });
 
 app.use('/', homeRoutes);
-app.use('/admin',setupCheckMiddleware, adminRoutes)
+app.use('/', adminRoutes)
 app.use('/', setupRoutes);
 app.use('/', uploadRoutes);
 
