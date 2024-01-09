@@ -67,7 +67,7 @@
                         <div class="fn__short_meta"><span class="meta_item meta_date"><span class="text"><a href="">
                                 <%= new Date(post.createdAt).toLocaleDateString("en-US", { month: "long" ,
                                       day: "numeric" , year: "numeric" }) %>
-                              </a></span></span><span class="meta_item meta_category"><a class="" href="/category/inspiration/">Inspiration</a></span></div>
+                              </a></span></span><span class="meta_item meta_category"><a class="" href="/category/inspiration/"><%= post.category ? post.category.name : 'Uncategorized' %></a></span></div>
                         <div class="desc desc_post_content">
                           <p>
                             <%= post.short_description %>
@@ -77,9 +77,9 @@
                               More</span></a></div>
                       </div>
                       <div class="fn__full_meta">
-                        <div class="full_meta"><span class="meta_item meta__author" data-type="short"><a class="fn__tooltip_item left_aligned" href="https://frenify.com/work/envato/frenify/wp/guff/1/author/frenify/" aria-label="frenify — 27 Articles, 25 Episodes"><span class="has_img"><img src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/uploads/2023/11/a01.jpg" alt=""></span><span class="t_text">frenify — 27 Articles, 25
+                        <div class="full_meta"><span class="meta_item meta__author" data-type="short"><a class="fn__tooltip_item left_aligned" href="/" aria-label="frenify — 27 Articles, 25 Episodes"><span class="has_img"><img src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/uploads/2023/11/a01.jpg" alt=""></span><span class="t_text">frenify — 27 Articles, 25
                                 Episodes</span></a></span>
-                          <div class="other_metas"><span class="meta_item meta__comment"><a class="fn__tooltip_item" href="https://frenify.com/work/envato/frenify/wp/guff/1/capturing-the-magic-the-enchanting-beauty-of-the-setting-sun/#respond" aria-label="Go to comments"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg  replaced-svg">
+                          <div class="other_metas"><span class="meta_item meta__comment"><a class="fn__tooltip_item" href="/" aria-label="Go to comments"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg  replaced-svg">
 
                                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
                                     <path d="M2295 4979 c-650 -65 -1214 -327 -1647 -766 -732 -739 -855 -1809 -308 -2668 72 -113 70 -99 44 -295 -53 -414 -172 -756 -326 -938 -68 -79 -74 -117 -25 -162 27 -26 48 -25 214 5 409 76 839 213 1149 367 l121 60 119 -42 c142 -50 357 -103 509 -125 232 -34 575 -36 800 -5 752 106 1417 508 1811 1097 85 126 213 388 259 528 218 667 88 1395 -352 1962 -397 512 -1005 861 -1678 962 -201 31 -501 39 -690 20z m-787 -1984 c165 -75 241 -279 167 -443 -95 -211 -364 -269 -535 -115 -202 182 -118 516 147 583 60 15 158 4 221 -25z m1135 20 c100 -26 187 -99 231 -194 32 -71 30 -197 -6 -273 -31 -68 -95 -133 -164 -168 -42 -21 -62 -25 -144 -25 -82 0 -102 4 -144 25 -69 35 -133 100 -164 168 -36 76 -38 202 -6 273 43 93 131 168 227 194 68 18 101 18 170 0z m1252 -19 c221 -101 266 -397 85 -559 -132 -119 -328 -117 -456 5 -194 183 -113 502 145 575 64 18 161 9 226 -21z">
