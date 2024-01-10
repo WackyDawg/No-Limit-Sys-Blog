@@ -2,7 +2,7 @@ const express = require('express');
 const admin = express.Router();
 const adminController = require('../controller/adminController');
 
-admin.get('/admin', adminController.getAdminIndex);
+admin.get('/', adminController.getAdminIndex);
 admin.get('/admin/blog', adminController.getAdminBlog);
 admin.get('/admin/blog/create', adminController.getAdminBlogCreate);
 admin.post('/admin/blog/create', adminController.postAdminBlogCreate);

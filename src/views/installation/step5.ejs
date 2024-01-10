@@ -1,0 +1,102 @@
+<div class="aiz-main-wrapper d-flex">
+
+    <div class="flex-grow-1">
+        <div class="container pt-5">
+            <div class="d-flex justify-content-center mt-5">
+                <div class="card install-card position-relative">
+                    <!-- Content -->
+                    <div class="card-body install-card-body h-100 w-100 z-3 position-relative">
+                        <!-- Top content -->
+                        <div class="mar-ver pad-btm text-center">
+                            <img src="https://media.licdn.com/dms/image/D4E0BAQFPjuN3fGVG7w/company-logo_200_200/0/1700161807189/nolimitsystemsllc_logo?e=2147483647&v=beta&t=JQbrZr0YXPMp0Y0NGnabY3wapavcgqfoZZUQV111-Ms" alt=""
+                            width="64" height="64">
+                            <h1 class="fs-21 fw-700 text-uppercase mt-2" style="color: #3d3d3d;">NO LIMIT BLOG CMS
+                                Settings</h1>
+                            <p class="fs-12 fw-500" style="color:  #666; line-height: 18px;">Fill this form with basic
+                                information & admin login credentials</p>
+                        </div>
+
+                        <form method="POST" action="/setup/step5">
+                            <div class="form-group">
+                                <label for="admin_name" class="fs-12 fw-500" style="color: #666;">Admin Name</label>
+                                <input type="text" class="form-control rounded-2 border"
+                                    style="height: 36px !important;" id="admin_name" name="admin_name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="admin_email" class="fs-12 fw-500" style="color: #666;">Admin Email</label>
+                                <input type="email" class="form-control rounded-2 border"
+                                    style="height: 36px !important;" id="admin_email" name="admin_email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="admin_password" class="fs-12 fw-500" style="color: #666;">Admin Password (At
+                                    least 6 characters)</label>
+                                <input type="password" class="form-control rounded-2 border"
+                                    style="height: 36px !important;" id="admin_password" name="admin_password" required>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label for="admin_name" class="fs-12 fw-500" style="color: #666;">System
+                                    Currency</label>
+                                <select class="form-control rounded-2 border aiz-selectpicker"
+                                    style="height: 36px !important;" data-live-search="true"
+                                    name="system_default_currency" required>
+                                    <option value="1">U.S. Dollar</option>
+                                    <option value="2">Australian Dollar</option>
+                                    <option value="5">Brazilian Real</option>
+                                    <option value="6">Canadian Dollar</option>
+                                    <option value="7">Czech Koruna</option>
+                                    <option value="8">Danish Krone</option>
+                                    <option value="9">Euro</option>
+                                    <option value="10">Hong Kong Dollar</option>
+                                    <option value="11">Hungarian Forint</option>
+                                    <option value="12">Israeli New Sheqel</option>
+                                    <option value="13">Japanese Yen</option>
+                                    <option value="14">Malaysian Ringgit</option>
+                                    <option value="15">Mexican Peso</option>
+                                    <option value="16">Norwegian Krone</option>
+                                    <option value="17">New Zealand Dollar</option>
+                                    <option value="18">Philippine Peso</option>
+                                    <option value="19">Polish Zloty</option>
+                                    <option value="20">Pound Sterling</option>
+                                    <option value="21">Russian Ruble</option>
+                                    <option value="22">Singapore Dollar</option>
+                                    <option value="23">Swedish Krona</option>
+                                    <option value="24">Swiss Franc</option>
+                                    <option value="26">Thai Baht</option>
+                                    <option value="27">Taka</option>
+                                    <option value="28">Indian Rupee</option>
+                                </select>
+                            </div> -->
+
+                            <div class="mb-4 pb-4 absolute-bottom-left right-0 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-install text-uppercase">Continue</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Common file -->
+                    <!-- top right watermark -->
+                    <div class="absolute-top-right z-1" style="margin-right: 4rem;">
+                        
+                    </div>
+
+                    <!-- top right links -->
+                    <%- include('../partials/installation/top-right-link.ejs') %>
+
+
+                    <!-- Bottom -->
+                    <div class="absolute-bottom-left right-0  z-5" style="margin-left: 4rem; margin-right: 4rem;">
+                        <div class="row gutters-16 px-3">
+                            <div class="col" style="min-height: 3px; background: #007cff"></div>
+                            <div class="col" style="min-height: 3px;  background: #ea4335"></div>
+                            <div class="col" style="min-height: 3px;  background: #00ac47"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

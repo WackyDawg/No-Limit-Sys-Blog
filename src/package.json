@@ -3,6 +3,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
@@ -10,6 +11,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-layout": "^0.1.0",
     "express-validator": "^7.0.1",
+    "method-override": "^3.0.0",
     "mongoose": "^8.0.3",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.0.2",
