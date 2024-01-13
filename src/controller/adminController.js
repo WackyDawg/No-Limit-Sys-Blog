@@ -429,6 +429,7 @@ exports.getAdminCategory = async (req, res) => {
   try {
     const categories = await Category.find();
     const currentUser = req.user;
+    const existingSetting = await Setting.find({})
 
     if (!currentUser) {
       // If userId is not available, handle it appropriately (send a response, redirect, etc.)
@@ -438,6 +439,7 @@ exports.getAdminCategory = async (req, res) => {
       layout: adminLayout,
       currentUser,
       categories,
+      existingSetting
     });
   } catch (error) {
     console.log(error);
