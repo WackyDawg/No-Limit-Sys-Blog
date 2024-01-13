@@ -284,9 +284,10 @@ exports.postStep5 = async (req, res) => {
           role: "user",
         });
         trackSetupProgress(6);
+        fs.writeFileSync("installed.txt", "Installation complete");
 
         // Send a success response and redirect
-        return res.status(201).redirect("/system_setting");
+        return res.status(201).redirect("/blog");
       } else {
         // If no admin exists, create the admin
         const admin = await User.insertOne({
@@ -296,9 +297,10 @@ exports.postStep5 = async (req, res) => {
           role: "admin",
         });
         trackSetupProgress(6);
+        fs.writeFileSync("installed.txt", "Installation complete");
 
         // Send a success response and redirect
-        return res.status(201).redirect("/system_setting");
+        return res.status(201).redirect("/blog");
       }
     } catch (error) {
       // Handle database error
@@ -312,31 +314,4 @@ exports.postStep5 = async (req, res) => {
   }
 };
 
-exports.systemSettings = async (req, res) => {
-  try {
-    // Check if the application is already installed
-    const isInstalled = fs.existsSync(".env") && fs.existsSync("installed.txt");
 
-    if (isInstalled) {
-      return res.send("Installation complete. Welcome to your application!");
-    }
-
-    // Check the current step in the setup progress
-    const currentStep = getCurrentStep(); // Implement this function based on your setup progress tracking
-
-    // If the current step is 6, render the system settings page
-    if (currentStep === 6) {
-      fs.writeFileSync("installed.txt", "Installation complete");
-      return res.render("installation/system_settings", {
-        layout: setupLayout,
-      });
-    } else {
-      // If the current step is not 6, return a 405 Method Not Allowed error
-      return res.status(405).render("errors/405", { layout: errorLayout });
-    }
-  } catch (error) {
-    // Handle any unexpected errors
-    console.error("Error in systemSettings:", error);
-    return res.status(500).render("errors/500");
-  }
-};

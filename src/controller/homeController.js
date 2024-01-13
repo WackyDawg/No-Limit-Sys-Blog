@@ -1,13 +1,18 @@
+const fs = require('fs');
 const connectDB = require('../config/db');
 const Category = require('../models/categoryModel');
 const Post = require('../models/postModel');
 const Setting = require('../models/blogSettingsModel');
-const Contact = require('../models/contactModel')
+const Contact = require('../models/contactModel');
+const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const installController = require('../controller/installController');
 const setupCheckMiddleware = require('../middleware/setupCheck');
-const fs = require('fs');
+const authMiddleware = require('../middleware/authMiddleware');
 const setupLayout = '../views/layouts/setup';
 const authLayout = '../views/layouts/auth';
+
 
 exports.getIndex = async (req, res) => {
     try {
@@ -64,9 +69,6 @@ exports.getIndex = async (req, res) => {
           // If the application is not installed, render a specific page
           return res.render('installation/index', { layout: setupLayout});
         }
-
-        // Proceed with your regular route handling
-        // For example, you can render your main application page
 
   
       res.render('index', {
@@ -172,50 +174,43 @@ exports.getIndex = async (req, res) => {
 
 exports.login = async (req, res, next) => {
   try {
-    res.render('auth/login', { layout: authLayout})
+    const existingSetting = await Setting.find({});
+    res.render('auth/login', { layout: authLayout, existingSetting})
   } catch (error) {
     console.log(error)
   }
 }
 
+const jwtSecret = process.env.JWT_SECRET || 'tested';
+
 exports.postLogin = async (req, res) => {
   try {
-      const { email, password } = req.body;
+    const { email, password } = req.body;
 
-      const db = await connectDB();
-      const User = db.collection('users');
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid Credentials' });
+    }
 
-      // Find the user by email
-      const user = await User.findOne({ email });
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Invalid Credentials' });
+    }
 
-      if (!user) {
-          // User not found
-          return res.status(401).render('login', { error: 'Invalid credentials' });
-      }
-
-      // Check if the password is correct
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-
-      if (!isPasswordValid) {
-          // Incorrect password
-          return res.status(401).render('login', { error: 'Invalid credentials' });
-      }
-
-      // Check if the user is an admin
-      if (user.role !== 'admin') {
-          // Only allow admin login
-          return res.status(403).render('login', { error: 'Access forbidden' });
-      }
-
-      // Set up a session or token for the logged-in user
-
-      // Redirect to the admin dashboard or system settings
-      return res.status(200).redirect('/admin_dashboard');
+    const token = jwt.sign({ userId: user._id }, jwtSecret);
+    res.cookie('token', token, { httpOnly: true });
+    res.redirect('/blog');
   } catch (error) {
-      console.error('Error during login:', error);
-      return res.status(500).render('errors/500');
+    console.log(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+exports.logout = (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/'); 
+};
+
 
 exports.hotPosts = async (req, res) => {
   try {
@@ -232,3 +227,4 @@ exports.hotPosts = async (req, res) => {
   }
 }
 
+ 
