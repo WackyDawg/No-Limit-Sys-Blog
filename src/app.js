@@ -5,6 +5,9 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
 const categoryRoutes = require('./routes/categoryRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const blogRoutes = require('./routes/blogRoutes');
@@ -16,7 +19,7 @@ const uploadRoutes = require('./routes/uploadRoutes');
 const setupCheckMiddleware = require('./middleware/setupCheck');
 const expressLayout = require('express-ejs-layouts')
 const bodyParser = require('body-parser');
-
+const verifyToken = require('./middleware/authMiddleware')
 
 
 
@@ -29,11 +32,18 @@ app.set('view engine', 'ejs');
 app.set('layout', './layouts/main');
 const setupLayout = 'layouts/setup';
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+   
+}))
 
 app.use(expressLayout);
 
 app.use(express.static('public'))
-
+app.use(cookieParser());
+//app.use(verifyToken);
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(methodOverride('_method'));
@@ -46,7 +56,7 @@ app.use(bodyParser.json());
 //   });
 
 app.use('/', homeRoutes);
-app.use('/', adminRoutes)
+app.use('/admin', adminRoutes)
 app.use('/', setupRoutes);
 app.use('/', uploadRoutes);
 
