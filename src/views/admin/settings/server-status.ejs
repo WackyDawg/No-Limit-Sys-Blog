@@ -1,0 +1,111 @@
+<div class="aiz-main-wrapper">
+  <%- include('../partials/sidebar.ejs') %>
+    <!-- .aiz-sidebar -->
+  <div class="aiz-content-wrapper">
+    <%- include('../partials/topbar.ejs') %>
+    <!-- .aiz-topbar -->
+    <div class="aiz-main-content">
+      <div class="px-15px px-lg-25px">
+        <div class="row">
+          <div class="col-lg-10 col-xxl-8 mx-auto">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="h6 mb-0">Server information</h3>
+              </div>
+              <div class="card-body">
+                <table class="table table-striped aiz-table footable footable-1 breakpoint breakpoint-sm" style="">
+                  <thead>
+                    <tr class="footable-header">
+
+
+
+
+                      <th class="footable-first-visible" style="display: table-cell;">Name</th>
+                      <th data-breakpoints="lg" style="display: none;">Current Version</th>
+                      <th data-breakpoints="lg" style="display: none;">Required Version</th>
+                      <th class="footable-last-visible" style="display: table-cell;">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+
+                    <tr>
+
+
+
+
+                      <td class="footable-first-visible" style="display: table-cell;"><span class="footable-toggle fooicon fooicon-plus"></span>Node.js versions</td>
+                      <td style="display: none;"><%= nodeVersion %></td>
+                      <td style="display: none;">v20.10.0</td>
+                      <td class="footable-last-visible" style="display: table-cell;">
+                        <i class="las <%= nodeVersion === 'v20.10.0' ? 'la-check text-success' : 'la-times text-danger' %>"></i>
+                      </td>
+                    </tr>
+                    <tr>
+
+
+
+
+                      <td class="footable-first-visible" style="display: table-cell;"><span class="footable-toggle fooicon fooicon-plus"></span>MongoDB Atlas</td>
+                      <td style="display: none;">
+                        6.0.12                      </td>
+                      <td style="display: none;">6.0.12</td>
+                      <td class="footable-last-visible" style="display: table-cell;">
+                        <i class="las la-check text-success"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card-header">
+                <h3 class="h6 mb-0">Filesystem Permissions</h3>
+              </div>
+              <div class="card-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>File or Folder</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>src/.env</td>
+                      <td>
+                        <i class="las la-check <%= envStatus === 'Read and write permissions' ? 'la-check text-success' : 'la-times text-danger' %>"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>src/public</td>
+                      <td>
+                        <i class="las la-check <%= publicFolderStatus === 'Read and write permissions' ? 'la-check text-success' : 'la-times text-danger' %>"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>src/Controllers</td>
+                      <td>
+                        <i class="las <%= controllerStatus === 'Read and write permissions' ? 'la-check text-success' : 'la-times text-danger' %>"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>views</td>
+                      <td>
+                        <i class="las la-check <%= viewsStatus === 'Read and write permissions' ? 'text-success' : 'la-times text-danger' %>"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+        <p class="mb-0">© v1.0</p>
+      </div>
+    </div><!-- .aiz-main-content -->
+  </div><!-- .aiz-content-wrapper -->
+</div>

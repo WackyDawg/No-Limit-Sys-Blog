@@ -1,0 +1,140 @@
+<div class="aiz-content-wrapper">
+  <%- include('./partials/topbar.ejs') %>
+
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="col-lg-6  mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0 h6">Profile</h5>
+          </div>
+          <div class="card-body">
+            <form class="form-horizontal" action="/admin/profile-update" method="POST" enctype="multipart/form-data">
+              <div class="form-group row">
+                <label class="col-sm-3 col-from-label" for="name">Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="Name" name="name" value="<%= currentUser.name %>" required="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-from-label" for="name">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" placeholder="Email" name="email" value="<%= currentUser.email %>">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-from-label" for="new_password">New Password</label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" placeholder="New Password" name="password">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-from-label" for="confirm_password">Confirm
+                  Password</label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password">
+                </div>
+              </div>
+              <div class="card shadow-none bg-light">
+                <div class="card-header">
+                  <h6 class="mb-0">Biography Widget</h6>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <input type="hidden" name="types[][en]" value="biography">
+
+                    <textarea class="form-control" name="biography" rows="6" placeholder="Type.."><%= currentUser.biography %></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="card shadow-none bg-light">
+                <div class="card-header">
+                  <h6 class="mb-0">Social Link Widget</h6>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Social Links</label>
+                    <!-- Facebook Link -->
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="lab la-facebook-f"></i></span>
+                      </div>
+                      <input type="hidden" name="types[]" value="facebook_link">
+                      <input type="text" class="form-control" placeholder="http://" name="facebook_link" value="<%= currentUser.facebook_link %>">
+                    </div>
+                    <!-- Twitter Link -->
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="lab la-twitter"></i></span>
+                      </div>
+                      <input type="hidden" name="types[]" value="twitter_link">
+                      <input type="text" class="form-control" placeholder="http://" name="twitter_link" value="<%= currentUser.twitter_link %>">
+                    </div>
+                    <!-- Instagram Link -->
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="lab la-instagram"></i></span>
+                      </div>
+                      <input type="hidden" name="types[]" value="instagram_link">
+                      <input type="text" class="form-control" placeholder="http://" name="instagram_link" value="<%= currentUser.instagram_link %>">
+                    </div>
+                    <!-- Youtube Link -->
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="lab la-youtube"></i></span>
+                      </div>
+                      <input type="hidden" name="types[]" value="youtube_link">
+                      <input type="text" class="form-control" placeholder="http://" name="youtube_link" value="<%= currentUser.youtube_link %>">
+                    </div>
+                    <!-- Linkedin Link -->
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="lab la-linkedin-in"></i></span>
+                      </div>
+                      <input type="hidden" name="types[]" value="linkedin_link">
+                      <input type="text" class="form-control" placeholder="http://" name="linkedin_link" value="<%= currentUser.linkedin_link %>">
+                    </div>
+                    <!-- Tiktok Link -->
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="lab la-linkedin-in"></i></span>
+                      </div>
+                      <input type="hidden" name="types[]" value="linkedin_link">
+                      <input type="text" class="form-control" placeholder="http://" name="tiktok_link" value="<%= currentUser.tiktok_link %>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="signinSrEmail">
+                  Avatar
+                  <small>(90 x 90)</small>
+                </label>
+                <div class="col-md-9">
+                  <div class="input-group" data-toggle="aizuploader" data-type="image">
+                    <input type="file" name="avatar" class="form-control" id="inputGroupFile01">
+                  </div>
+                  <div class="file-preview box sm">
+                    <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1893" title="tshirtt.webp">
+                      <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                        <img src="/uploads/<%= String(currentUser.avatar).replace('/public', '') %>" class="img-fit">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-0 text-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+      <p class="mb-0">© v1.0</p>
+    </div>
+  </div>
+</div>

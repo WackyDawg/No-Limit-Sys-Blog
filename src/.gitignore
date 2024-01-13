@@ -22,7 +22,6 @@ scripts/coverage.svg
 
 persist
 .node-persist/**/*
-public/**/*
 
 workspace/_exif/*
 workspace/_tmp/*

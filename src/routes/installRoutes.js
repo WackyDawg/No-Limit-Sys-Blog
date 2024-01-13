@@ -27,7 +27,7 @@ router.get('/step2', installController.Step2);
 router.get('/step3', installController.Step3);
 router.get('/step4', installController.Step4);
 router.get('/step5', installController.Step5);
-router.get('/system_setting', installController.systemSettings);
+//router.get('/system_setting', installController.systemSettings);
 
 
 router.post('/setup/step3', installController.postStep3);
