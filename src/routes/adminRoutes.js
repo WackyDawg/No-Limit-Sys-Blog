@@ -12,6 +12,9 @@ admin.get('/blog', isAuthenticated, setupCheckMiddleware,  adminController.getAd
 admin.get('/blog/create', isAuthenticated, setupCheckMiddleware,  adminController.getAdminBlogCreate);
 admin.post('/blog/create',isAuthenticated,setupCheckMiddleware,  adminController.postAdminBlogCreate);
 admin.get('/blog-category', isAuthenticated,setupCheckMiddleware,  adminController.getAdminCategory);
+admin.get('/blog-category/:id/edit', isAuthenticated,setupCheckMiddleware,  adminController.getAdminCategoryEdit);
+admin.post('/blog-category/:id/', isAuthenticated,setupCheckMiddleware,  adminController.editAdminCategory);
+admin.delete('/blog-category/destroy/:id/', isAuthenticated,setupCheckMiddleware,  adminController.deleteAdminBlogCategory);
 admin.get('/blog-category/create',isAuthenticated, setupCheckMiddleware,  adminController.createAdminCategory);
 admin.get('/blog/:id/edit', isAuthenticated,setupCheckMiddleware,  adminController.getAdminBlogEdit);
 admin.delete('/blog/destroy/:id',isAuthenticated, setupCheckMiddleware,  adminController.deleteAdminBlogPost);
@@ -29,5 +32,8 @@ admin.get('/profile',isAuthenticated, setupCheckMiddleware,  adminController.get
 admin.post('/profile-update', isAuthenticated, setupCheckMiddleware, adminController.updateAdminProfile)
 admin.get('/system/update', isAuthenticated, setupCheckMiddleware, adminController.getApplicationUpdate)
 admin.get('/system/server-status', isAuthenticated, setupCheckMiddleware, adminController.getServerstats)
+admin.get('/support_ticket', isAuthenticated, setupCheckMiddleware, adminController.getAdminSupportTickets)
+admin.get('/newsletter', isAuthenticated, setupCheckMiddleware, adminController.getNewsletter)
+admin.post('/newsletter/send', isAuthenticated, setupCheckMiddleware, adminController.sendBulkMail)
 
 module.exports = admin;
