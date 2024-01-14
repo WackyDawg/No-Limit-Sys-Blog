@@ -1,5 +1,5 @@
 <div class="aiz-content-wrapper">
-    <%- include('./partials/topbar.ejs') %>
+    <%- include('./partials/topbar.ejs', { currentUser: currentUser }) %>
 
         <!-- .aiz-topbar -->
         <div class="aiz-main-content">
@@ -59,16 +59,13 @@
                                             </td>
                                             <td class="text-right footable-last-visible" style="display: table-cell;">
                                                 <a class="btn btn-soft-primary btn-icon btn-circle btn-sm"
-                                                    href="https://demo.activeitzone.com/ecommerce/admin/blog-category/3/edit"
+                                                    href="/admin/blog-category/<%= category._id %>/edit"
                                                     title="Edit">
                                                     <i class="las la-edit"></i>
                                                 </a>
-                                                <a href="#"
-                                                    class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
-                                                    data-href="https://demo.activeitzone.com/ecommerce/admin/blog-category/destroy/3"
-                                                    title="Delete">
-                                                    <i class="las la-trash"></i>
-                                                </a>
+                                                <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
+                                                onclick="openCategoryDeleteModal('<%= category._id %>')" title="Delete">
+                                                <i class="las la-trash"></i></a>
                                             </td>
                                         </tr>
                                         <% count++; %>
