@@ -1,8 +1,10 @@
 const Category = require("../models/categoryModel");
 const Post = require("../models/postModel");
 const Setting = require("../models/blogSettingsModel");
+const Contact = require("../models/contactModel")
 const User = require("../models/userModel");
 const multer = require("multer");
+const nodemailer = require('nodemailer');
 const { validationResult } = require("express-validator");
 const { promisify } = require("util");
 const fs = require("fs");
@@ -138,15 +140,13 @@ exports.updateAdminProfile = async (req, res) => {
             if (field === "password") {
               // Check if password and password confirmation match
               if (req.body.password !== req.body.confirm_password) {
-                return res
-                  .status(400)
-                  .json({
-                    message: "Password and password confirmation do not match",
-                  });
+                return res.status(400).json({
+                  message: "Password and password confirmation do not match",
+                });
               }
 
               // Hash the new password before saving
-              const hashedPassword = await bcrypt.hash(req.body[field], 10); 
+              const hashedPassword = await bcrypt.hash(req.body[field], 10);
 
               existingAdmin[field] = hashedPassword;
             } else {
@@ -154,7 +154,7 @@ exports.updateAdminProfile = async (req, res) => {
             }
           }
         });
-        
+
         // Update the image fields based on the values present in the request
         if (avatar.length > 0) {
           existingAdmin.avatar = avatar;
@@ -292,6 +292,12 @@ exports.getAdminBlogEdit = async (req, res) => {
     const categories = await Category.find();
     const currentPost = await Post.findById(postId);
     const existingSetting = await Setting.find({});
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      // If userId is not available, handle it appropriately (send a response, redirect, etc.)
+      return res.status(401).render("errors/401", { layout: errorLayout });
+    }
 
     if (!currentPost) {
       // Handle case where post is not found
@@ -301,6 +307,7 @@ exports.getAdminBlogEdit = async (req, res) => {
       data: currentPost,
       layout: adminLayout,
       categories,
+      currentUser,
       existingSetting,
     });
   } catch (error) {}
@@ -412,29 +419,32 @@ exports.deleteAdminBlogPost = async (req, res) => {
     const post = await Post.findById(postId);
 
     if (!post) {
-      return res.status(404).json({ message: "Blog post not found" });
+      return res.status(404).json({ message: 'Blog post not found' });
     }
 
-    // Perform the deletion
     await Post.findByIdAndDelete(postId);
 
     // Optionally, you can redirect to a different page or send a success message
-    res.status(200).json({ message: "Blog post deleted successfully" });
+    res.status(200).json({ message: 'Blog post deleted successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error deleting blog post" });
+    res.status(500).json({ message: 'Error deleting blog post' });
   }
 };
+
 exports.getAdminCategory = async (req, res) => {
   try {
     const categories = await Category.find();
-    const currentUser = req.user;
-    const existingSetting = await Setting.find({})
+    const existingSetting = await Setting.find({});
+    const currentUser = req.user;  // Assuming you have user information attached to the request
 
+    // Check if the user is authenticated
     if (!currentUser) {
-      // If userId is not available, handle it appropriately (send a response, redirect, etc.)
+      // If userId is not available, handle it appropriately (render an error page, redirect, etc.)
       return res.status(401).render("errors/401", { layout: errorLayout });
     }
+
+    // Render the admin category page with the necessary data
     res.render("admin/blog-category", {
       layout: adminLayout,
       currentUser,
@@ -442,18 +452,30 @@ exports.getAdminCategory = async (req, res) => {
       existingSetting
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    // Log the error for debugging purposes
+    console.error(error);
+
+    // Render an error page with a friendly message for the user
+    res.status(500).render("errors/500", { layout: errorLayout });
   }
 };
+
 
 exports.createAdminCategory = async (req, res) => {
   try {
     const categories = await Category.find();
     const existingSetting = await Setting.find({});
+    const currentUser = req.user;  // Assuming you have user information attached to the request
+
+    // Check if the user is authenticated
+    if (!currentUser) {
+      // If userId is not available, handle it appropriately (render an error page, redirect, etc.)
+      return res.status(401).render("errors/401", { layout: errorLayout });
+    }
     res.render("admin/category-create", {
       layout: adminLayout,
       categories,
+      currentUser,
       existingSetting,
     });
   } catch (error) {
@@ -495,6 +517,104 @@ exports.postAdminCategory = async (req, res) => {
     }
   });
 };
+
+exports.getAdminCategoryEdit = async (req, res) => {
+  try {
+    const catId = req.params.id;
+    
+    // Find the current category by ID
+    const currentCategory = await Category.findById(catId);
+    
+    // Find all existing settings
+    const existingSetting = await Setting.find({});
+    
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: errorLayout });
+    }
+
+    if (!currentCategory) {
+      return res.status(404).send("category not found");
+    }
+
+    // Create a new category if it doesn't exist
+    const updatedCategory = await Category.findOneAndUpdate(
+      { _id: catId },
+      { $setOnInsert: { /* fields to be created */ } },
+      { upsert: true, new: true },
+    );
+
+    res.render("admin/category-edit", {
+      data: updatedCategory,
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (error) {
+    // Add error handling code here
+  }
+};
+
+exports.deleteAdminBlogCategory = async (req, res) => {
+  const catId = req.params.id; // Extract postId from req.params
+
+  try {
+    const category = await Category.findById(catId);
+
+    if (!category) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+
+    await Category.findByIdAndDelete(catId);
+
+    // Optionally, you can redirect to a different page or send a success message
+    res.status(200).json({ message: 'Blog post deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error deleting blog post' });
+  }
+};
+
+
+exports.editAdminCategory = async (req, res) => {
+  upload.array("banner", 5)(req, res, async (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "File upload error" });
+    }
+
+    try {
+      const categoryId = req.params.id;
+
+      const category = await Category.findById(categoryId);
+
+      if (!category) {
+        return res.status(404).json({ message: "Category not found" });
+      }
+
+      const uploadedBanners = req.files
+        ? req.files.map((file) => `../public/uploads/${file.filename}`)
+        : category.banner; 
+
+      const { name, short_description } = req.body;
+
+      console.log(req.body);
+
+      category.name = name;
+      category.banner = uploadedBanners;
+      category.short_description = short_description;
+
+      await category.save();
+
+      res.redirect("/admin/blog-category");
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error editing blog category" });
+    }
+  });
+};
+
 
 exports.getAdminSettingHeader = async (req, res) => {
   try {
@@ -863,6 +983,92 @@ exports.postAdminEnvSetting = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+exports.getAdminSupportTickets = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const supportTicket = await Contact.find({});
+
+    const currentUser = req.user;
+    if(!currentUser) {
+      return res.status(401).render('errors/401', { layout: errorLayout })
+    }
+    res.render('admin/support_ticket', { layout: adminLayout, existingSetting,currentUser,supportTicket })
+  } catch (error) {
+    
+  }
+}
+
+// exports.getSupportTicketById = async (req, res) => {
+//   try {
+//     const contactId = req.params.id;
+    
+//     // Find the current category by ID
+//     const currentTicket = await Contact.findById(contactId);
+//     if(!currentTicket) {
+//       return res.status(401).render('errors/401', { layout: errorLayout })
+//     }
+//     res.render('admin/')
+//   } catch (error) {
+    
+//   }
+// }
+
+exports.getNewsletter = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const currentUser = req.user;
+
+    if(!currentUser) {
+      return res.status(401).render('errors/401', { layout: errorLayout })
+    }
+    res.render('admin/marketing/newsletter', { layout: adminLayout, currentUser, existingSetting} )
+  } catch (error) {
+    res.status(404).render('errors/404', { layout: errorLayout })
+  }
+}
+
+exports.sendBulkMail = async (req, res) => {
+  try {
+    const { emails, subject, content } = req.body
+    console.log(req.body);
+    
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "juliannwadinobi098@gmail.com",
+        pass: "jzwl ucgy ccrq iszk",
+      },
+      secure: true,
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+
+    const mailOptions = {
+      from: "juliannwadinobi098@gmail.com",
+      to: 'julianlouis590@gmail.com', 
+      subject: subject,
+      text: content,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email: ", error);
+        res.status(500).send("Error sending email");
+      } else {
+        console.log("Email sent: ", info.response);
+        res.status(200).send("Email sent successfully");
+      }
+    });
+  } catch (error) {
+    console.error("Error in try-catch block: ", error);
+    res.status(500).send("Internal server error");
+  }
+};
+
+
+
 
 exports.getApplicationUpdate = async (req, res) => {
   try {
