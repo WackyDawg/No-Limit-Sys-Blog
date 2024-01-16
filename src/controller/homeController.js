@@ -223,7 +223,7 @@ exports.postLogin = async (req, res) => {
 
     const token = jwt.sign({ userId: user._id }, jwtSecret);
     res.cookie('token', token, { httpOnly: true });
-    res.redirect('/blog');
+    res.redirect('/admin');
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal Server Error' });
