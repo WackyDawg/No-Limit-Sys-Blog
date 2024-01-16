@@ -1114,7 +1114,7 @@ exports.sendBulkMail = async (req, res) => {
         res.status(500).send("Error sending email");
       } else {
         console.log("Email sent: ", info.response);
-        res.status(200).render('/admin/newsletter');
+        res.redirect('/admin/newsletter');
       }
     });
   } catch (error) {

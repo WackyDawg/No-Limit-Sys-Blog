@@ -145,7 +145,7 @@ exports.getIndex = async (req, res) => {
       });
   
       await newSubscriber.save();
-      res.status(200).send("Subscription successful!"); // Sending a success response
+      res.redirect('/');
   
     } catch (error) {
       console.error("Error in try-catch block: ", error);
