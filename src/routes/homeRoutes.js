@@ -12,6 +12,7 @@ home.get('/hot-posts', setupCheckMiddleware, homeController.hotPosts);
 home.get('/blog',  homeController.getAllBlogPost);
 home.get('/Contact', setupCheckMiddleware, homeController.getContact);
 home.post('/contact', setupCheckMiddleware, homeController.postContact);
+home.post('/subscribe', setupCheckMiddleware, homeController.postSubscribe)
 home.get('/admin/login',preventLoginAccess,  setupCheckMiddleware, homeController.login);
 home.post('/admin/login', setupCheckMiddleware, homeController.postLogin);
 home.get('/xman/destroy/logout', homeController.logout)

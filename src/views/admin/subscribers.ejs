@@ -1,0 +1,62 @@
+<div class="aiz-content-wrapper">
+  <%- include('./partials/topbar.ejs') %>
+  <!-- .aiz-topbar -->
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0 h6">All Subscribers</h5>
+        </div>
+        <div class="card-body">
+          <table class="table aiz-table mb-0 footable footable-1 breakpoint breakpoint-sm" style="">
+            <thead>
+              <tr class="footable-header">
+
+
+
+
+                <th data-breakpoints="lg" style="display: none;">#</th>
+                <th class="footable-first-visible footable-last-visible" style="display: table-cell;">Email</th>
+                <th data-breakpoints="lg" style="display: none;">Date</th>
+                <th data-breakpoints="lg" class="text-right" style="display: none;">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+        <% let count = 1; %>
+        <% Subscribers.forEach(subscribe => { %>
+              <tr>
+
+
+
+
+                <td style="display: none;"><%= count %></td>
+                <td class="footable-first-visible footable-last-visible" style="display: table-cell;"><span class="footable-toggle fooicon fooicon-plus"></span>
+                  <div class="text-truncate"><%= subscribe.email %></div>
+                </td>
+                <td style="display: none;"><%= new Date(subscribe.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) %>
+                </td>
+                <td class="text-right footable-last-visible" style="display: table-cell;">
+                    <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
+                    onclick="openSubscriberDeleteModal('<%= subscribe._id %>')" title="Delete">
+                    <i class="las la-trash"></i>
+                </a>
+                </td>
+              </tr>
+        <% count++; %>
+        <% }) %>
+            </tbody>
+          </table>
+          <div class="clearfix">
+            <div class="pull-right">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+      <p class="mb-0">© v1.0</p>
+    </div>
+  </div><!-- .aiz-main-content -->
+</div>

@@ -1,6 +1,7 @@
 const Post = require('../models/postModel');
 const Category = require('../models/categoryModel');
-const Setting = require('../models/blogSettingsModel')
+const Setting = require('../models/blogSettingsModel');
+const User = require('../models/userModel');
 
 const multer = require('multer');
 const fs = require('fs');
@@ -102,12 +103,14 @@ exports.getBlogById = async (req, res, next) => {
             // Handle case where post is not found
             return res.status(404).send("Post not found");
         }
+        const admin = await User.findOne(); 
 
         currentPost.views = (currentPost.views || 0) + 1;
         await currentPost.save();
 
         // Get tags of the current post
         const allPosts = await Post.find().populate('category', 'name');
+
 
         // Check if currentPostTags is an array before using $in
         const currentPostCategoryId = currentPost.category;
@@ -127,6 +130,7 @@ exports.getBlogById = async (req, res, next) => {
 
         const postUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         const latestPosts = await Post.find().sort({ createdAt: -1 }).limit(10);
+        const popularPosts = await Post.find().sort({ views: 'desc' }).limit(5).populate('category');
         const estimatedReadTime = calculateReadTime(currentPost.body, relatedPosts.body);
         const allTags = await Post.distinct('tags');
 
@@ -135,11 +139,13 @@ exports.getBlogById = async (req, res, next) => {
             data: currentPost,
             posts: allPosts,
             previousPost,
+            admin,
             categoryCounts,
             allCategories,
             postUrl,
             existingSetting,
             relatedPosts,
+            popularPosts,
             latestPosts,
             estimatedReadTime,
             allTags,

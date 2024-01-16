@@ -1,0 +1,94 @@
+<div class="aiz-content-wrapper">
+  <%- include('./partials/topbar') %>
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="card">
+        <form class="" id="sort_support" action="" method="GET">
+          <div class="card-header row gutters-5">
+            <div class="col text-center text-md-left">
+              <h5 class="mb-md-0 h6">Support Desk</h5>
+            </div>
+            <div class="col-md-2">
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control" id="search" name="search" placeholder="Type ticket code &amp; Enter">
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="card-body">
+          <table class="aiz-table footable footable-1 breakpoint breakpoint-sm" cellspacing="0" width="100%" style="">
+            <thead>
+              <tr class="footable-header">
+
+
+
+
+
+                <th data-breakpoints="lg" style="display: none;">Ticket ID</th>
+                <th data-breakpoints="lg" style="display: none;">Sending Date</th>
+                <th class="footable-first-visible" style="display: table-cell;">Subject</th>
+                <th data-breakpoints="lg" style="display: none;">User</th>
+                <th data-breakpoints="lg" style="display: none;">Status</th>
+                <th data-breakpoints="lg" style="display: none;">Last reply</th>
+                <th class="text-right footable-last-visible" style="display: table-cell;">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+<% supportTicket.forEach(contact => { %>
+    <tr>
+
+
+
+
+
+        <td style="display: none;"># <%= contact._id %></td>
+        <td style="display: none;"><%= contact.createdAt %> <span class="badge badge-inline badge-info">new</span> </td>
+        <td class="footable-first-visible" style="display: table-cell;"><span class="footable-toggle fooicon fooicon-plus"></span><%= contact.subject %></td>
+        <td style="display: none;"><%= contact.name %></td>
+        <td style="display: none;">
+          <span class="badge badge-inline badge-danger">Pending</span>
+        </td>
+        <td style="display: none;">
+          date
+        </td>
+        <td class="text-right footable-last-visible" style="display: table-cell;">
+          <a href="#" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="View Details">
+            <i class="las la-eye"></i>
+          </a>
+        </td>
+      </tr>
+<% }) %>
+              
+
+            </tbody>
+          </table>
+          <div class="clearfix">
+            <div class="pull-right">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
+      <p class="mb-0">© v1.0</p>
+    </div>
+  </div><!-- .aiz-main-content -->
+</div>
+<script>
+    function isToday(createdAt) {
+      const today = new Date();
+      const createdAtDate = new Date(createdAt);
+  
+      // Check if the createdAt date is the same as today
+      return (
+        createdAtDate.getDate() === today.getDate() &&
+        createdAtDate.getMonth() === today.getMonth() &&
+        createdAtDate.getFullYear() === today.getFullYear()
+      );
+    }
+  </script>
+  

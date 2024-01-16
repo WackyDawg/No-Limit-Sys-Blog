@@ -3,6 +3,7 @@ const Post = require("../models/postModel");
 const Setting = require("../models/blogSettingsModel");
 const Contact = require("../models/contactModel")
 const User = require("../models/userModel");
+const Subscriber = require('../models/subscribersModel');
 const multer = require("multer");
 const nodemailer = require('nodemailer');
 const { validationResult } = require("express-validator");
@@ -39,6 +40,10 @@ exports.getAdminIndex = async (req, res) => {
     const existingSetting = await Setting.find({});
     const currentUser = req.user;
 
+    const postCount = await Post.countDocuments();
+    const categoryCount = await Category.countDocuments();
+    const subscribersCount = await Subscriber.countDocuments();
+
     if (!currentUser) {
       // If userId is not available, handle it appropriately (send a response, redirect, etc.)
       return res.status(401).render("errors/401", { layout: errorLayout });
@@ -47,6 +52,9 @@ exports.getAdminIndex = async (req, res) => {
     res.render("admin/index", {
       layout: adminLayout,
       currentUser,
+      postCount,
+      categoryCount,
+      subscribersCount,
       existingSetting,
     });
   } catch (error) {
@@ -1016,21 +1024,69 @@ exports.getAdminSupportTickets = async (req, res) => {
 exports.getNewsletter = async (req, res) => {
   try {
     const existingSetting = await Setting.find({});
+    const Subscribers = await Subscriber.find({});
     const currentUser = req.user;
 
     if(!currentUser) {
       return res.status(401).render('errors/401', { layout: errorLayout })
     }
-    res.render('admin/marketing/newsletter', { layout: adminLayout, currentUser, existingSetting} )
+    res.render('admin/marketing/newsletter', { layout: adminLayout, currentUser, existingSetting ,Subscribers} )
   } catch (error) {
     res.status(404).render('errors/404', { layout: errorLayout })
   }
 }
 
+exports.getAllSubscribers = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const Subscribers = await Subscriber.find({});
+    const currentUser = req.user;
+
+    if(!currentUser) {
+      return res.status(401).render('errors/401', { layout: errorLayout })
+    }
+    res.render('admin/subscribers', { layout: adminLayout, currentUser, existingSetting ,Subscribers} )
+  } catch (error) {
+    res.status(404).render('errors/404', { layout: errorLayout })
+  }
+}
+
+
+exports.deleteSubscriberById = async (req, res) => {
+  const subId = req.params.id; // Extract postId from req.params
+
+  try {
+    const subscriber = await Subscriber.findById(subId);
+
+    if (!subscriber) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+
+    await Subscriber.findByIdAndDelete(subId);
+
+    // Optionally, you can redirect to a different page or send a success message
+    res.status(200).json({ message: 'Subscriber deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error deleting Subscriber' });
+  }
+};
+
+// Helper function to check if a string is a valid MongoDB ObjectId
+function isValidObjectId(id) {
+  const { ObjectId } = require('mongoose').Types;
+  return ObjectId.isValid(id);
+}
+
 exports.sendBulkMail = async (req, res) => {
   try {
-    const { emails, subject, content } = req.body
-    console.log(req.body);
+    if (!req.body.emails || !req.body.subject || !req.body.content) {
+      return res.status(400).send("Every field is required");
+    }
+
+    const { emails, subject, content} = req.body;
+
+    console.log(req.body)
     
     const transporter = nodemailer.createTransport({
       service: "Gmail",
@@ -1047,7 +1103,7 @@ exports.sendBulkMail = async (req, res) => {
 
     const mailOptions = {
       from: "juliannwadinobi098@gmail.com",
-      to: 'julianlouis590@gmail.com', 
+      to: emails, 
       subject: subject,
       text: content,
     };
@@ -1068,6 +1124,20 @@ exports.sendBulkMail = async (req, res) => {
 };
 
 
+// exports.sendBulkMail = async (req, res) => {
+//   try {
+//     if (!req.body.emails || !req.body.subject || !req.body.content) {
+//       return res.status(400).send("Every field is required");
+//     }
+
+//     const { emails, subject, content} = req.body;
+
+//     console.log(req.body)
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).render('error/500'); // Render a '500' error page for server errors
+//   }
+// };
 
 
 exports.getApplicationUpdate = async (req, res) => {
@@ -1165,7 +1235,135 @@ exports.getServerstats = async (req, res) => {
     res.status(404).json({ message: "Page Not Found" });
   }
 };
+exports.getFacebookChat = async (req, res) => {
+  try {
 
+    const existingSetting = await Setting.find({});
+
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+
+    res.render("admin/settings/facebook-chat", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (err) {
+    // Handle any errors and render a 404 page
+    res.status(404).json({ message: "Page Not Found" });
+  }
+};
+exports.getFacebookComment = async (req, res) => {
+  try {
+
+    const existingSetting = await Setting.find({});
+
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+
+    res.render("admin/settings/facebook-comment", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (err) {
+    // Handle any errors and render a 404 page
+    res.status(404).json({ message: "Page Not Found" });
+  }
+};
+
+exports.getGoogleAnalytics = async (req, res) => {
+  try {
+
+    const existingSetting = await Setting.find({});
+
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+
+    res.render("admin/settings/google-analytics", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (err) {
+    // Handle any errors and render a 404 page
+    res.status(404).json({ message: "Page Not Found" });
+  }
+};
+
+exports.getGoogleRecaptcha = async (req, res) => {
+  try {
+
+    const existingSetting = await Setting.find({});
+
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+
+    res.render("admin/settings/google-recaptcha", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (err) {
+    // Handle any errors and render a 404 page
+    res.status(404).json({ message: "Page Not Found" });
+  }
+};
+
+exports.getGoogleMap = async (req, res) => {
+  try {
+
+    const existingSetting = await Setting.find({});
+
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+
+    res.render("admin/settings/google-map", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (err) {
+    // Handle any errors and render a 404 page
+    res.status(404).json({ message: "Page Not Found" });
+  }
+};
+exports.getGoogleFirebase = async (req, res) => {
+  try {
+
+    const existingSetting = await Setting.find({});
+
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+
+    res.render("admin/settings/google-firebase", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+    });
+  } catch (err) {
+    // Handle any errors and render a 404 page
+    res.status(404).json({ message: "Page Not Found" });
+  }
+};
 exports.getAdminTagCreate = async (req, res) => {
   try {
     const categories = await Category.find();

@@ -4,6 +4,7 @@ const Category = require('../models/categoryModel');
 const Post = require('../models/postModel');
 const Setting = require('../models/blogSettingsModel');
 const Contact = require('../models/contactModel');
+const Subscriber = require('../models/subscribersModel');
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -129,6 +130,29 @@ exports.getIndex = async (req, res) => {
     }
   };
   
+  exports.postSubscribe = async (req, res) => {
+    try {
+      const { email } = req.body;
+  
+      if (!email) {
+        return res.status(400).send("Every Field Is Required");
+      }
+  
+      console.log(req.body);
+  
+      const newSubscriber = new Subscriber({
+        email: email
+      });
+  
+      await newSubscriber.save();
+      res.status(200).send("Subscription successful!"); // Sending a success response
+  
+    } catch (error) {
+      console.error("Error in try-catch block: ", error);
+      res.status(500).send("Internal server error");
+    }
+  };
+  
 
   exports.getAllBlogPost = async (req, res, next) => {
     try {
@@ -215,13 +239,23 @@ exports.logout = (req, res) => {
 exports.hotPosts = async (req, res) => {
   try {
     const existingSetting = await Setting.find({});
+    const admin = await User.findOne(); 
+    const allCategories = await Category.find().maxTimeMS(30000); // 30 seconds timeout
+  
+    // Fetch categories with post counts
+    const categoryCounts = await Promise.all(allCategories.map(async (category) => {
+      const postCount = await Post.countDocuments({ category: category._id });
+      return { category: category.name, count: postCount };
+    }));
+
     const popularPosts = await Post.find().sort({ views: 'desc' })
     .limit(10)
     .populate('category');
     
     const allPosts = await Post.find().populate('category', 'name');
 
-    res.render('hotposts', { posts: allPosts, existingSetting, popularPosts })
+    res.render('hotposts', { posts: allPosts, existingSetting, popularPosts,admin,categoryCounts: categoryCounts,
+    })
   } catch (error) {
     
   }

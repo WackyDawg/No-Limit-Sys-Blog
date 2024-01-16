@@ -35,5 +35,14 @@ admin.get('/system/server-status', isAuthenticated, setupCheckMiddleware, adminC
 admin.get('/support_ticket', isAuthenticated, setupCheckMiddleware, adminController.getAdminSupportTickets)
 admin.get('/newsletter', isAuthenticated, setupCheckMiddleware, adminController.getNewsletter)
 admin.post('/newsletter/send', isAuthenticated, setupCheckMiddleware, adminController.sendBulkMail)
+admin.get('/subscribers', isAuthenticated, setupCheckMiddleware, adminController.getAllSubscribers)
+admin.delete('/subscribers/destroy/:id', isAuthenticated, setupCheckMiddleware, adminController.deleteSubscriberById)
+admin.get('/facebook-chat', isAuthenticated, setupCheckMiddleware, adminController.getFacebookChat)
+admin.get('/facebook-comment', isAuthenticated, setupCheckMiddleware, adminController.getFacebookComment)
+admin.get('/google-analytics', isAuthenticated, setupCheckMiddleware, adminController.getGoogleAnalytics)
+admin.get('/google-recaptcha', isAuthenticated, setupCheckMiddleware, adminController.getGoogleRecaptcha)
+admin.get('/google-map', isAuthenticated, setupCheckMiddleware, adminController.getGoogleMap)
+admin.get('/google-firebase', isAuthenticated, setupCheckMiddleware, adminController.getGoogleFirebase)
+
 
 module.exports = admin;
