@@ -1,0 +1,496 @@
+<div class="aiz-content-wrapper bg-white">
+  <%- include('../partials/topbar') %>
+    <!-- .aiz-topbar -->
+  <div class="aiz-main-content">
+    <div class="px-15px px-lg-25px">
+
+      <div class="col-lg-12 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0 h6">Role Information</h5>
+          </div>
+          <form action="/admin/roles" method="POST">
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-md-3 col-from-label" for="name">Name</label>
+                <div class="col-md-9">
+                  <input type="text" placeholder="Name" id="name" name="name" class="form-control" required="">
+                </div>
+              </div>
+              <div class="card-header">
+                <h5 class="mb-0 h6">Permissions</h5>
+              </div>
+              <br>
+              <ul class="list-group mb-4">
+                <li class="list-group-item bg-light" aria-current="true">Blog</li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">View Blogs</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="75">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div> 
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Add Blog</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="76">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Edit Blog</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="77">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Delete Blog</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="78">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Publish Blog</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="79">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">View Blog Categories</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="80">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Add Blog Category</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="81">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Edit Blog Category</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="82">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Delete Blog Category</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="83">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group mb-4">
+                <li class="list-group-item bg-light" aria-current="true">Marketing</li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Send Newsletter</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="94">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">View All Subscribers</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="95">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Delete Subscriber</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="96">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group mb-4">
+                <li class="list-group-item bg-light" aria-current="true">Website Setup</li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Header Setup</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="102">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Footer Setup</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="103">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Website Appearance</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="104">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">View All Website Pages</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="105">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Add Website Page</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="106">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Edit Website Page</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="107">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Delete Website Page</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="108">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Select Homepage</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="215">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Authentication Layout Settings</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="224">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group mb-4">
+                <li class="list-group-item bg-light" aria-current="true">Setup Configurations</li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">General Settings</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="109">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Features activation</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="110">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Language Setup</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="111">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">SMTP Settings</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="115">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Payment Methods Configurations</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="116">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">File System &amp; Cache Configuration</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="118">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Social media Logins</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="119">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Facebook Chat</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="120">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Facebook Comment</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="121">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Analytics Tools Configuration</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="122">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Google Recaptcha Configuration</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="123">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Google Map Setting</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="124">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Google Firebase Setting</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="125">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group mb-4">
+                <li class="list-group-item bg-light" aria-current="true">Staff</li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">View All Staffs</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="130">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Add Staff</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="131">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Edit Staff</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="132">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Delete Staff</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="133">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">View Staff Roles</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="134">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Add Staff Role</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="135">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Edit Staff Role</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="136">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Delete Staff Role</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="137">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group mb-4">
+                <li class="list-group-item bg-light" aria-current="true">System</li>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">System Update</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="138">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Server status</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="139">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Manage Addons</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="140">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                      <div class="p-2 border mt-1 mb-2">
+                        <label class="control-label d-flex">Admin Dashboard</label>
+                        <label class="aiz-switch aiz-switch-success">
+                          <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="141">
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+             
+              
+              
+              <div class="form-group mb-3 mt-3 text-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto border-top">
+      <p class="mb-0">© v1.0</p>
+    </div>
+  </div><!-- .aiz-main-content -->
+</div>

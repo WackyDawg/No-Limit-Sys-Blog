@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
     required: false,
     unique: true,
   },
+  username: {
+    type: String,
+    required: false,
+    unique: true,
+  },
   avatar: { 
     type: [String], 
     default: [] 
@@ -18,6 +23,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  mobile: {
+    type: String,
+    required: false,
+  },
   biography: {
     type: String,
   },
@@ -28,8 +37,9 @@ const userSchema = new mongoose.Schema({
     },
   ],
   role: {
-    type: String,
-    enum: ["user", "admin"],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Role',
+    //enum: ["user", "admin"],
     default: "user",
   },
   facebook_link: {

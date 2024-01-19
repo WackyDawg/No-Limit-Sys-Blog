@@ -4,6 +4,7 @@ const connectDB = require('./config/db')
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
+const flash = require('express-flash');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session')
@@ -31,6 +32,7 @@ connectDB();
 app.set('view engine', 'ejs');
 app.set('layout', './layouts/main');
 const setupLayout = 'layouts/setup';
+app.use(flash());
 
 app.use(session({
     secret: 'keyboard cat',

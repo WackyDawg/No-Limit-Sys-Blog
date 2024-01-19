@@ -96,7 +96,9 @@ exports.getBlogById = async (req, res, next) => {
         }));
 
         // Get the current post by ID
-        const currentPost = await Post.findOne({ slug }).populate('category');
+        const currentPost = await Post.findOne({ slug })
+        .populate('category')
+        .populate('creator');
         const existingSetting = await Setting.find({});
 
         if (!currentPost) {
@@ -109,11 +111,15 @@ exports.getBlogById = async (req, res, next) => {
         await currentPost.save();
 
         // Get tags of the current post
-        const allPosts = await Post.find().populate('category', 'name');
+        const allPosts = await Post.find()
+        .populate('category', 'name')
+        .populate('creator');
 
 
         // Check if currentPostTags is an array before using $in
         const currentPostCategoryId = currentPost.category;
+        const creatorId = req.user; 
+        const postsByCreatorCount = await Post.countDocuments({ creator: creatorId });
 
         // Find related posts in the same category
         const relatedPosts = currentPost.category
@@ -142,6 +148,7 @@ exports.getBlogById = async (req, res, next) => {
             admin,
             categoryCounts,
             allCategories,
+            postsByCreatorCount,
             postUrl,
             existingSetting,
             relatedPosts,

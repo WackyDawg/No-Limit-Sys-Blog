@@ -55,6 +55,10 @@ const PostSchema = new Schema({
         type: Number,
         default: 0,
     },
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', 
+    },
     createdAt: {
         type: Date,
         default: Date.now

@@ -36,12 +36,14 @@
                 </td>
                 <td style="display: none;"><%= new Date(subscribe.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) %>
                 </td>
+                <% if (currentUser && currentUser.role && currentUser.role.permissions && currentUser.role.permissions.includes('96')) { %>
                 <td class="text-right footable-last-visible" style="display: table-cell;">
                     <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete"
                     onclick="openSubscriberDeleteModal('<%= subscribe._id %>')" title="Delete">
                     <i class="las la-trash"></i>
                 </a>
                 </td>
+                <% } %>
               </tr>
         <% count++; %>
         <% }) %>

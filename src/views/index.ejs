@@ -15,7 +15,7 @@
                 <div data-elementor-type="wp-page" data-elementor-id="200" class="elementor elementor-200">
 
                   <div class="elementor-element elementor-element-27c68cf e-flex e-con-boxed e-con e-parent"
-                    data-id="27c68cf" data-element_type="container"
+                    data-id="27c68cf" data-element_type="container" style="background-color: <%= existingSetting ? existingSetting[0].base_color : '' %>;"
                     data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;content_width&quot;:&quot;boxed&quot;}"
                     data-core-v316-plus="true">
                     <div class="e-con-inner">
@@ -295,7 +295,7 @@
                                   <% categoryCounts.forEach(category=> { %>
                                     <div class="item_wrapper">
                                       <div class="item"><a class="full_link"
-                                          href="#"
+                                          href="/category/<%= category.category %>"
                                           aria-label="All posts in &quot;Writing and Literature&quot;"></a><span
                                           class="text">
                                           <%= category.category %>

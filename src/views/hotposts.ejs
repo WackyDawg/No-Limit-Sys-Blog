@@ -76,7 +76,18 @@
                               <div class="fn__read_more"><a href="/articles/<%= post.slug %>" aria-label="<%= post.title %>"><span class="icon"></span><span class="text">Read More</span></a></div>
                             </div>
                             <div class="fn__full_meta">
-                              <div class="full_meta"><span class="meta_item meta__author" data-type="short"><a class="fn__tooltip_item" href="" aria-label="frenify — 27 Articles, 25 Episodes"><span class="has_img"><img src="/uploads/<%= String(admin.avatar).replace('/public', '') %>" alt=""></span><span class="t_text"></span></a></span>
+                              <div class="full_meta">
+                                <% if (post.creator) { %>
+                                  <span class="meta_item meta__author" data-type="short">
+                                    <a class="fn__tooltip_item left_aligned" href="/" aria-label="">
+                                      <span class="has_img">
+                                        <img src="/uploads/<%= String(post.creator.avatar).replace('/public', '') %>" alt="">
+                                      </span>
+                                      <span class="t_text"><%= post.creator.name %> — <%= postsByCreatorCount %> Articles, 0
+                                        Episodes</span>
+                                      </a>
+                                   </span>
+                                   <% } %>
                                 <div class="other_metas"><span class="meta_item meta__comment"><a class="fn__tooltip_item" href="" aria-label="Go to comments"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg  replaced-svg">
 
                                         <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
@@ -135,7 +146,7 @@
 
               </div>
 
-              <%- include('./partials/rightsidebar') %>
+              <%- include('./partials/rightsidebar2') %>
 
             </div>
           </div>

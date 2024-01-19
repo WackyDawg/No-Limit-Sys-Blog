@@ -174,7 +174,13 @@
                                     <%= currentUser.name %>
                                 </span>
                                 <span class="d-block small opacity-60 text-right">
-                                    <%= currentUser.role %>
+                                    <% if (currentUser.role === 'admin') { %>
+                                        <p>Welcome, Admin!</p>
+                                      <% } else if (currentUser.role && currentUser.role.name) { %>
+                                        <p><%= currentUser.role.name %></p>
+                                      <% } else { %>
+                                        <p>Super Admin</p>
+                                      <% } %>
                                 </span>
                             </span>
                             <span class="size-40px rounded-content overflow-hidden ml-md-2">

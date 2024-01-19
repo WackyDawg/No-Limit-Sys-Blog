@@ -1,11 +1,12 @@
 const Category = require("../models/categoryModel");
 const Post = require("../models/postModel");
 const Setting = require("../models/blogSettingsModel");
-const Contact = require("../models/contactModel")
+const Contact = require("../models/contactModel");
 const User = require("../models/userModel");
-const Subscriber = require('../models/subscribersModel');
+const Role = require("../models/role");
+const Subscriber = require("../models/subscribersModel");
 const multer = require("multer");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const { promisify } = require("util");
 const fs = require("fs");
@@ -221,10 +222,14 @@ exports.getAdminBlogCreate = async (req, res) => {
       // If userId is not available, handle it appropriately (send a response, redirect, etc.)
       return res.status(401).render("errors/401", { layout: errorLayout });
     }
+    const successMessages = req.flash('success');
+    const errorMessages = req.flash('error');
     res.render("admin/blog-create", {
       layout: adminLayout,
       currentUser,
       categories,
+      successMessages,
+      errorMessages, 
       existingSetting,
     });
   } catch (error) {
@@ -235,14 +240,12 @@ exports.getAdminBlogCreate = async (req, res) => {
 
 exports.postAdminBlogCreate = async (req, res) => {
   try {
-    // Use Multer middleware to handle file uploads
     upload.array("banner", "meta_img", 5)(req, res, async (err) => {
       if (err) {
         console.error(err);
-        return res.status(500).json({ message: "File upload error" });
+        req.flash('error', 'File upload error');
+        return res.redirect("/admin/blog/create");
       }
-
-      // Continue with processing form data after files are uploaded
 
       try {
         const uploadedBanners = req.files
@@ -264,7 +267,8 @@ exports.postAdminBlogCreate = async (req, res) => {
           meta_keywords,
         } = req.body;
 
-        console.log(req.body);
+        // Get current user from req.user (assuming you have authentication middleware)
+        const currentUser = req.user;
 
         const newBlog = new Post({
           title,
@@ -278,19 +282,23 @@ exports.postAdminBlogCreate = async (req, res) => {
           meta_img: uploadedBanners,
           meta_description,
           meta_keywords,
+          creator: currentUser._id,
         });
 
         await newBlog.save();
 
+        req.flash('success', 'Blog post created successfully');
         res.redirect("/admin/blog");
       } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error creating blog post" });
+        req.flash('error', 'Error creating blog post');
+        res.redirect("/admin/blog/create");
       }
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    req.flash('error', 'Internal Server Error');
+    res.redirect("/admin/blog/create");
   }
 };
 
@@ -427,16 +435,16 @@ exports.deleteAdminBlogPost = async (req, res) => {
     const post = await Post.findById(postId);
 
     if (!post) {
-      return res.status(404).json({ message: 'Blog post not found' });
+      return res.status(404).json({ message: "Blog post not found" });
     }
 
     await Post.findByIdAndDelete(postId);
 
     // Optionally, you can redirect to a different page or send a success message
-    res.status(200).json({ message: 'Blog post deleted successfully' });
+    res.status(200).json({ message: "Blog post deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error deleting blog post' });
+    res.status(500).json({ message: "Error deleting blog post" });
   }
 };
 
@@ -444,7 +452,7 @@ exports.getAdminCategory = async (req, res) => {
   try {
     const categories = await Category.find();
     const existingSetting = await Setting.find({});
-    const currentUser = req.user;  // Assuming you have user information attached to the request
+    const currentUser = req.user; // Assuming you have user information attached to the request
 
     // Check if the user is authenticated
     if (!currentUser) {
@@ -457,7 +465,7 @@ exports.getAdminCategory = async (req, res) => {
       layout: adminLayout,
       currentUser,
       categories,
-      existingSetting
+      existingSetting,
     });
   } catch (error) {
     // Log the error for debugging purposes
@@ -468,12 +476,11 @@ exports.getAdminCategory = async (req, res) => {
   }
 };
 
-
 exports.createAdminCategory = async (req, res) => {
   try {
     const categories = await Category.find();
     const existingSetting = await Setting.find({});
-    const currentUser = req.user;  // Assuming you have user information attached to the request
+    const currentUser = req.user; // Assuming you have user information attached to the request
 
     // Check if the user is authenticated
     if (!currentUser) {
@@ -529,13 +536,13 @@ exports.postAdminCategory = async (req, res) => {
 exports.getAdminCategoryEdit = async (req, res) => {
   try {
     const catId = req.params.id;
-    
+
     // Find the current category by ID
     const currentCategory = await Category.findById(catId);
-    
+
     // Find all existing settings
     const existingSetting = await Setting.find({});
-    
+
     const currentUser = req.user;
 
     if (!currentUser) {
@@ -549,8 +556,12 @@ exports.getAdminCategoryEdit = async (req, res) => {
     // Create a new category if it doesn't exist
     const updatedCategory = await Category.findOneAndUpdate(
       { _id: catId },
-      { $setOnInsert: { /* fields to be created */ } },
-      { upsert: true, new: true },
+      {
+        $setOnInsert: {
+          /* fields to be created */
+        },
+      },
+      { upsert: true, new: true }
     );
 
     res.render("admin/category-edit", {
@@ -571,19 +582,18 @@ exports.deleteAdminBlogCategory = async (req, res) => {
     const category = await Category.findById(catId);
 
     if (!category) {
-      return res.status(404).json({ message: 'Blog post not found' });
+      return res.status(404).json({ message: "Blog post not found" });
     }
 
     await Category.findByIdAndDelete(catId);
 
     // Optionally, you can redirect to a different page or send a success message
-    res.status(200).json({ message: 'Blog post deleted successfully' });
+    res.status(200).json({ message: "Blog post deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error deleting blog post' });
+    res.status(500).json({ message: "Error deleting blog post" });
   }
 };
-
 
 exports.editAdminCategory = async (req, res) => {
   upload.array("banner", 5)(req, res, async (err) => {
@@ -603,7 +613,7 @@ exports.editAdminCategory = async (req, res) => {
 
       const uploadedBanners = req.files
         ? req.files.map((file) => `../public/uploads/${file.filename}`)
-        : category.banner; 
+        : category.banner;
 
       const { name, short_description } = req.body;
 
@@ -622,7 +632,6 @@ exports.editAdminCategory = async (req, res) => {
     }
   });
 };
-
 
 exports.getAdminSettingHeader = async (req, res) => {
   try {
@@ -997,19 +1006,22 @@ exports.getAdminSupportTickets = async (req, res) => {
     const supportTicket = await Contact.find({});
 
     const currentUser = req.user;
-    if(!currentUser) {
-      return res.status(401).render('errors/401', { layout: errorLayout })
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: errorLayout });
     }
-    res.render('admin/support_ticket', { layout: adminLayout, existingSetting,currentUser,supportTicket })
-  } catch (error) {
-    
-  }
-}
+    res.render("admin/support_ticket", {
+      layout: adminLayout,
+      existingSetting,
+      currentUser,
+      supportTicket,
+    });
+  } catch (error) {}
+};
 
 // exports.getSupportTicketById = async (req, res) => {
 //   try {
 //     const contactId = req.params.id;
-    
+
 //     // Find the current category by ID
 //     const currentTicket = await Contact.findById(contactId);
 //     if(!currentTicket) {
@@ -1017,7 +1029,7 @@ exports.getAdminSupportTickets = async (req, res) => {
 //     }
 //     res.render('admin/')
 //   } catch (error) {
-    
+
 //   }
 // }
 
@@ -1025,16 +1037,25 @@ exports.getNewsletter = async (req, res) => {
   try {
     const existingSetting = await Setting.find({});
     const Subscribers = await Subscriber.find({});
+    const successMessages = req.flash('success');
+    const errorMessages = req.flash('error');
     const currentUser = req.user;
 
-    if(!currentUser) {
-      return res.status(401).render('errors/401', { layout: errorLayout })
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: errorLayout });
     }
-    res.render('admin/marketing/newsletter', { layout: adminLayout, currentUser, existingSetting ,Subscribers} )
+    res.render("admin/marketing/newsletter", {
+      layout: adminLayout,
+      currentUser,
+      successMessages,
+      errorMessages,
+      existingSetting,
+      Subscribers,
+    });
   } catch (error) {
-    res.status(404).render('errors/404', { layout: errorLayout })
+    res.status(404).render("errors/404", { layout: errorLayout });
   }
-}
+};
 
 exports.getAllSubscribers = async (req, res) => {
   try {
@@ -1042,15 +1063,19 @@ exports.getAllSubscribers = async (req, res) => {
     const Subscribers = await Subscriber.find({});
     const currentUser = req.user;
 
-    if(!currentUser) {
-      return res.status(401).render('errors/401', { layout: errorLayout })
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: errorLayout });
     }
-    res.render('admin/subscribers', { layout: adminLayout, currentUser, existingSetting ,Subscribers} )
+    res.render("admin/subscribers", {
+      layout: adminLayout,
+      currentUser,
+      existingSetting,
+      Subscribers,
+    });
   } catch (error) {
-    res.status(404).render('errors/404', { layout: errorLayout })
+    res.status(404).render("errors/404", { layout: errorLayout });
   }
-}
-
+};
 
 exports.deleteSubscriberById = async (req, res) => {
   const subId = req.params.id; // Extract postId from req.params
@@ -1059,23 +1084,27 @@ exports.deleteSubscriberById = async (req, res) => {
     const subscriber = await Subscriber.findById(subId);
 
     if (!subscriber) {
-      return res.status(404).json({ message: 'Blog post not found' });
+      return res.status(404).json({ message: "Blog post not found" });
     }
 
     await Subscriber.findByIdAndDelete(subId);
 
     // Optionally, you can redirect to a different page or send a success message
-    res.status(200).json({ message: 'Subscriber deleted successfully' });
+    res.status(200).json({ message: "Subscriber deleted successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error deleting Subscriber' });
+    res.status(500).json({ message: "Error deleting Subscriber" });
   }
 };
 
 // Helper function to check if a string is a valid MongoDB ObjectId
 function isValidObjectId(id) {
-  const { ObjectId } = require('mongoose').Types;
+  const { ObjectId } = require("mongoose").Types;
   return ObjectId.isValid(id);
+}
+
+function stripHtmlTags(html) {
+  return html.replace(/<(?:.|\n)*?>/gm, '');
 }
 
 exports.sendBulkMail = async (req, res) => {
@@ -1084,15 +1113,15 @@ exports.sendBulkMail = async (req, res) => {
       return res.status(400).send("Every field is required");
     }
 
-    const { emails, subject, content} = req.body;
+    const { emails, subject, content } = req.body;
 
-    console.log(req.body)
-    
+    console.log(req.body);
+
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "juliannwadinobi098@gmail.com",
-        pass: "jzwl ucgy ccrq iszk",
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD,
       },
       secure: true,
       tls: {
@@ -1100,12 +1129,11 @@ exports.sendBulkMail = async (req, res) => {
       },
     });
 
-
     const mailOptions = {
-      from: "juliannwadinobi098@gmail.com",
-      to: emails, 
+      from: process.env.MAIL_FROM_ADDRESS,
+      to: emails,
       subject: subject,
-      text: content,
+      text: stripHtmlTags(content),
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -1113,8 +1141,8 @@ exports.sendBulkMail = async (req, res) => {
         console.error("Error sending email: ", error);
         res.status(500).send("Error sending email");
       } else {
-        console.log("Email sent: ", info.response);
-        res.redirect('/admin/newsletter');
+        req.flash('success', 'Mail Sent Successfully.');
+        return res.redirect('/admin/newsletter');
       }
     });
   } catch (error) {
@@ -1122,7 +1150,6 @@ exports.sendBulkMail = async (req, res) => {
     res.status(500).send("Internal server error");
   }
 };
-
 
 // exports.sendBulkMail = async (req, res) => {
 //   try {
@@ -1138,7 +1165,6 @@ exports.sendBulkMail = async (req, res) => {
 //     res.status(500).render('error/500'); // Render a '500' error page for server errors
 //   }
 // };
-
 
 exports.getApplicationUpdate = async (req, res) => {
   try {
@@ -1237,7 +1263,6 @@ exports.getServerstats = async (req, res) => {
 };
 exports.getFacebookChat = async (req, res) => {
   try {
-
     const existingSetting = await Setting.find({});
 
     const currentUser = req.user;
@@ -1258,7 +1283,6 @@ exports.getFacebookChat = async (req, res) => {
 };
 exports.getFacebookComment = async (req, res) => {
   try {
-
     const existingSetting = await Setting.find({});
 
     const currentUser = req.user;
@@ -1280,7 +1304,6 @@ exports.getFacebookComment = async (req, res) => {
 
 exports.getGoogleAnalytics = async (req, res) => {
   try {
-
     const existingSetting = await Setting.find({});
 
     const currentUser = req.user;
@@ -1302,7 +1325,6 @@ exports.getGoogleAnalytics = async (req, res) => {
 
 exports.getGoogleRecaptcha = async (req, res) => {
   try {
-
     const existingSetting = await Setting.find({});
 
     const currentUser = req.user;
@@ -1324,7 +1346,6 @@ exports.getGoogleRecaptcha = async (req, res) => {
 
 exports.getGoogleMap = async (req, res) => {
   try {
-
     const existingSetting = await Setting.find({});
 
     const currentUser = req.user;
@@ -1345,7 +1366,6 @@ exports.getGoogleMap = async (req, res) => {
 };
 exports.getGoogleFirebase = async (req, res) => {
   try {
-
     const existingSetting = await Setting.find({});
 
     const currentUser = req.user;
@@ -1451,3 +1471,164 @@ exports.deleteAdminTag = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+exports.getAdminStaff = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+    res.render("admin/settings/staffs", {
+      layout: adminLayout,
+      existingSetting,
+      currentUser,
+    });
+  } catch (error) {
+    res
+      .status(404)
+      .render("errors/404", {
+        layout: errorLayout,
+        existingSetting,
+        currentUser,
+      });
+  }
+};
+
+exports.getAdminCreate = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const role = await Role.find({});
+    const currentUser = req.user;
+    const successMessages = req.flash('success');
+  const errorMessages = req.flash('error');
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+    res.render("admin/settings/staffs-create", {
+      layout: adminLayout,
+      existingSetting,
+      successMessages,
+      errorMessages,  
+      currentUser,
+      role,
+    });
+  } catch (error) {
+    res
+      .status(404)
+      .render("errors/404", {
+        layout: errorLayout,
+        existingSetting,
+        currentUser,
+      });
+  }
+};
+
+exports.getAdminRole = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+    res.render("admin/settings/roles", {
+      layout: adminLayout,
+      existingSetting,
+      currentUser,
+    });
+  } catch (error) {
+    res
+      .status(404)
+      .render("errors/404", {
+        layout: errorLayout,
+        existingSetting,
+        currentUser,
+      });
+  }
+};
+
+exports.getAdminRoleCreate = async (req, res) => {
+  try {
+    const existingSetting = await Setting.find({});
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      return res.status(401).render("errors/401", { layout: "errorLayout" });
+    }
+    res.render("admin/settings/roles-create", {
+      layout: adminLayout,
+      existingSetting,
+      currentUser,
+    });
+  } catch (error) {
+    res
+      .status(404)
+      .render("errors/404", {
+        layout: errorLayout,
+        existingSetting,
+        currentUser,
+      });
+  }
+};
+
+exports.postAdminRoleCreate = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      req.flash('error', 'Validation failed. Please check your input.');
+      return res.redirect('/admin/roles/create'); // Redirect to your form route
+    }
+
+    const { name, permissions } = req.body;
+    //console.log(req.body);
+    const newRole = new Role({
+      name,
+      permissions: permissions || [],
+    });
+    const savedRole = await newRole.save();
+    req.flash('success', 'User created successfully.');
+    return res.redirect('/admin/roles');
+  } catch (error) {
+    res
+      .status(404)
+      .render("errors/404", {
+        layout: errorLayout,
+        existingSetting,
+        currentUser,
+      });
+  }
+};
+
+exports.postcreateStaffs = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      req.flash('error', 'Validation failed. Please check your input.');
+      return res.redirect('/admin/staffs/create'); // Redirect to your form route
+    }
+
+    const { name, email, mobile, password, role_id } = req.body;
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      req.flash('error', 'User with this email already exists.');
+      return res.redirect('/admin/staffs/create'); // Redirect to your form route
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ name, email, mobile, password: hashedPassword, role: role_id });
+    await newUser.save();
+
+    req.flash('success', 'User created successfully.');
+    return res.redirect('/admin/staffs'); // Redirect to a success route
+  } catch (error) {
+    console.error(error);
+    req.flash('error', 'Internal Server Error. Please try again later.');
+    res.redirect('/admin/staffs/create'); // Redirect to an error route
+  }
+};
+
+

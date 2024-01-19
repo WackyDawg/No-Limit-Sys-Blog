@@ -43,6 +43,12 @@ admin.get('/google-analytics', isAuthenticated, setupCheckMiddleware, adminContr
 admin.get('/google-recaptcha', isAuthenticated, setupCheckMiddleware, adminController.getGoogleRecaptcha)
 admin.get('/google-map', isAuthenticated, setupCheckMiddleware, adminController.getGoogleMap)
 admin.get('/google-firebase', isAuthenticated, setupCheckMiddleware, adminController.getGoogleFirebase)
+admin.get('/staffs', isAuthenticated, setupCheckMiddleware, adminController.getAdminStaff)
+admin.get('/staffs/create', isAuthenticated, setupCheckMiddleware, adminController.getAdminCreate)
+admin.post('/staffs/create', isAuthenticated, setupCheckMiddleware, adminController.postcreateStaffs)
+admin.get('/roles', isAuthenticated, setupCheckMiddleware, adminController.getAdminRole)
+admin.get('/roles/create', isAuthenticated, setupCheckMiddleware, adminController.getAdminRoleCreate)
+admin.post('/roles', isAuthenticated, setupCheckMiddleware, adminController.postAdminRoleCreate)
 
 
 module.exports = admin;

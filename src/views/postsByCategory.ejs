@@ -1,0 +1,173 @@
+<div class="guff_fn_content">
+  <div class="guff_fn_pages">
+    <div class="guff_fn_page_ajax">
+      <div class="guff_fn_index" data-page-style="full">
+
+
+
+
+
+        <!-- WITHOUT SIDEBAR -->
+        <div class="guff_fn_nosidebar guff_fn_blognosidebar">
+          <div class="container">
+            <div class="fn__page_layout">
+              <!-- PAGE TITLE -->
+              <div class="guff_fn_pagetitle " style="">
+                <div class="container">
+                  <div class="pagetitle">
+                    <h3 class="fn__title">All posts in "<%= categoryName %>"</h3>
+                    <div class="guff_fn_breadcrumbs">
+                      <ul id="breadcrumbs" class="breadcrumbs">
+                        <li class="item-home"><a class="bread-link bread-home" href="/" title="Home">Home</a></li>
+                        <li class="separator separator-home"> <span></span> </li>
+                        <li class="item-current item-cat"><span class="bread-current bread-cat"><%= categoryName %></span></li>
+                      </ul>
+                    </div>
+                    <div class="pt_decor">
+                      <div class="decor_middle"></div>
+                      <div class="decor_plus_left"></div>
+                      <div class="decor_plus_right"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /PAGE TITLE -->
+              <ul class="fn__blog_list fn__blog_list_container_full fn__blog_list_layout_list" style="position: relative; height: 3408.04px;">
+              <% if (posts.length > 0) { %> 
+                <% posts.forEach(post => { %>    
+                <li class="post-68 post type-post status-publish format-standard has-post-thumbnail hentry category-inspiration category-photography tag-art tag-culture tag-education tag-environmentalart tag-exploration tag-history tag-inspiration tag-photography tag-style tag-wellness tag-writing post_item typography_disable" id="post-68" style="position: absolute; left: 0px; top: 3110.27px;">
+                  <div class="blog__item blog__item_list">
+                    <div class="item_decor">
+                      <div class="decor_top"><span></span><span></span><span></span><span></span></div>
+                      <div class="decor_bottom"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_2" x="0px" y="0px" viewBox="0 0 26.4 19.08" style="enable-background:new 0 0 26.4 19.08;" xml:space="preserve" class="fn__svg  replaced-svg">
+
+                          <path d="M19,0c0,0-4,12-19,13c2,0,10,1,14-2S19,0,19,0z"></path>
+                          <path d="M26,0c-1.12,2.47-1.09,13.51-23,19c11,0,15,1,20-4S26,0,26,0z"></path>
+                        </svg></div>
+                    </div>
+                    <div class="list_in">
+                      <div class="list_image">
+                        <div class="list_left_in">
+                          <div class="blog__image"><a href="/articles/<%= post.slug %>" aria-label="R">
+                              <div class="img_overlay">
+                                <div class="img_in"><img src="/uploads/<%= String(post.banner).replace('/public', '') %>" width="283" height="300" alt="" loading="lazy"></div>
+                              </div>
+                            </a></div>
+                        </div>
+                        <div class="fn__full_meta">
+                          <div class="full_meta">
+                          <% if (post.creator) { %>
+                            <span class="meta_item meta__author" data-type="full">
+                              <a class="fn__tooltip_item" href="" aria-label="<%= postsByCreatorCount %> Articles, 0 Episodes">
+                                <span class="has_not">
+                                  <img src="/uploads/<%= String(post.creator.avatar).replace('/public', '') %>" alt="">
+                                </span>
+                                <span class="text"><%= post.creator.name %></span>
+                                <span class="t_text"><%= postsByCreatorCount %> Articles, 0 Episodes</span>
+                              </a>
+                            </span>
+                          <% } %>
+                            
+
+                            <div class="other_metas">
+                              <span class="meta_item meta__comment">
+                                <a class="fn__tooltip_item" href="" aria-label="Go to comments">
+                                  <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg  replaced-svg">
+
+                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                                      <path d="M2295 4979 c-650 -65 -1214 -327 -1647 -766 -732 -739 -855 -1809 -308 -2668 72 -113 70 -99 44 -295 -53 -414 -172 -756 -326 -938 -68 -79 -74 -117 -25 -162 27 -26 48 -25 214 5 409 76 839 213 1149 367 l121 60 119 -42 c142 -50 357 -103 509 -125 232 -34 575 -36 800 -5 752 106 1417 508 1811 1097 85 126 213 388 259 528 218 667 88 1395 -352 1962 -397 512 -1005 861 -1678 962 -201 31 -501 39 -690 20z m-787 -1984 c165 -75 241 -279 167 -443 -95 -211 -364 -269 -535 -115 -202 182 -118 516 147 583 60 15 158 4 221 -25z m1135 20 c100 -26 187 -99 231 -194 32 -71 30 -197 -6 -273 -31 -68 -95 -133 -164 -168 -42 -21 -62 -25 -144 -25 -82 0 -102 4 -144 25 -69 35 -133 100 -164 168 -36 76 -38 202 -6 273 43 93 131 168 227 194 68 18 101 18 170 0z m1252 -19 c221 -101 266 -397 85 -559 -132 -119 -328 -117 -456 5 -194 183 -113 502 145 575 64 18 161 9 226 -21z"></path>
+                                    </g>
+                                  </svg><span class="text">0</span><span class="t_text">0 Comments</span></a></span><span class="meta_item meta__time"><span class="fn__tooltip_item"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg  replaced-svg">
+
+                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                                      <path d="M765 4514 c-5 -1 -22 -5 -37 -8 -41 -9 -95 -61 -113 -109 -14 -38 -15 -183 -13 -1459 l3 -1416 31 -39 c55 -68 79 -76 250 -84 177 -9 226 -14 389 -40 440 -72 821 -252 1098 -518 l47 -45 0 1439 c0 792 -4 1457 -9 1478 -24 102 -259 362 -431 477 -255 169 -581 279 -920 309 -129 12 -280 19 -295 15z"></path>
+                                      <path d="M4185 4510 c-420 -25 -755 -128 -1045 -321 -172 -113 -407 -374 -431 -476 -5 -21 -9 -686 -9 -1477 l0 -1439 53 49 c285 268 653 441 1092 513 163 26 212 31 389 40 171 8 195 16 250 84 l31 39 3 1411 c2 985 0 1423 -8 1449 -12 44 -52 93 -89 112 -40 21 -94 24 -236 16z"></path>
+                                      <path d="M105 3861 c-48 -22 -69 -44 -90 -94 -13 -32 -15 -208 -15 -1522 0 -1614 -3 -1523 53 -1583 54 -59 113 -66 269 -33 597 125 1225 142 1703 46 65 -13 121 -23 123 -21 6 7 -95 90 -178 145 -207 138 -474 236 -783 287 -48 8 -183 20 -300 28 -130 9 -228 20 -254 30 -140 50 -250 165 -293 305 -19 61 -20 99 -20 1247 l0 1184 -87 0 c-64 0 -99 -6 -128 -19z"></path>
+                                      <path d="M4800 2696 c0 -1148 -1 -1186 -20 -1247 -43 -140 -153 -255 -293 -305 -26 -10 -122 -21 -252 -30 -115 -7 -241 -18 -280 -24 -310 -48 -597 -152 -805 -291 -82 -55 -184 -138 -178 -145 2 -2 58 8 123 21 478 96 1106 79 1703 -46 156 -33 215 -26 269 33 56 60 53 -31 53 1585 0 1422 -1 1490 -19 1528 -36 78 -91 105 -216 105 l-85 0 0 -1184z"></path>
+                                    </g>
+                                  </svg><span class="text">4</span><span class="t_text">4 Min Read</span></span></span><span class="meta_item meta__page_views"><span class="fn__tooltip_item"><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg  replaced-svg">
+
+                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                                      <path d="M2285 4675 c-536 -71 -1019 -339 -1377 -765 -147 -175 -295 -447 -372 -681 -75 -229 -106 -422 -106 -669 0 -247 31 -440 106 -669 151 -461 457 -854 879 -1131 178 -116 454 -231 675 -280 211 -47 495 -63 705 -40 382 43 751 191 1065 428 181 137 403 387 530 596 274 455 367 1019 254 1546 -66 308 -198 591 -397 855 -73 96 -265 290 -363 367 -311 245 -700 405 -1086 447 -128 14 -388 12 -513 -4z m414 -415 c602 -54 1115 -401 1385 -937 242 -481 242 -1042 0 -1524 -100 -201 -239 -383 -395 -518 -534 -463 -1269 -557 -1894 -244 -691 347 -1063 1115 -905 1870 163 781 838 1338 1650 1362 25 0 96 -4 159 -9z"></path>
+                                      <path d="M2475 3624 c-65 -8 -171 -27 -194 -36 -24 -8 -22 -10 30 -44 148 -97 234 -243 246 -419 24 -354 -308 -632 -656 -550 -127 30 -254 121 -321 229 -19 30 -38 56 -41 56 -9 0 -29 -96 -41 -202 -27 -243 50 -523 202 -727 307 -412 850 -552 1306 -337 121 58 203 114 296 204 325 314 415 803 223 1209 -162 344 -477 570 -855 613 -83 10 -134 11 -195 4z"></path>
+                                    </g>
+                                  </svg><span class="text"><%= post.views %></span><span class="t_text"><%= post.views %> Views</span></span></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="list_bottom">
+                        <div class="list_bottom_left">
+                          <div class="title">
+                            <h2 class="post__title"><span><a href="/articles/<%= post.slug %>"><%= post.title%></a></span></h2>
+                          </div>
+                          <div class="fn__short_meta"><span class="meta_item meta_date"><span class="text"><a href="/"><%= new Date(post.createdAt).toLocaleDateString("en-US", {
+                            month: "long" , day: "numeric" , year: "numeric" }) %></a></span></span><span class="meta_item meta_category"><a class="" href="/category/<%= post.category.name %>"><%= post.category.name %></a></span></div>
+                        </div>
+                        <div class="list_bottom_right">
+                          <div class="fn__read_more"><a href="/articles/<%= post.slug %>" aria-label="<%= post.title %>"><span class="icon"></span><span class="text">Read More</span></a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <% }) %>
+              <% } else { %>
+
+              <% } %>
+
+              </ul>
+              <div class="guff_fn_pagination">
+                <div class="container">
+                    <div class="pag_in">
+                        <div class="pag_inner">
+                            <span class="left_decor">
+                                <span class="pd_a"></span>
+                                <span class="pd_b"></span>
+                                <span class="pd_c"></span>
+                                <span class="pd_d"></span>
+                                <span class="pd_e"></span>
+                                <span class="pd_f"></span>
+                            </span>
+                            <ul>
+                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                    <% if (i === currentPage) { %>
+                                        <li class="active"><span class="current"><%= i %></span></li>
+                                    <% } else { %>
+                                        <li><a href="<%= `/your/route/${categoryName}?page=${i}` %>" class="inactive"><%= i %></a></li>
+                                    <% } %>
+                                <% } %>
+                            </ul>
+                            <span class="right_decor">
+                                <span class="pd_a"></span>
+                                <span class="pd_b"></span>
+                                <span class="pd_c"></span>
+                                <span class="pd_d"></span>
+                                <span class="pd_e"></span>
+                                <span class="pd_f"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        <!-- /WITHOUT SIDEBAR -->
+      </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+
+
+
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+    <!-- !Footer -->
+
+  </div>
+
+</div>

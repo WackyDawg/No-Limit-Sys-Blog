@@ -3,18 +3,18 @@
         <div class="ht_left">
             <div class="logo">
                 <div class="corner"></div>
-                <% if (existingSetting && existingSetting[0] && existingSetting[0].site_icon) { %>
-                    <% existingSetting[0].site_icon.forEach((file, index) => { %>
+                <% if (existingSetting && existingSetting[0] && existingSetting[0].headerlogo) { %>
+                    <% existingSetting[0].headerlogo.forEach((file, index) => { %>
                         <% const fileName = file.split('/').pop(); %>
                         <% const filteredPath = file.replace(/.*\/uploads/, '/uploads'); %>
                         <a href="/" aria-label="Go to home page">
-                            <img class="retina_logo" src="<%= filteredPath %>" alt="<%= fileName %>">
+                            <img class="retina_logo" style="height: 150px; width: 150px;" src="<%= filteredPath %>" alt="<%= fileName %>">
                         </a>
                     <% }); %>
                 <% } else { %>
                     <!-- Handle the case where existingSetting or site_icon is undefined -->
                     <a href="/" aria-label="Go to home page">
-                        <img class="default_logo" src="/path/to/default/logo.png" alt="Default Logo">
+                        <img class="default_logo" src="/assets/default/default.png" alt="Default Logo">
                     </a>
                 <% } %>
             </div>

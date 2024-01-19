@@ -5,6 +5,22 @@
         <div class="aiz-main-content">
             <div class="px-15px px-lg-25px">
 
+                <!-- messages-->
+                <% if (successMessages.length > 0) { %>
+                    <div class="alert alert-success">
+                      <%= successMessages[0] %>
+                    </div>
+                    <% } %>
+              
+                    <!-- Display error message -->
+                    <% if (errorMessages.length > 0) { %>
+                    <div class="alert alert-danger">
+                      <%= errorMessages[0] %>
+                    </div>
+                    <% } %>
+                
+
+
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="card">

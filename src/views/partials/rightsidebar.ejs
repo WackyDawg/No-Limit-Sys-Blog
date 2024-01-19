@@ -2,13 +2,14 @@
   <div class="sidebar_in">
 
     <div class="guff_fn_sidebar">
+      <% if (data.creator) { %>
       <div id="guff_author-2" class="widget_block clearfix widget_guff_author">
         <div class="wid-title"><span class="text"><span>About Me</span></span></div>
         <div class="guff_fn_widget_author">
           <div class="img__holder">
             <div class="img"><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><a class="full_link" href=""></a>
               <div class="img_in">
-                <div><img src="/uploads/<%= String(admin.avatar).replace('/public', '') %>" alt="">
+                <div><img src="/uploads/<%= String(data.creator.avatar).replace('/public', '') %>" alt="">
                 </div>
               </div>
             </div>
@@ -16,37 +17,37 @@
           <div class="info_desc">
             <div class="author_top">
               <h3 class="fn_title"><a href="#">
-                  <%= admin.name %>
+                  <%= data.creator.name %>
                 </a>
               </h3>
               <p class="fn_desc">
-                <%= admin.biography %>
+                <%= data.creator.biography %>
               </p>
             </div>
             <div class="author_bottom">
               <ul class="author_social">
-                <li><a class="fn__tooltip_item" href="<%= admin.facebook_link %>"><span class="t_text">Facebook</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="513.000000pt" viewBox="0 0 512.000000 513.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_facebook replaced-svg">
+                <li><a class="fn__tooltip_item" href="<%= data.creator.facebook_link %>"><span class="t_text">Facebook</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="513.000000pt" viewBox="0 0 512.000000 513.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_facebook replaced-svg">
 
                       <g transform="translate(0.000000,513.000000) scale(0.100000,-0.100000)" stroke="none">
                         <path d="M2905 5123 c-68 -9 -226 -53 -301 -82 -385 -154 -636 -462 -736 -904 -17 -79 -21 -139 -27 -412 l-6 -320 -280 -5 c-236 -4 -285 -8 -311 -22 -46 -25 -111 -101 -123 -144 -7 -25 -11 -199 -11 -485 l0 -445 26 -52 c14 -29 42 -66 62 -82 65 -53 108 -60 389 -60 l253 0 0 -955 c0 -1054 -4 -994 63 -1063 18 -19 50 -43 72 -55 39 -22 47 -22 520 -22 475 0 480 0 521 22 48 25 101 83 120 129 12 28 14 201 14 988 l0 955 328 3 c312 3 329 4 367 24 51 28 91 68 119 119 20 39 21 52 24 470 2 293 0 446 -8 482 -14 66 -57 124 -117 160 l-48 28 -330 5 -330 5 0 190 c1 105 4 207 8 228 14 70 22 71 362 77 257 5 306 8 340 23 50 22 100 70 128 122 22 39 22 48 22 475 0 430 0 436 -22 476 -28 52 -71 96 -116 118 -31 14 -86 16 -489 15 -249 -1 -466 -4 -483 -6z m813 -600 l-3 -318 -270 -6 c-213 -4 -281 -9 -322 -22 -110 -36 -204 -127 -237 -231 -27 -82 -38 -240 -34 -489 3 -246 7 -266 56 -310 47 -43 81 -46 440 -47 l342 0 0 -345 0 -345 -356 0 c-341 0 -358 -1 -393 -21 -20 -11 -48 -36 -61 -56 l-25 -37 -3 -993 -2 -993 -355 0 -355 0 -2 993 -3 993 -25 37 c-13 20 -41 45 -61 56 -35 20 -53 21 -338 21 l-301 0 0 345 0 345 288 0 c300 1 338 6 384 47 52 47 52 50 59 478 6 389 7 403 32 495 42 156 90 256 174 368 125 165 323 282 549 326 115 22 118 23 487 24 l337 2 -2 -317z">
                         </path>
                       </g>
                     </svg></a></li>
-                <li><a class="fn__tooltip_item" href="<%= admin.twitter_link %>"><span class="t_text">Twitter</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_twitter replaced-svg">
+                <li><a class="fn__tooltip_item" href="<%= data.creator.twitter_link %>"><span class="t_text">Twitter</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_twitter replaced-svg">
 
                       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
                         <path d="M75 5093 c10 -16 448 -653 973 -1418 525 -765 955 -1395 955 -1400 0 -6 -431 -512 -959 -1126 -527 -613 -965 -1123 -973 -1132 -13 -16 1 -17 206 -17 l220 0 849 987 c467 542 854 988 859 989 6 2 316 -442 689 -986 l679 -990 744 0 c705 0 743 1 734 18 -5 9 -460 672 -1010 1472 -550 800 -1001 1457 -1001 1460 0 4 418 492 929 1085 l928 1080 -215 3 c-177 2 -218 0 -231 -12 -9 -8 -374 -431 -811 -939 -437 -509 -798 -923 -802 -921 -4 3 -296 425 -649 939 l-642 935 -745 0 -744 0 17 -27z m2815 -2529 c855 -1224 1557 -2229 1558 -2235 3 -6 -118 -8 -334 -7 l-338 3 -1558 2228 c-857 1226 -1558 2231 -1558 2233 0 2 152 4 338 4 l337 -1 1555 -2225z">
                         </path>
                       </g>
                     </svg></a></li>
-                <li><a class="fn__tooltip_item" href="<%= admin.tiktok_link %>"><span class="t_text">Pinterest</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_pinterest replaced-svg">
+                <li><a class="fn__tooltip_item" href="<%= data.creator.tiktok_link %>"><span class="t_text">Pinterest</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_pinterest replaced-svg">
 
                       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
                         <path d="M2518 3328 l-3 -1793 -23 -65 c-35 -95 -84 -170 -156 -238 -186 -174 -471 -200 -684 -63 -61 39 -149 131 -185 192 -143 245 -74 569 156 733 36 25 95 58 133 73 63 25 81 27 199 27 126 0 133 -1 250 -42 65 -23 120 -42 122 -42 2 0 3 256 3 569 l0 569 -135 17 c-254 33 -523 12 -758 -61 -117 -36 -346 -152 -457 -231 -121 -87 -296 -262 -383 -383 -77 -108 -183 -317 -221 -435 -108 -335 -110 -684 -4 -1015 168 -525 614 -944 1157 -1086 327 -85 689 -67 1008 52 503 186 891 617 1024 1136 46 181 49 245 49 1081 l0 787 98 -49 c322 -161 630 -231 1013 -231 l149 0 0 534 0 534 -62 6 c-35 3 -110 8 -167 11 -128 7 -194 19 -296 52 -371 119 -647 433 -721 821 -8 40 -14 125 -14 187 0 62 -3 120 -6 129 -6 14 -63 16 -545 16 l-539 0 -2 -1792z m802 1463 c0 -48 56 -251 93 -338 152 -357 445 -633 810 -762 93 -32 264 -71 316 -71 l31 0 0 -245 0 -245 -47 6 c-272 30 -483 91 -694 200 -112 58 -219 129 -381 255 -71 54 -130 99 -133 99 -3 0 -5 -482 -5 -1071 0 -1189 0 -1190 -65 -1385 -60 -179 -149 -337 -267 -469 -256 -287 -584 -444 -968 -461 -296 -14 -575 65 -829 233 -166 111 -358 328 -451 512 -103 206 -155 488 -131 716 36 332 167 602 405 833 254 247 581 382 924 382 l102 0 0 -239 0 -238 -122 -5 c-101 -5 -140 -11 -218 -37 -282 -92 -498 -322 -576 -616 -14 -53 -18 -104 -18 -210 1 -123 4 -151 28 -230 108 -357 413 -600 781 -622 241 -14 477 74 650 242 114 110 186 235 239 410 21 70 21 78 24 1728 l2 1657 250 0 250 0 0 -29z">
                         </path>
                       </g>
                     </svg></a></li>
-                <li><a class="fn__tooltip_item" href="<%= admin.instagram_link %>"><span class="t_text">Instagram</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_instagram replaced-svg">
+                <li><a class="fn__tooltip_item" href="<%= data.creator.instagram_link %>"><span class="t_text">Instagram</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg icon_instagram replaced-svg">
 
                       <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
                         <path d="M1100 5105 c-287 -43 -514 -157 -721 -364 -213 -213 -329 -451 -368 -750 -15 -117 -15 -2745 0 -2862 39 -299 155 -537 368 -750 213 -213 451 -329 750 -368 117 -15 2745 -15 2862 0 299 39 537 155 750 368 213 213 329 451 368 750 15 117 15 2745 0 2862 -39 299 -155 537 -368 750 -213 213 -451 329 -750 368 -128 17 -2778 13 -2891 -4z m2997 -452 c113 -39 138 -52 231 -116 148 -102 265 -261 324 -440 l33 -102 0 -1435 c0 -1373 -1 -1438 -19 -1495 -67 -217 -183 -378 -354 -494 -74 -50 -138 -79 -242 -112 l-75 -24 -1435 0 -1435 0 -102 33 c-280 92 -476 297 -569 597 -18 57 -19 122 -19 1495 0 1373 1 1438 19 1495 71 228 195 394 380 510 78 49 212 101 295 115 25 4 683 7 1461 6 l1415 -1 92 -32z">
@@ -63,6 +64,7 @@
         </div>
 
       </div>
+      <% } %>
       <!-- <div id="guff_custom_post-2" class="widget_block clearfix widget_guff_custom_post">
         <div class="wid-title"><span class="text"><span>Chosen Post</span></span></div>
         <div class="img_holder"><a href="https://frenify.com/work/envato/frenify/wp/guff/1/empowered-elegance-embracing-the-modern-womans-journey/" class="full_link"></a>
@@ -124,17 +126,17 @@
         </div>
       </div>
       <div id="guff_social-2" class="widget_block clearfix widget_guff_social">
-        <div class="wid-title"><span class="text"><span>Follow me</span></span></div>
+        <div class="wid-title"><span class="text"><span>Follow Us</span></span></div>
         <div class="guff_fn_widget_social">
           <ul>
-            <li><a class="fn__tooltip_item" href="<%= admin.facebook_link %>"><span class="t_text">Facebook</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="513.000000pt" viewBox="0 0 512.000000 513.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
+            <li><a class="fn__tooltip_item" href="<%= existingSetting ? existingSetting[0].facebook_link : '' %>"><span class="t_text">Facebook</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="513.000000pt" viewBox="0 0 512.000000 513.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
 
                   <g transform="translate(0.000000,513.000000) scale(0.100000,-0.100000)" stroke="none">
                     <path d="M2905 5123 c-68 -9 -226 -53 -301 -82 -385 -154 -636 -462 -736 -904 -17 -79 -21 -139 -27 -412 l-6 -320 -280 -5 c-236 -4 -285 -8 -311 -22 -46 -25 -111 -101 -123 -144 -7 -25 -11 -199 -11 -485 l0 -445 26 -52 c14 -29 42 -66 62 -82 65 -53 108 -60 389 -60 l253 0 0 -955 c0 -1054 -4 -994 63 -1063 18 -19 50 -43 72 -55 39 -22 47 -22 520 -22 475 0 480 0 521 22 48 25 101 83 120 129 12 28 14 201 14 988 l0 955 328 3 c312 3 329 4 367 24 51 28 91 68 119 119 20 39 21 52 24 470 2 293 0 446 -8 482 -14 66 -57 124 -117 160 l-48 28 -330 5 -330 5 0 190 c1 105 4 207 8 228 14 70 22 71 362 77 257 5 306 8 340 23 50 22 100 70 128 122 22 39 22 48 22 475 0 430 0 436 -22 476 -28 52 -71 96 -116 118 -31 14 -86 16 -489 15 -249 -1 -466 -4 -483 -6z m813 -600 l-3 -318 -270 -6 c-213 -4 -281 -9 -322 -22 -110 -36 -204 -127 -237 -231 -27 -82 -38 -240 -34 -489 3 -246 7 -266 56 -310 47 -43 81 -46 440 -47 l342 0 0 -345 0 -345 -356 0 c-341 0 -358 -1 -393 -21 -20 -11 -48 -36 -61 -56 l-25 -37 -3 -993 -2 -993 -355 0 -355 0 -2 993 -3 993 -25 37 c-13 20 -41 45 -61 56 -35 20 -53 21 -338 21 l-301 0 0 345 0 345 288 0 c300 1 338 6 384 47 52 47 52 50 59 478 6 389 7 403 32 495 42 156 90 256 174 368 125 165 323 282 549 326 115 22 118 23 487 24 l337 2 -2 -317z">
                     </path>
                   </g>
                 </svg></a></li>
-            <li><a class="fn__tooltip_item" href="<%= admin.twitter_link %>"><span class="t_text">Twitter</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
+            <li><a class="fn__tooltip_item" href="<%= existingSetting ? existingSetting[0].twitter_link : '' %>"><span class="t_text">Twitter</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
 
                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
                     <path d="M75 5093 c10 -16 448 -653 973 -1418 525 -765 955 -1395 955 -1400 0 -6 -431 -512 -959 -1126 -527 -613 -965 -1123 -973 -1132 -13 -16 1 -17 206 -17 l220 0 849 987 c467 542 854 988 859 989 6 2 316 -442 689 -986 l679 -990 744 0 c705 0 743 1 734 18 -5 9 -460 672 -1010 1472 -550 800 -1001 1457 -1001 1460 0 4 418 492 929 1085 l928 1080 -215 3 c-177 2 -218 0 -231 -12 -9 -8 -374 -431 -811 -939 -437 -509 -798 -923 -802 -921 -4 3 -296 425 -649 939 l-642 935 -745 0 -744 0 17 -27z m2815 -2529 c855 -1224 1557 -2229 1558 -2235 3 -6 -118 -8 -334 -7 l-338 3 -1558 2228 c-857 1226 -1558 2231 -1558 2233 0 2 152 4 338 4 l337 -1 1555 -2225z">
@@ -142,7 +144,7 @@
                   </g>
                 </svg></a></li>
 
-            <li><a class="fn__tooltip_item" href="<%= admin.instagram_link %>"><span class="t_text">Instagram</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
+            <li><a class="fn__tooltip_item" href="<%= existingSetting ? existingSetting[0].instagram_link : '' %>"><span class="t_text">Instagram</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
 
                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
                     <path d="M1100 5105 c-287 -43 -514 -157 -721 -364 -213 -213 -329 -451 -368 -750 -15 -117 -15 -2745 0 -2862 39 -299 155 -537 368 -750 213 -213 451 -329 750 -368 117 -15 2745 -15 2862 0 299 39 537 155 750 368 213 213 329 451 368 750 15 117 15 2745 0 2862 -39 299 -155 537 -368 750 -213 213 -451 329 -750 368 -128 17 -2778 13 -2891 -4z m2997 -452 c113 -39 138 -52 231 -116 148 -102 265 -261 324 -440 l33 -102 0 -1435 c0 -1373 -1 -1438 -19 -1495 -67 -217 -183 -378 -354 -494 -74 -50 -138 -79 -242 -112 l-75 -24 -1435 0 -1435 0 -102 33 c-280 92 -476 297 -569 597 -18 57 -19 122 -19 1495 0 1373 1 1438 19 1495 71 228 195 394 380 510 78 49 212 101 295 115 25 4 683 7 1461 6 l1415 -1 92 -32z">
@@ -153,7 +155,7 @@
                     </path>
                   </g>
                 </svg></a></li>
-            <li><a class="fn__tooltip_item" href="<%= admin.tiktok %>"><span class="t_text">Tiktok</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
+            <li><a class="fn__tooltip_item" href="<%= existingSetting ? existingSetting[0].tiktok_link : '' %>"><span class="t_text">Tiktok</span><svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" class="fn__svg replaced-svg">
 
                   <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
                     <path d="M2518 3328 l-3 -1793 -23 -65 c-35 -95 -84 -170 -156 -238 -186 -174 -471 -200 -684 -63 -61 39 -149 131 -185 192 -143 245 -74 569 156 733 36 25 95 58 133 73 63 25 81 27 199 27 126 0 133 -1 250 -42 65 -23 120 -42 122 -42 2 0 3 256 3 569 l0 569 -135 17 c-254 33 -523 12 -758 -61 -117 -36 -346 -152 -457 -231 -121 -87 -296 -262 -383 -383 -77 -108 -183 -317 -221 -435 -108 -335 -110 -684 -4 -1015 168 -525 614 -944 1157 -1086 327 -85 689 -67 1008 52 503 186 891 617 1024 1136 46 181 49 245 49 1081 l0 787 98 -49 c322 -161 630 -231 1013 -231 l149 0 0 534 0 534 -62 6 c-35 3 -110 8 -167 11 -128 7 -194 19 -296 52 -371 119 -647 433 -721 821 -8 40 -14 125 -14 187 0 62 -3 120 -6 129 -6 14 -63 16 -545 16 l-539 0 -2 -1792z m802 1463 c0 -48 56 -251 93 -338 152 -357 445 -633 810 -762 93 -32 264 -71 316 -71 l31 0 0 -245 0 -245 -47 6 c-272 30 -483 91 -694 200 -112 58 -219 129 -381 255 -71 54 -130 99 -133 99 -3 0 -5 -482 -5 -1071 0 -1189 0 -1190 -65 -1385 -60 -179 -149 -337 -267 -469 -256 -287 -584 -444 -968 -461 -296 -14 -575 65 -829 233 -166 111 -358 328 -451 512 -103 206 -155 488 -131 716 36 332 167 602 405 833 254 247 581 382 924 382 l102 0 0 -239 0 -238 -122 -5 c-101 -5 -140 -11 -218 -37 -282 -92 -498 -322 -576 -616 -14 -53 -18 -104 -18 -210 1 -123 4 -151 28 -230 108 -357 413 -600 781 -622 241 -14 477 74 650 242 114 110 186 235 239 410 21 70 21 78 24 1728 l2 1657 250 0 250 0 0 -29z">
@@ -171,7 +173,7 @@
         <% categoryCounts.forEach(category=> { %>            
             <li>
               <div class="category__item">
-                <a class="full_link" href=""></a>
+                <a class="full_link" href="/category/<%= category.category %>"></a>
                 <span class="cat_title">
                   <span class="name"><%= category.category %></span>
                   <span class="count"><%= category.count %>

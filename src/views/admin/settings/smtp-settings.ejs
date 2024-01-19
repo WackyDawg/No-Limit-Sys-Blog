@@ -12,49 +12,6 @@
                             <div class="card-body">
                                 <form class="form-horizontal"
                                     action="/admin/env_key_update" method="POST">
-                                    <div class="form-group row">
-                                        <input type="hidden" name="types[]" value="MAIL_DRIVER">
-                                        <label class="col-md-3 col-form-label">Type</label>
-                                        <div class="col-md-9">
-                                            <div class="dropdown bootstrap-select form-control aiz- mb-2 mb-md-0">
-                                                <select class="form-control aiz-selectpicker mb-2 mb-md-0"
-                                                    name="MAIL_DRIVER" onchange="checkMailDriver()" tabindex="-98">
-                                                    <option value="sendmail">Sendmail</option>
-                                                    <option value="smtp" selected="">SMTP</option>
-                                                    <option value="mailgun">Mailgun</option>
-                                                </select><button type="button" class="btn dropdown-toggle btn-light"
-                                                    data-toggle="dropdown" role="combobox" aria-owns="bs-select-1"
-                                                    aria-haspopup="listbox" aria-expanded="false" title="SMTP">
-                                                    <div class="filter-option">
-                                                        <div class="filter-option-inner">
-                                                            <div class="filter-option-inner-inner">SMTP</div>
-                                                        </div>
-                                                    </div>
-                                                </button>
-                                                <div class="dropdown-menu" style="overflow: hidden;">
-                                                    <div class="inner show" role="listbox" id="bs-select-1"
-                                                        tabindex="-1" aria-activedescendant="bs-select-1-1"
-                                                        style="overflow-y: auto;">
-                                                        <ul class="dropdown-menu inner show" role="presentation"
-                                                            style="margin-top: 0px; margin-bottom: 0px;">
-                                                            <li><a role="option" class="dropdown-item"
-                                                                    id="bs-select-1-0" tabindex="0"><span
-                                                                        class="text">Sendmail</span></a></li>
-                                                            <li class="selected active"><a role="option"
-                                                                    class="dropdown-item active selected"
-                                                                    id="bs-select-1-1" tabindex="0" aria-setsize="3"
-                                                                    aria-posinset="2" aria-selected="true"><span
-                                                                        class="text">SMTP</span></a>
-                                                            </li>
-                                                            <li><a role="option" class="dropdown-item"
-                                                                    id="bs-select-1-2" tabindex="0"><span
-                                                                        class="text">Mailgun</span></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div id="smtp">
                                         <div class="form-group row">
                                             <input type="hidden" name="types[]" value="MAIL_HOST">
@@ -63,7 +20,8 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" name="MAIL_HOST"
-                                                    value="139.99.24.80" placeholder="MAIL HOST">
+                                                    value="<%= process.env.MAIL_HOST || '' %>"
+                                                    placeholder="MAIL HOST">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -77,7 +35,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <input type="hidden" name="types[]" value="MAIL_USERNAME">
+                                            <input type="hidden" name="types[]" value="">
                                             <div class="col-md-3">
                                                 <label class="col-from-label">MAIL USERNAME</label>
                                             </div>
@@ -93,7 +51,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" name="MAIL_PASSWORD"
-                                                    value="testpassword" placeholder="MAIL PASSWORD">
+                                                    value="" placeholder="MAIL PASSWORD">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -103,7 +61,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" name="MAIL_ENCRYPTION"
-                                                    value="ssl" placeholder="MAIL ENCRYPTION">
+                                                    value="" placeholder="MAIL ENCRYPTION">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -123,7 +81,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" name="MAIL_FROM_NAME"
-                                                    value="no-reply" placeholder="MAIL FROM NAME">
+                                                    value="" placeholder="MAIL FROM NAME">
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +120,7 @@
                                 <h5 class="mb-0 h6">Test SMTP configuration</h5>
                             </div>
                             <div class="card-body">
-                                <form action="https://demo.activeitzone.com/ecommerce/admin/newsletter/test/smtp"
+                                <form action="/admin/newsletter/test/smtp"
                                     method="post">
                                     <input type="hidden" name="_token" value="LKr3uQjw1nHsZsDqGpgAi0qakWvkyJ05OK7p1mNe">
                                     <div class="row">

@@ -10,6 +10,18 @@
             <div class="card-header">
               <h5 class="mb-0 h6">Send Newsletter</h5>
             </div>
+            <% if (successMessages.length > 0) { %>
+            <div class="alert alert-success">
+              <%= successMessages[0] %>
+            </div>
+            <% } %>
+
+            <!-- Display error message -->
+            <% if (errorMessages.length > 0) { %>
+            <div class="alert alert-danger">
+              <%= errorMessages[0] %>
+            </div>
+            <% } %>
 
             <div class="card-body">
               <form class="form-horizontal" action="/admin/newsletter/send" method="POST">
@@ -19,7 +31,7 @@
                     <select class="form-control aiz-selectpicker form-control" data-style="btn-outline-warning" name="emails" multiple data-actions-box="true">
                       <optgroup label="Condiments">
                         <% Subscribers.forEach(subscribe => { %>
-                          <option><%= subscribe.email %></option>
+                        <option><%= subscribe.email %></option>
                         <% }) %>
                       </optgroup>
                     </select>

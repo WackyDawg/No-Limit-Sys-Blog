@@ -156,13 +156,14 @@ exports.getIndex = async (req, res) => {
 
   exports.getAllBlogPost = async (req, res, next) => {
     try {
-      const locals = {
-        title: "Blog",
-        description: ""
-      }
-      const db = await connectDB();
+        const locals = {
+            title: "Blog",
+            description: ""
+        };
+
         // Get the current page from the query parameters, default to 1 if not provided
         const page = parseInt(req.query.page) || 1;
+
         // Set the number of posts per page
         const postsPerPage = 10;
 
@@ -175,25 +176,30 @@ exports.getIndex = async (req, res) => {
         // Calculate the skip value based on the current page
         const skip = (page - 1) * postsPerPage;
 
-        // Fetch 10 blog posts for the current page
+        // Fetch 10 blog posts for the current page and populate the 'creator' field
         const allPosts = await Post.find()
-            .populate('category', 'name')
+            .populate('category', 'name') // Assuming 'category' is the field in your Post schema
+            .populate('creator') // Populate the 'creator' field
             .skip(skip)
             .limit(postsPerPage);
 
         const existingSetting = await Setting.find({});
+        const creatorId = req.user; 
+        console.log("req.user:", req.user);
 
+        const postsByCreatorCount = await Post.countDocuments({ creator: creatorId });
         // Calculate the starting count value for the current page
         const startingCount = (page - 1) * postsPerPage + 1;
 
         // Pass the blog posts data and pagination information to the template
-        res.render("allPosts", { posts: allPosts,locals, existingSetting, currentPage: page, totalPages, startingCount });
+        res.render("allPosts", { posts: allPosts, locals, existingSetting,postsByCreatorCount, currentPage: page, totalPages, startingCount });
     } catch (error) {
         console.error(error);
         // Handle errors appropriately
         res.status(500).send("Internal Server Error");
     }
 };
+
 
 
 exports.login = async (req, res, next) => {
@@ -211,14 +217,17 @@ exports.postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid Credentials' });
+    const existingSetting = await Setting.find({});
+    const user = await User.findOne({ email }).populate('role');
+    if (!user || !existingSetting) {
+      // Render the login page with an error message
+      return res.status(401).render('auth/login', { layout: authLayout,existingSetting, errorMessage: 'Invalid Credentials' });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid Credentials' });
+    if (!isPasswordValid || !existingSetting) {
+      // Render the login page with an error message
+      return res.status(401).render('auth/login', { layout: authLayout, existingSetting, errorMessage: 'Invalid Credentials' });
     }
 
     const token = jwt.sign({ userId: user._id }, jwtSecret);
@@ -230,9 +239,55 @@ exports.postLogin = async (req, res) => {
   }
 };
 
+
 exports.logout = (req, res) => {
   res.clearCookie('token');
   res.redirect('/'); 
+};
+
+exports.getPostsByCategory = async (req, res) => {
+  try {
+      const categoryName = req.params.categoryName;
+
+      const category = await Category.findOne({ name: categoryName });
+      const existingSetting = await Setting.find({});
+
+      if (!category) {
+          return res.status(404).send('Category not found');
+      }
+
+      // Pagination variables
+      const page = parseInt(req.query.page) || 1;
+      const postsPerPage = 10; // You can adjust this value as needed
+      const skip = (page - 1) * postsPerPage;
+
+      // Fetch posts with pagination
+      const postsByCategory = await Post.find({ category: category._id })
+          .populate('category', 'name')
+          .populate('creator')
+          .skip(skip)
+          .limit(postsPerPage);
+
+      const totalPosts = await Post.countDocuments({ category: category._id });
+      const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+      const creatorId = req.user;
+      console.log("req.user:", req.user);
+
+      const postsByCreatorCount = await Post.countDocuments({ creator: creatorId });
+
+      res.render('postsByCategory', {
+          posts: postsByCategory,
+          existingSetting,
+          categoryName,
+          postsByCreatorCount,
+          currentPage: page,
+          totalPages
+      });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+  }
 };
 
 
@@ -250,11 +305,19 @@ exports.hotPosts = async (req, res) => {
 
     const popularPosts = await Post.find().sort({ views: 'desc' })
     .limit(10)
-    .populate('category');
+    .populate('category')
+    .populate('creator') 
     
-    const allPosts = await Post.find().populate('category', 'name');
 
-    res.render('hotposts', { posts: allPosts, existingSetting, popularPosts,admin,categoryCounts: categoryCounts,
+    const allPosts = await Post.find()
+            .populate('category', 'name'); 
+
+    const creatorId = req.user; 
+    console.log("req.user:", req.user);
+
+    const postsByCreatorCount = await Post.countDocuments({ creator: creatorId });
+
+    res.render('hotposts', { posts: allPosts, existingSetting, postsByCreatorCount, popularPosts,admin,categoryCounts: categoryCounts,
     })
   } catch (error) {
     
