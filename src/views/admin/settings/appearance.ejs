@@ -3,7 +3,18 @@
   <!-- .aiz-topbar -->
   <div class="aiz-main-content">
     <div class="px-15px px-lg-25px">
+      <% if (successMessages.length > 0) { %>
+      <div class="alert alert-success">
+        <%= successMessages[0] %>
+      </div>
+      <% } %>
 
+      <!-- Display error message -->
+      <% if (errorMessages.length > 0) { %>
+      <div class="alert alert-danger">
+        <%= errorMessages[0] %>
+      </div>
+      <% } %>
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <!-- Sytem Settings -->
@@ -14,11 +25,11 @@
             <div class="card-body">
               <form class="form-horizontal" action="/admin/business-settings/update" method="POST" enctype="multipart/form-data">
                 <div class="form-group row" id="changeStatusRow" style="display: none;">
-                    <label class="col-md-3 col-form-label">Change Status</label>
-                    <div class="col-md-8">
-                      <input type="checkbox" onchange="changeStatus(this)">
-                    </div>
+                  <label class="col-md-3 col-form-label">Change Status</label>
+                  <div class="col-md-8">
+                    <input type="checkbox" onchange="changeStatus(this)">
                   </div>
+                </div>
                 <!-- System Name -->
                 <div class="form-group row">
                   <label class="col-sm-3 col-from-label">System Name</label>
@@ -219,37 +230,37 @@
                   <label class="col-md-3 col-from-label">Meta Image</label>
                   <div class="col-md-8">
                     <div class="input-group" data-toggle="aizuploader" data-type="image">
-                        <label class="input-group-prepend btn btn-soft-secondary bg-soft-secondary font-weight-medium">
-                          Browse
-                          <input type="file" name="meta_image" id="meta_image" accept="image/*" class="d-none">
-                        </label>
-                        <div class="form-control file-amount"></div>
-                        <!-- The following hidden inputs are optional and can be used if needed -->
-                        <input type="hidden" name="" value="footer_logo">
-                        <input type="hidden" name="deletedFooterLogos" id="deletedFooterLogos" value="">
-                        <input type="hidden" name="" class="selected-files" value="1948">
-                      </div>
-                      <div class="file-preview box">
-                        <% existingSetting && existingSetting[0].meta_image && existingSetting[0].meta_image.forEach((file, index)=> { %>
-                        <% const fileName=file.split('/').pop(); %>
-                        <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
-                        <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1675" title="Mask Group 67.svg">
-                          <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
-                            <img src="<%= filteredPath %>" class="img-fit">
-                          </div>
-                          <div class="col body">
-                            <h6 class="d-flex"><span class="text-truncate title">
-                                <%= fileName.split('.')[0] %>
-                              </span><span class="ext flex-shrink-0">
-                                <%= fileName.split('.')[1] %>
-                              </span></h6>
-                            <p></p>
-                          </div>
-                          <div class="remove"><button class="btn btn-sm btn-link remove-attachment" type="button"><i class="la la-close"></i></button></div>
+                      <label class="input-group-prepend btn btn-soft-secondary bg-soft-secondary font-weight-medium">
+                        Browse
+                        <input type="file" name="meta_image" id="meta_image" accept="image/*" class="d-none">
+                      </label>
+                      <div class="form-control file-amount"></div>
+                      <!-- The following hidden inputs are optional and can be used if needed -->
+                      <input type="hidden" name="" value="footer_logo">
+                      <input type="hidden" name="deletedFooterLogos" id="deletedFooterLogos" value="">
+                      <input type="hidden" name="" class="selected-files" value="1948">
+                    </div>
+                    <div class="file-preview box">
+                      <% existingSetting && existingSetting[0].meta_image && existingSetting[0].meta_image.forEach((file, index)=> { %>
+                      <% const fileName=file.split('/').pop(); %>
+                      <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
+                      <div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="1675" title="Mask Group 67.svg">
+                        <div class="align-items-center align-self-stretch d-flex justify-content-center thumb">
+                          <img src="<%= filteredPath %>" class="img-fit">
                         </div>
-                        <% }) %>
-  
+                        <div class="col body">
+                          <h6 class="d-flex"><span class="text-truncate title">
+                              <%= fileName.split('.')[0] %>
+                            </span><span class="ext flex-shrink-0">
+                              <%= fileName.split('.')[1] %>
+                            </span></h6>
+                          <p></p>
+                        </div>
+                        <div class="remove"><button class="btn btn-sm btn-link remove-attachment" type="button"><i class="la la-close"></i></button></div>
                       </div>
+                      <% }) %>
+
+                    </div>
                   </div>
                 </div>
                 <!-- Update Button -->

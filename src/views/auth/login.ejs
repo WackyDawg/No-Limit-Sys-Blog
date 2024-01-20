@@ -4,18 +4,7 @@
       <!-- Left Side Image-->
       <div class="col-xxl-6 col-lg-7">
         <div class="h-100">
-          <% if (existingSetting && existingSetting[0] && existingSetting[0].site_icon) { %>
-          <% existingSetting[0].site_icon.forEach((file, index)=> { %>
-          <% const fileName=file.split('/').pop(); %>
-          <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
-          <img src="<%= filteredPath %>" alt="" class="img-fit h-100">
-          <% }); %>
-          <% } else { %>
-          <!-- Handle the case where existingSetting or site_icon is undefined -->
-          <a href="/" aria-label="Go to home page">
-            <img class="default_logo" src="https://png.pngtree.com/thumb_back/fh260/background/20220427/pngtree-creative-tech-workspace-project-earning-admin-photo-image_30651276.jpg" alt="Default Logo">
-          </a>
-          <% } %>
+          <img src="https://png.pngtree.com/background/20211217/original/pngtree-ui-ux-illustration-for-online-shop-website-background-picture-image_1568201.jpg" alt="" class="img-fit h-100">
         </div>
       </div>
 
@@ -26,23 +15,14 @@
             <div class="col-xxl-6 p-4 p-lg-5">
               <!-- Site Icon -->
               <div class="size-48px mb-3 mx-auto mx-lg-0">
-                <% if (existingSetting && existingSetting[0] && existingSetting[0].site_icon) { %>
-                  <% existingSetting[0].site_icon.forEach((file, index)=> { %>
-                  <% const fileName=file.split('/').pop(); %>
-                  <% const filteredPath=file.replace(/.*\/uploads/, '/uploads' ); %>
-                  <img src="<%= filteredPath %>" alt="" class="img-fit h-100">
-                  <% }); %>
-                  <% } else { %>
-                  <!-- Handle the case where existingSetting or site_icon is undefined -->
-                  <a href="/" aria-label="Go to home page">
-                    <img src="" alt="" class="img-fit h-100">
-                  </a>
-                  <% } %>
+
+                <img src="/uploads/<%= String(existingSetting[0].system_logo).replace('/public', '') %>" alt="" class="img-fit h-100">
+
               </div>
               <!-- Titles -->
               <div class="text-center text-lg-left">
                 <h1 class="fs-20 fs-md-20 fw-700 text-primary" style="text-transform: uppercase;">
-                  Welcome</h1>
+                  Welcome to <%= existingSetting[0].site_name %></h1>
                 <h5 class="fs-14 fw-400 text-dark">Login to your account.</h5>
               </div>
               <!-- Login form -->

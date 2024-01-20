@@ -35,32 +35,30 @@
                 <th data-breakpoints="lg" style="display: none;">Email</th>
                 <th data-breakpoints="lg" style="display: none;">Phone</th>
                 <th data-breakpoints="lg" style="display: none;">Role</th>
-                <th width="10%" class="text-right footable-last-visible" style="display: table-cell;">Options</th>
+                <th width="10%" class="text-right footable-last-visible" style="display: table-cell;"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <% allstaffs.forEach(staff => { %>
+                <tr>
 
 
 
 
 
-                <td style="display: none;">5</td>
-                <td class="footable-first-visible" style="display: table-cell;"><span class="footable-toggle fooicon fooicon-plus"></span>Lindsay S. Engel</td>
-                <td style="display: none;">staff5@example.com</td>
-                <td style="display: none;">678-417-4134</td>
-                <td style="display: none;">
-                  Order clerks
-                </td>
-                <td class="text-right footable-last-visible" style="display: table-cell;">
-                  <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="/admin/staffs//edit" title="Edit">
-                    <i class="las la-edit"></i>
-                  </a>
-                  <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="https://demo.activeitzone.com/ecommerce/admin/staffs/destroy/5" title="Delete">
-                    <i class="las la-trash"></i>
-                  </a>
-                </td>
-              </tr>
+                  <td style="display: none;"></td>
+                  <td class="footable-first-visible" style="display: table-cell;"><span class="footable-toggle fooicon fooicon-plus"></span><%= staff.name %></td>
+                  <td style="display: none;"><%= staff.email %></td>
+                  <td style="display: none;"><%= staff.phone %></td>
+                  <td style="display: none;">
+                    <%= staff.role %>
+                  </td>
+                  <td class="text-right footable-last-visible" style="display: table-cell;">
+                    
+                  </td>
+                </tr>
+              <% }) %>
+              
               
             </tbody>
           </table>

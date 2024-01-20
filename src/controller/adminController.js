@@ -100,16 +100,12 @@ exports.getAdminProfile = async (req, res) => {
 
 exports.updateAdminProfile = async (req, res) => {
   try {
-    // Validate request data using express-validator
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // Use Multer middleware to handle file uploads
-    upload.fields([
-      { name: "avatar", maxCount: 5 }, // New image field
-    ])(req, res, async (err) => {
+    upload.fields([{ name: "avatar", maxCount: 5 }])(req, res, async (err) => {
       if (err) {
         console.error(err);
         return res.status(500).json({ message: "File upload error" });
@@ -123,14 +119,12 @@ exports.updateAdminProfile = async (req, res) => {
               )
             : [];
 
-        // Find the existing setting or create a new one if none exists
         const existingAdmin = await User.findOneAndUpdate(
           { role: "admin" },
           {},
           { upsert: true, new: true }
         );
 
-        // Update fields based on the values present in the request
         const fieldsToUpdate = [
           "name",
           "email",
@@ -144,27 +138,30 @@ exports.updateAdminProfile = async (req, res) => {
           "confirm_password",
         ];
 
-        fieldsToUpdate.forEach(async (field) => {
-          if (Object.prototype.hasOwnProperty.call(req.body, field)) {
-            if (field === "password") {
-              // Check if password and password confirmation match
-              if (req.body.password !== req.body.confirm_password) {
-                return res.status(400).json({
-                  message: "Password and password confirmation do not match",
-                });
+        // Use Promise.all to handle asynchronous operations in parallel
+        await Promise.all(
+          fieldsToUpdate.map(async (field) => {
+            if (Object.prototype.hasOwnProperty.call(req.body, field)) {
+              if (field === "password") {
+                if (req.body.password !== req.body.confirm_password) {
+                  throw new Error(
+                    "Password and password confirmation do not match"
+                  );
+                }
+
+                const hashedPassword = await bcrypt.hash(
+                  req.body[field],
+                  10
+                );
+
+                existingAdmin[field] = hashedPassword;
+              } else {
+                existingAdmin[field] = req.body[field];
               }
-
-              // Hash the new password before saving
-              const hashedPassword = await bcrypt.hash(req.body[field], 10);
-
-              existingAdmin[field] = hashedPassword;
-            } else {
-              existingAdmin[field] = req.body[field];
             }
-          }
-        });
+          })
+        );
 
-        // Update the image fields based on the values present in the request
         if (avatar.length > 0) {
           existingAdmin.avatar = avatar;
         }
@@ -184,6 +181,7 @@ exports.updateAdminProfile = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 exports.getAdminBlog = async (req, res) => {
   try {
@@ -317,7 +315,7 @@ exports.getAdminBlogEdit = async (req, res) => {
 
     if (!currentPost) {
       // Handle case where post is not found
-      return res.status(404).send("Post not found");
+      return res.status(404).render('404');
     }
     res.render("admin/blog-edit", {
       data: currentPost,
@@ -480,7 +478,9 @@ exports.createAdminCategory = async (req, res) => {
   try {
     const categories = await Category.find();
     const existingSetting = await Setting.find({});
-    const currentUser = req.user; // Assuming you have user information attached to the request
+    const currentUser = req.user; 
+    const successMessages = req.flash('success');
+    const errorMessages = req.flash('error');
 
     // Check if the user is authenticated
     if (!currentUser) {
@@ -491,6 +491,8 @@ exports.createAdminCategory = async (req, res) => {
       layout: adminLayout,
       categories,
       currentUser,
+      successMessages,
+      errorMessages,
       existingSetting,
     });
   } catch (error) {
@@ -503,7 +505,8 @@ exports.postAdminCategory = async (req, res) => {
   upload.array("banner", 5)(req, res, async (err) => {
     if (err) {
       console.error(err);
-      return res.status(500).json({ message: "File upload error" });
+      req.flash('error', 'File upload error');
+      return res.redirect('/admin/category/create');
     }
 
     // Continue with processing form data after files are uploaded
@@ -525,10 +528,12 @@ exports.postAdminCategory = async (req, res) => {
 
       await newCategory.save();
 
+      req.flash('success', 'Blog Category Created Sucessfully');
       res.redirect("/admin/blog-category");
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Error creating blog post" });
+      req.flash('error', 'Error creating blog post');
+      return res.redirect('/admin/category/create');
     }
   });
 };
@@ -587,7 +592,6 @@ exports.deleteAdminBlogCategory = async (req, res) => {
 
     await Category.findByIdAndDelete(catId);
 
-    // Optionally, you can redirect to a different page or send a success message
     res.status(200).json({ message: "Blog post deleted successfully" });
   } catch (error) {
     console.error(error);
@@ -796,11 +800,12 @@ exports.updateAdminSettingHeader = async (req, res) => {
         await existingSetting.save();
 
         console.log("Setting saved to the database:", existingSetting);
-
-        res.status(200).json({ success: true });
+        req.flash('success', 'Settings Updated');
+        res.redirect('/admin/website/appearance')
       } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error updating setting" });
+        req.flash('error', 'Error Updating Setting');
+        res.redirect('/admin/website/appearance')
       }
     });
   } catch (error) {
@@ -831,6 +836,8 @@ exports.getAdminSettingFooter = async (req, res) => {
 
 exports.getAdminSettingAppearance = async (req, res) => {
   try {
+    const successMessages = req.flash('success');
+    const errorMessages = req.flash('error');
     const existingSetting = await Setting.find({});
     const currentUser = req.user;
 
@@ -842,6 +849,8 @@ exports.getAdminSettingAppearance = async (req, res) => {
     res.render("admin/settings/appearance", {
       layout: adminLayout,
       currentUser,
+      successMessages,
+      errorMessages,
       existingSetting,
     });
   } catch (error) {
@@ -1476,12 +1485,14 @@ exports.getAdminStaff = async (req, res) => {
   try {
     const existingSetting = await Setting.find({});
     const currentUser = req.user;
+    const allstaffs = await User.find({});
 
     if (!currentUser) {
       return res.status(401).render("errors/401", { layout: "errorLayout" });
     }
     res.render("admin/settings/staffs", {
       layout: adminLayout,
+      allstaffs,
       existingSetting,
       currentUser,
     });

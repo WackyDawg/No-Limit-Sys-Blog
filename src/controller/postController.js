@@ -94,6 +94,9 @@ exports.getBlogById = async (req, res, next) => {
             const postCount = await Post.countDocuments({ category: category._id });
             return { category: category.name, count: postCount };
         }));
+        const allPosts = await Post.find()
+        .populate('category', 'name')
+        .populate('creator');
 
         // Get the current post by ID
         const currentPost = await Post.findOne({ slug })
@@ -103,7 +106,8 @@ exports.getBlogById = async (req, res, next) => {
 
         if (!currentPost) {
             // Handle case where post is not found
-            return res.status(404).send("Post not found");
+            return res.status(404).render('errors/404', { posts: allPosts,
+                existingSetting });
         }
         const admin = await User.findOne(); 
 
@@ -111,10 +115,7 @@ exports.getBlogById = async (req, res, next) => {
         await currentPost.save();
 
         // Get tags of the current post
-        const allPosts = await Post.find()
-        .populate('category', 'name')
-        .populate('creator');
-
+       
 
         // Check if currentPostTags is an array before using $in
         const currentPostCategoryId = currentPost.category;
