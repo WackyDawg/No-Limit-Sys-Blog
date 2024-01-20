@@ -1610,7 +1610,7 @@ exports.postcreateStaffs = async (req, res) => {
       return res.redirect('/admin/staffs/create'); // Redirect to your form route
     }
 
-    const { name, email, mobile, password, role_id } = req.body;
+    const { name, email, mobile, password, role } = req.body;
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -1619,7 +1619,7 @@ exports.postcreateStaffs = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, mobile, password: hashedPassword, role: role_id });
+    const newUser = new User({ name, email, mobile, password: hashedPassword, role });
     await newUser.save();
 
     req.flash('success', 'User created successfully.');

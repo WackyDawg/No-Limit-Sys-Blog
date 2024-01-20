@@ -37,9 +37,8 @@ const userSchema = new mongoose.Schema({
     },
   ],
   role: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Role',
-    //enum: ["user", "admin"],
+    type: String,
+    enum: ["user", "admin", "moderator"],
     default: "user",
   },
   facebook_link: {
