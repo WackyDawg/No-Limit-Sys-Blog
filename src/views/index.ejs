@@ -264,7 +264,7 @@
                           <div class="fn_cs_catlist_alpha" data-post-switcher="enable">
                             <div class="cs_wrapper">
                               <div class="alpha_left">
-                                <div class="post_item">
+                                <!-- <div class="post_item">
                                   <div class="img_holder"><a
                                       href="pawsitively-purrfect-the-enchanting-world-of-cats/index.html"
                                       class="full_link"
@@ -284,7 +284,7 @@
                                   </div>
                                   <div class="left_decor"><img decoding="async" class="fn__svg "
                                       src="/wp-content/themes/guff/framework/svg/grid.svg" alt="svg" /></div>
-                                </div>
+                                </div> -->
                               </div>
                               <div class="alpha_right">
                                 <div class="fn__linetitle">
@@ -1286,205 +1286,15 @@
                                                   src="/wp-content/themes/guff/framework/svg/trend.svg"
                                                   alt="svg" /></span>Hot Trends</h3>
                                           </div>
-                                          <div class="marquee" data-speed="22">
+                                          <div class="marquee" data-speed="22">                         
+                                          <% categoryCounts.forEach(category=> { %>
                                             <div class="item_wrapper">
                                               <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;activism&quot;"></a><span
-                                                  class="text">#activism</span></div>
+                                                  href="/category/<%= category.category %>"
+                                                  aria-label="All posts in &quot;<%= category.category %>&quot;"></a><span
+                                                  class="text">#<%= category.category %></span></div>
                                             </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;animation&quot;"></a><span
-                                                  class="text">#animation</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;art&quot;"></a><span
-                                                  class="text">#art</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;crafts&quot;"></a><span
-                                                  class="text">#crafts</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;culinaryarts&quot;"></a><span
-                                                  class="text">#culinaryarts</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;culture&quot;"></a><span
-                                                  class="text">#culture</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;design&quot;"></a><span
-                                                  class="text">#design</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;digitalart&quot;"></a><span
-                                                  class="text">#digitalart</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;DIY&quot;"></a><span
-                                                  class="text">#DIY</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;education&quot;"></a><span
-                                                  class="text">#education</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;entrepreneurship&quot;"></a><span
-                                                  class="text">#entrepreneurship</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;environmentalart&quot;"></a><span
-                                                  class="text">#environmentalart</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;events&quot;"></a><span
-                                                  class="text">#events</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;exploration&quot;"></a><span
-                                                  class="text">#exploration</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;fashion&quot;"></a><span
-                                                  class="text">#fashion</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;film&quot;"></a><span
-                                                  class="text">#film</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;food&quot;"></a><span
-                                                  class="text">#food</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;history&quot;"></a><span
-                                                  class="text">#history</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;innovation&quot;"></a><span
-                                                  class="text">#innovation</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;inspiration&quot;"></a><span
-                                                  class="text">#inspiration</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;literature&quot;"></a><span
-                                                  class="text">#literature</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;music&quot;"></a><span
-                                                  class="text">#music</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;parenting&quot;"></a><span
-                                                  class="text">#parenting</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;performingarts&quot;"></a><span
-                                                  class="text">#performingarts</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;photography&quot;"></a><span
-                                                  class="text">#photography</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;socialimpact&quot;"></a><span
-                                                  class="text">#socialimpact</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;style&quot;"></a><span
-                                                  class="text">#style</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;sustainability&quot;"></a><span
-                                                  class="text">#sustainability</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;technology&quot;"></a><span
-                                                  class="text">#technology</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;thinking&quot;"></a><span
-                                                  class="text">#thinking</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;travel&quot;"></a><span
-                                                  class="text">#travel</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;wellness&quot;"></a><span
-                                                  class="text">#wellness</span></div>
-                                            </div>
-                                            <div class="item_wrapper">
-                                              <div class="item"><a class="full_link"
-                                                  href=""
-                                                  aria-label="All posts in &quot;writing&quot;"></a><span
-                                                  class="text">#writing</span></div>
-                                            </div>
+                                            <% }) %>
                                           </div>
                                         </div>
                                       </div>
@@ -1597,47 +1407,7 @@
                                 <div class="elementor-element elementor-element-ae970f6 e-con-full e-flex e-con e-child"
                                   data-id="ae970f6" data-element_type="container"
                                   data-settings="{&quot;content_width&quot;:&quot;full&quot;}">
-                                  <div
-                                    class="elementor-element elementor-element-1ead9da elementor-widget elementor-widget-frel-posts"
-                                    data-id="1ead9da" data-element_type="widget" data-widget_type="frel-posts.default">
-                                    <div class="elementor-widget-container">
-                                      <div class="cons_w_wrapper">
-                                        <div class="fn_cs_posts_layout_eta">
-                                          <div class="eta_wrapper">
-                                            <div class="eta__title">
-                                              <h3 class="text"><span>Chosen Post</span></h3>
-                                              <div class="title_decor"><span></span></div>
-                                            </div>
-                                            <div class="post_wrapper">
-                                              <div class="item">
-                                                <div class="img_holder"><a
-                                                    href="https://frenify.com/work/envato/frenify/wp/guff/1/empowered-elegance-embracing-the-modern-womans-journey/"
-                                                    class="full_link"
-                                                    aria-label="Empowered Elegance Embracing the Modern Woman8217s Journey"></a>
-                                                  <div class="img_in img_overlay"><img decoding="async"
-                                                      src="https://frenify.com/work/envato/frenify/wp/guff/1/wp-content/uploads/2023/10/119-150x150.jpg"
-                                                      alt="" /></div>
-                                                </div>
-                                                <div class="title_holder">
-                                                  <h3 class="fn_title fn_limited_title"><span><a
-                                                        href="https://frenify.com/work/envato/frenify/wp/guff/1/empowered-elegance-embracing-the-modern-womans-journey/">Empowered
-                                                        Elegance: Embracing the Modern Woman&#8217;s Journey</a></span>
-                                                  </h3>
-                                                </div>
-                                                <div class="fn__short_meta"><span class="meta_item meta_date"><span
-                                                      class="text"><a
-                                                        href="https://frenify.com/work/envato/frenify/wp/guff/1/2023/10/26/">Oct
-                                                        26, 2023</a></span></span><span
-                                                    class="meta_item meta_category"><a class=""
-                                                      href=" https://frenify.com/work/envato/frenify/wp/guff/1/category/fashion/">Fashion</a></span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                                  
                                   <div
                                     class="elementor-element elementor-element-fd01b2d elementor-widget elementor-widget-frel-posts"
                                     data-id="fd01b2d" data-element_type="widget" data-widget_type="frel-posts.default">

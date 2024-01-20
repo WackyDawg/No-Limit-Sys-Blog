@@ -903,31 +903,31 @@
         <div class="guff_fn_social_list">
           <ul>
             <li>
-              <a class="fn__tooltip_item rbg_item" href="https://www.facebook.com/" target="_blank">
+              <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].facebook_link : '' %>" target="_blank">
                 <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/facebook.svg" alt="svg" />
                 <span class="t_text">facebook</span>
               </a>
             </li>
-            <li>
-              <a class="fn__tooltip_item rbg_item" href="https://x.com/" target="_blank">
+            <li> 
+              <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].twitter_link : '' %>" target="_blank">
                 <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/twitter.svg" alt="svg" />
                 <span class="t_text">twitter</span>
               </a>
             </li>
             <li>
-              <a class="fn__tooltip_item rbg_item" href="https://www.pinterest.com/" target="_blank">
+              <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].pinterest_link : '' %>" target="_blank">
                 <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/pinterest.svg" alt="svg" />
                 <span class="t_text">pinterest</span>
               </a>
             </li>
             <li>
-              <a class="fn__tooltip_item rbg_item" href="https://www.instagram.com/" target="_blank">
+              <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].instagram_link : '' %>" target="_blank">
                 <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/instagram.svg" alt="svg" />
                 <span class="t_text">instagram</span>
               </a>
             </li>
             <li>
-              <a class="fn__tooltip_item rbg_item" href="http://tiktok.com/" target="_blank">
+              <a class="fn__tooltip_item rbg_item" href="<%= existingSetting ? existingSetting[0].tiktok_link : '' %>" target="_blank">
                 <img class="fn__svg" src="/wp-content/themes/guff/framework/svg/social/tiktok.svg" alt="svg" />
                 <span class="t_text">tiktok</span>
               </a>
@@ -937,48 +937,13 @@
         <div class="menu-main-container">
           <ul id="menu-main-1" class="mobile_menu">
             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-200 current_page_item menu-item-334">
-              <a href="index.html" aria-current="page"><span><span>Home</span></span></a>
+              <a href="/" aria-current="page"><span><span>Home</span></span></a>
             </li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-191">
-              <a href="#"><span><span>Pages</span></span></a>
-              <ul class="sub-menu">
-                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-192"><a href="https://fn_ex_link/404"><span><span>404 Page</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-190"><a href="protected-page/index.html"><span><span>Protected Page</span></span></a>
-                </li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-198"><a href="https://fn_ex_link/?s=great"><span><span>Search Found</span></span></a>
-                </li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-197"><a href="https://fn_ex_link/?s=tree"><span><span>Search Not Found</span></span></a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-199">
-              <a href="podcasts/index.html"><span><span>Podcasts</span></span></a>
-              <ul class="sub-menu">
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-194"><a href="episodes/index.html"><span><span>Episodes</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-frenify-episode menu-item-195">
-                  <a href="episode/unleashing-your-full-potential-embracing-mindfulness-and-personal-growth/index.html"><span><span>Episode
-                        Single</span></span></a>
-                </li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149"><a href="podcasts/index.html"><span><span>Podcasts</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-frenify-podcast menu-item-196">
-                  <a href="podcast/financial-freedom-mastering-your-finances-for-a-stress-free-lifestyle/index.html"><span><span>Podcast
-                        Single</span></span></a>
-                </li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-333"><a href="home-podcast/index.html"><span><span>Home Podcast</span></span></a></li>
-              </ul>
-            </li>
+            
             <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-169">
-              <a href="blog/index.html"><span><span>Blog</span></span></a>
-              <ul class="sub-menu">
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-175"><a href="blog/index.html"><span><span>List</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-172"><a href="blog-4/index.html"><span><span>List + Sidebar</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-174"><a href="blog-2/index.html"><span><span>Classic</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-171"><a href="blog-5/index.html"><span><span>Classic + Sidebar</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-173"><a href="blog-3/index.html"><span><span>Masonry</span></span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-170"><a href="blog-6/index.html"><span><span>Masonry + Sidebar</span></span></a></li>
-              </ul>
+              <a href="/blog"><span><span>Blog</span></span></a>
             </li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-347"><a href="contact/index.html"><span><span>Contact</span></span></a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-347"><a href="/contact"><span><span>Contact</span></span></a></li>
           </ul>
         </div>
       </div>
