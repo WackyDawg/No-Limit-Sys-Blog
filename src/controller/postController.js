@@ -7,6 +7,9 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
+const postLayout = "../views/layouts/post.ejs"
+
+
 function calculateReadTime(text) {
     if (!text) {
         return 0; 
@@ -143,6 +146,7 @@ exports.getBlogById = async (req, res, next) => {
 
         // Pass the necessary data to the template
         res.render("post", {
+            layout: postLayout,
             data: currentPost,
             posts: allPosts,
             previousPost,

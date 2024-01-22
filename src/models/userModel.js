@@ -4,12 +4,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: false,
-    unique: true,
-  },
-  username: {
-    type: String,
-    required: false,
-    unique: true,
+//    unique: true,
   },
   avatar: { 
     type: [String], 

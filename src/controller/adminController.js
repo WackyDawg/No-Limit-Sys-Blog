@@ -67,6 +67,8 @@ exports.getAdminIndex = async (req, res) => {
 exports.getAdminProfile = async (req, res) => {
   try {
     const existingSetting = await Setting.find({});
+    const successMessages = req.flash('success');
+    const errorMessages = req.flash('error');
 
     // Check if req.user exists and has the userId property
     //const userId = req.user?.userId;
@@ -88,6 +90,8 @@ exports.getAdminProfile = async (req, res) => {
     res.render("admin/profile", {
       layout: adminLayout,
       currentUser,
+      successMessages,
+      errorMessages,
       existingSetting,
     });
   } catch (error) {
@@ -112,15 +116,11 @@ exports.updateAdminProfile = async (req, res) => {
       }
 
       try {
-        const avatar =
-          req.files && req.files["avatar"]
-            ? req.files["avatar"].map(
-                (file) => `../public/uploads/${file.filename}`
-              )
-            : [];
+        const emailToUpdate = req.body.email;
 
+        // Find the user by email instead of role
         const existingAdmin = await User.findOneAndUpdate(
-          { role: "admin" },
+          { email: emailToUpdate },
           {},
           { upsert: true, new: true }
         );
@@ -162,18 +162,26 @@ exports.updateAdminProfile = async (req, res) => {
           })
         );
 
+        const avatar =
+          req.files && req.files["avatar"]
+            ? req.files["avatar"].map(
+                (file) => `../public/uploads/${file.filename}`
+              )
+            : [];
+
         if (avatar.length > 0) {
           existingAdmin.avatar = avatar;
         }
 
         await existingAdmin.save();
 
-        console.log("Setting saved to the database:", existingAdmin);
-
-        res.status(200).redirect("/admin/profile");
+        console.log("Settings saved to the database:", existingAdmin);
+        req.flash('success', 'Settings Updated');
+        res.redirect('/admin/profile');
       } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error updating setting" });
+        req.flash('error', 'Error Updating Settings');
+        res.redirect('/admin/profile');
       }
     });
   } catch (error) {
@@ -181,6 +189,7 @@ exports.updateAdminProfile = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 
 exports.getAdminBlog = async (req, res) => {
