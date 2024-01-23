@@ -48,7 +48,7 @@
             <% popularPosts.slice(0,4).forEach(post=> { %>
             <div class="item has_img" title="<%= post.title %>"><a class="full_link" href="/articles/<%= post.slug %>"></a>
               <div class="item_img">
-                <div class="img_in frenify-ready" data-bg-img="/uploads/<%= String(post.banner).replace('/public', '') %>" style="background-image: url(&quot;;);">
+                <div class="img_in frenify-ready" data-bg-img="<%= post.banners %>" style="background-image: url(&quot;;);">
                 </div>
               </div>
               <div class="title_holder">
