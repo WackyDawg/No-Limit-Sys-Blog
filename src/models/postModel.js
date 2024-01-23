@@ -15,6 +15,10 @@ const PostSchema = new Schema({
     slug: {
         type: String,
     },
+    banner: { 
+        type: [String], 
+        default: [] 
+    },
     banners: { 
         type: String,
         required: true, 
