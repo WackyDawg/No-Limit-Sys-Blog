@@ -102,8 +102,8 @@
                             <div class="fn__image_format fn__bordered_obj" data-width="3" data-space="10"
                               data-radius="50">
                               <div class="obj_content"><img loading="lazy"
-                                  src="/uploads/<%= String(data.banner).replace('/public', '') %>"
-                                  srcset="/uploads/<%= String(data.banner).replace('/public', '') %> 1280w, /uploads/<%= String(data.banner).replace('/public', '') %> 300w, /uploads/<%= String(data.banner).replace('/public', '') %> 1024w, /uploads/<%= String(data.banner).replace('/public', '') %> 768w"
+                                  src="<%= data.banners %>"
+                                  srcset="<%= data.banners %> 300w, <%= data.banners%> 1024w, <%= data.banner %> 768w"
                                   sizes="(max-width: 1280px) 100vw, 1280px" alt="" width="1280" height="717"
                                   loading="lazy" /></div>
                             </div>
