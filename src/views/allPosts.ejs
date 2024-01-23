@@ -50,7 +50,7 @@
                         <div class="list_left_in">
                           <div class="blog__image"><a href="/articles/<%= post.slug %>" aria-label="C">
                               <div class="img_overlay">
-                                <div class="img_in"><img src="/uploads/<%= String(post.banner).replace('/public', '') %>" width="300" height="168" alt="" loading="lazy"></div>
+                                <div class="img_in"><img src="<%= post.banners %>" width="300" height="168" alt="" loading="lazy"></div>
                               </div>
                             </a></div>
                         </div>
