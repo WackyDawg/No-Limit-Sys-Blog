@@ -370,7 +370,7 @@
                                                 <div class="obj_content"><a href="/articles/<%= firstPost.slug %>"
                                                     class="full_link" aria-label="<%= firstPost.title %>"></a>
                                                   <div class="img_in img_overlay"><img decoding="async"
-                                                      src="/uploads/<%= String(firstPost.banner).replace('/public', '') %>"
+                                                      src="<%= firstPost.banners %>"
                                                       alt=""></div>
                                                 </div>
                                               </div>
@@ -576,9 +576,9 @@
                                                   data-radius="50">
                                                   <div class="obj_content"><a href="/articles/<%= secondPost._id %>"
                                                       class="full_link"
-                                                      aria-label="Graceful Giants The Majestic World of Giraffes"></a>
+                                                      aria-label=""></a>
                                                     <div class="img_in img_overlay"><img decoding="async"
-                                                        src="/uploads/<%= secondPost ? String(secondPost.banner).replace('/public', '') : '' %>"
+                                                        src="<%= secondPost.banners %>"
                                                         alt=""></div>
                                                   </div>
                                                 </div>
@@ -749,7 +749,7 @@
                                                         class="full_link"
                                                         aria-label="<%= thirdPost ? thirdPost.title : '' %>"></a>
                                                       <div class="img_in img_overlay"><img decoding="async"
-                                                          src="/uploads/<%= String(thirdPost.banner).replace('/public', '') %>"
+                                                          src="<%= thirdPost.banners %>"
                                                           alt=""></div>
                                                     </div>
                                                     <div class="title_holder">
@@ -878,7 +878,7 @@
                                                           aria-label="<%= fourthPost.title %>"></a>
                                                         <div class="img_in img_overlay">
                                                           <img decoding="async"
-                                                            src="/uploads/<%= String(fourthPost.banner).replace('/public', '') %>"
+                                                            src="<%= fourthPost.banners %>"
                                                             alt="">
                                                         </div>
                                                       </div>
